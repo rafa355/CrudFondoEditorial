@@ -9,13 +9,19 @@ import { ListadoProyectosComponent } from './components/proyectos/listado-proyec
 import { ProyectoComponent } from './components/proyectos/proyecto/proyecto.component';
 
 import { ProyectoService } from './services/proyecto.service';
+import { NavbarComponent } from './components/template/navbar/navbar.component';
+import { SidepanelComponent } from './components/template/sidepanel/sidepanel.component';
+import { MainpanelComponent } from './components/template/mainpanel/mainpanel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProyectosComponent,
     ListadoProyectosComponent,
-    ProyectoComponent
+    ProyectoComponent,
+    NavbarComponent,
+    SidepanelComponent,
+    MainpanelComponent
   ],
   imports: [
     BrowserModule
