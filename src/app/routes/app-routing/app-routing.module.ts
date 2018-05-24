@@ -3,12 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { MainpanelComponent } from './../../components/template/mainpanel/mainpanel.component';
 import { ProyectosComponent } from './../../components/proyectos/proyectos.component';
-
+import { DisenadoresComponent } from './../../components/disenadores/disenadores.component'
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: MainpanelComponent },
+  { path: '', redirectTo: '/inicio', pathMatch: 'full' },
+  { path: 'inicio', component: MainpanelComponent },
   { path: 'proyectos', component: ProyectosComponent },
+  { path: 'diseñadores', component: DisenadoresComponent },
 ];
 
 @NgModule({
