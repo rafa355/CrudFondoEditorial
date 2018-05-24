@@ -13,6 +13,10 @@ import { NavbarComponent } from './components/template/navbar/navbar.component';
 import { SidepanelComponent } from './components/template/sidepanel/sidepanel.component';
 import { MainpanelComponent } from './components/template/mainpanel/mainpanel.component';
 
+//para rutas
+import { AppRoutingModule } from './routes/app-routing/app-routing.module';
+import { DisenadoresComponent } from './components/disenadores/disenadores.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,10 +25,12 @@ import { MainpanelComponent } from './components/template/mainpanel/mainpanel.co
     ProyectoComponent,
     NavbarComponent,
     SidepanelComponent,
-    MainpanelComponent
+    MainpanelComponent,
+    DisenadoresComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [ProyectoService],
   bootstrap: [AppComponent]
