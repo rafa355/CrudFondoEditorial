@@ -8,10 +8,14 @@ import { ProyectosComponent } from './components/proyectos/proyectos.component';
 import { ListadoProyectosComponent } from './components/proyectos/listado-proyectos/listado-proyectos.component';
 import { ProyectoComponent } from './components/proyectos/proyecto/proyecto.component';
 
+//servicios
 import { ProyectoService } from './services/proyecto.service';
+
+
 import { NavbarComponent } from './components/template/navbar/navbar.component';
 import { SidepanelComponent } from './components/template/sidepanel/sidepanel.component';
 import { MainpanelComponent } from './components/template/mainpanel/mainpanel.component';
+import { EtapasProyectoComponent } from './components/template/mainpanel/etapas-proyecto/etapas-proyecto.component';
 
 //para rutas
 import { AppRoutingModule } from './routes/app-routing/app-routing.module';
@@ -26,7 +30,8 @@ import { DisenadoresComponent } from './components/disenadores/disenadores.compo
     NavbarComponent,
     SidepanelComponent,
     MainpanelComponent,
-    DisenadoresComponent
+    DisenadoresComponent,
+    EtapasProyectoComponent,
   ],
   imports: [
     BrowserModule,

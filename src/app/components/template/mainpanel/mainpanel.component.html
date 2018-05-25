@@ -84,7 +84,7 @@
                         </header>
                         <hr class="widget-separator" />
                         <div class="widget-body clearfix">
-
+                            <app-etapas-proyecto *ngFor="let proyecto of proyectos" [proyecto]='proyecto'></app-etapas-proyecto>
                         </div>
                     </div>
                     <!-- .widget -->
