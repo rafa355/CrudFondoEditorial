@@ -11,6 +11,9 @@ import { ProyectoComponent } from './components/proyectos/proyecto/proyecto.comp
 //servicios
 import { ProyectoService } from './services/proyecto.service';
 
+//http
+import { HttpModule } from '@angular/http';
+
 
 import { NavbarComponent } from './components/template/navbar/navbar.component';
 import { SidepanelComponent } from './components/template/sidepanel/sidepanel.component';
@@ -35,7 +38,8 @@ import { DisenadoresComponent } from './components/disenadores/disenadores.compo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
   ],
   providers: [ProyectoService],
   bootstrap: [AppComponent]
