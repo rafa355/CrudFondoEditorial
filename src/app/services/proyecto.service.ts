@@ -1,27 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable,OnInit } from '@angular/core';
 import { Proyecto } from '../models/proyecto'
-import { Http } from '@angular/http';
+import {Observable} from 'rxjs';
+ //http
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
-//http
-import { HttpModule } from '@angular/http';
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ProyectoService {
+@Injectable()
+export class ProyectoService  {
 
-  proyectos: Proyecto[] =[
-    new Proyecto('1','maria conchita'),
-    new Proyecto('2','pedro conchita'),
-    new Proyecto('3','pacha conchita'),
-    new Proyecto('4','johu conchita'),
-  
-  ]
-
-  constructor(private http:Http) { }
-
-  ObtenerProyectos(): Observable<Proyecto[]>{
-    return this.http.get('link de api aqui').map((response: Response) => response.json());
+  constructor(private http:HttpClient) {}
+ 
+  // Uses http.get() to load data from a single API endpoint
+  getFoods() {
+      return this.http.get('http://localhost:8000/api/ObtenetProyectos');
   }
-
 }

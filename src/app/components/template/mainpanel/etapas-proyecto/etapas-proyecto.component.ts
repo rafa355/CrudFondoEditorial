@@ -8,7 +8,7 @@ import { Proyecto } from '../../../../models/proyecto';
 })
 export class EtapasProyectoComponent implements OnInit {
 
-  @Input() proyecto: Proyecto;
+  @Input() food;
   constructor() { }
 
   ngOnInit() {
