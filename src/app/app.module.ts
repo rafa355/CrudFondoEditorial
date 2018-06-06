@@ -24,6 +24,7 @@ import { EtapasProyectoComponent } from './components/template/mainpanel/etapas-
 //para rutas
 import { AppRoutingModule } from './routes/app-routing/app-routing.module';
 import { DisenadoresComponent } from './components/disenadores/disenadores.component';
+import { SeguimientoComponent } from './components/seguimiento/seguimiento.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { DisenadoresComponent } from './components/disenadores/disenadores.compo
     MainpanelComponent,
     DisenadoresComponent,
     EtapasProyectoComponent,
+    SeguimientoComponent,
   ],
   imports: [
     BrowserModule,

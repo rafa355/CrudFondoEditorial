@@ -3,6 +3,7 @@ import { Proyecto } from '../models/proyecto'
 import {Observable} from 'rxjs';
  //http
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import 'rxjs/Rx';
 import { map } from 'rxjs/operators';
 
 const httpOptions = {
@@ -14,8 +15,11 @@ export class ProyectoService  {
 
   constructor(private http:HttpClient) {}
  
-  // Uses http.get() to load data from a single API endpoint
   getFoods() {
       return this.http.get('http://localhost:8000/api/ObtenetProyectos');
   }
+
+  obtener_proyecto(id: string):Observable<any> {
+    return this.http.get('http://localhost:8000/api/ObtenetProyecto/' + id)
+}
 }
