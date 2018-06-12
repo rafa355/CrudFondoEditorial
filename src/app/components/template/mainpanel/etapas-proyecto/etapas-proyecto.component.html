@@ -1,7 +1,59 @@
-<a routerLink="/seguimiento/ {{food.id}}">
-    <button class="btn btn-primary">
-    {{food.nombre}}
-</button>
-</a>
+<!-- APP MAIN ==========-->
+<main id="app-main" class="col-md-12">
+    <div class="wrap">
+        <section class="app-content">
 
-<br><br>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget">
+                        <header class="widget-header">
+                            <h4 class="widget-title">{{food.nombre}}</h4>
+                        </header>
+                        <hr class="widget-separator" />
+                        <div class="widget-body">
+                            <div class="table-responsive">
+                                <table class="table no-cellborder">
+                                    <thead>
+                                        <tr>
+                                            <th>Encargado</th>
+                                            <th>Views</th>
+                                            <th>Fecha de entrada</th>
+                                            <th>Tiempo Dedicado</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Denise Ann</td>
+                                            <td>150</td>
+                                            <td>{{food.created_at | date:'yyyy-MM-dd'}}</td>
+                                            <td>9:23 AM</td>
+                                            <td>
+                                                <a routerLink="/seguimiento/ {{food.id}}">
+                                                    <button class="btn btn-primary">
+                                                        Ver Más
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .widget -->
+                </div>
+                <!-- END column -->
+
+
+            </div>
+
+            <!-- .row -->
+        </section>
+        <!-- #dash-content -->
+    </div>
+    <!-- .wrap -->
+
+</main>
+<!--========== END app main -->
