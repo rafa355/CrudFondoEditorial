@@ -10,6 +10,7 @@ import { ProyectoComponent } from './components/proyectos/proyecto/proyecto.comp
 
 //servicios
 import { ProyectoService } from './services/proyecto.service';
+import { EncargadoService } from './services/encargado.service';
 
 //http
 import { HttpModule } from '@angular/http';
@@ -46,7 +47,7 @@ import { SeguimientoComponent } from './components/seguimiento/seguimiento.compo
     HttpClientModule,
 
   ],
-  providers: [ProyectoService],
+  providers: [ProyectoService,EncargadoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

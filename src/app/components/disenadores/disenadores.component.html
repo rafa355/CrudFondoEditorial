@@ -24,25 +24,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <tr *ngFor="let encargado of encargados">
                                             <td class="text-danger">Buyer</td>
-                                            <td>Denise Ann</td>
-                                            <td>150</td>
-                                            <td>3201</td>
-                                            <td>9:23 AM</td>
-                                            <td><button type="button" class="btn btn-danger">Eliminar</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-danger">Buyer</td>
-                                            <td>Denise Ann</td>
-                                            <td>150</td>
-                                            <td>3201</td>
-                                            <td>9:23 AM</td>
-                                            <td><button type="button" class="btn btn-danger">Eliminar</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-danger">Buyer</td>
-                                            <td>Denise Ann</td>
+                                            <td>{{encargado.nombre}}</td>
                                             <td>150</td>
                                             <td>3201</td>
                                             <td>9:23 AM</td>
