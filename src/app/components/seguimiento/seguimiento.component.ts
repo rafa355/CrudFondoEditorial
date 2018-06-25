@@ -11,7 +11,7 @@ import { Proyecto } from '../../models/proyecto'
 })
 export class SeguimientoComponent implements OnInit {
   id: any;
-  proyecto:any={id:'',nombre:''};
+  proyecto:any={id:'',nombre:'',responsable:'',descripcion:''};
 
   constructor(private route: ActivatedRoute,private proyectoservice: ProyectoService) {}
 
