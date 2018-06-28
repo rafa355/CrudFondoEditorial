@@ -11,11 +11,12 @@ const httpOptions = {
 };
 
 @Injectable()
+
 export class ProyectoService  {
 
   constructor(private http:HttpClient) {}
  
-  getFoods() {
+  obtener_proyectos() {
       return this.http.get('http://localhost:8000/api/ObtenetProyectos');
   }
 

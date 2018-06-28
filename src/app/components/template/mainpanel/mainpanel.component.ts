@@ -14,11 +14,11 @@ export class MainpanelComponent implements OnInit {
   public foods;
    constructor(private proyectoservice:ProyectoService) {}
    ngOnInit() {
-    this.getFoods();
+    this.obtener_proyectos();
   }
  
-  getFoods() {
-   this.proyectoservice.getFoods().subscribe(
+  obtener_proyectos() {
+   this.proyectoservice.obtener_proyectos().subscribe(
      data => { this.foods = data},
      err => console.error(err),      () => console.log(this.foods)
     );  }

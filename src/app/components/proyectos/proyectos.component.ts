@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProyectoService } from '../../services/proyecto.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-proyectos',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProyectosComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  public proyectos;
+   constructor(private proyectoservice:ProyectoService) {}
+   ngOnInit() {
+    this.obtener_proyectos();
   }
+ 
+  obtener_proyectos() {
+   this.proyectoservice.obtener_proyectos().subscribe(
+     data => { this.proyectos = data},
+     err => console.error(err),      () => console.log(this.proyectos)
+    );  }
 
 }

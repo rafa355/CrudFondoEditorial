@@ -11,6 +11,7 @@ import { ProyectoComponent } from './components/proyectos/proyecto/proyecto.comp
 //servicios
 import { ProyectoService } from './services/proyecto.service';
 import { EncargadoService } from './services/encargado.service';
+import { EtapasService } from './services/etapas.service';
 
 //http
 import { HttpModule } from '@angular/http';
@@ -26,6 +27,10 @@ import { EtapasProyectoComponent } from './components/template/mainpanel/etapas-
 import { AppRoutingModule } from './routes/app-routing/app-routing.module';
 import { DisenadoresComponent } from './components/disenadores/disenadores.component';
 import { SeguimientoComponent } from './components/seguimiento/seguimiento.component';
+import { PreliminarComponent } from './components/seguimiento/preliminar/preliminar.component';
+import { DiagramacionComponent } from './components/seguimiento/diagramacion/diagramacion.component';
+import { RevisionComponent } from './components/seguimiento/revision/revision.component';
+import { PublicacionComponent } from './components/seguimiento/publicacion/publicacion.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +44,10 @@ import { SeguimientoComponent } from './components/seguimiento/seguimiento.compo
     DisenadoresComponent,
     EtapasProyectoComponent,
     SeguimientoComponent,
+    PreliminarComponent,
+    DiagramacionComponent,
+    RevisionComponent,
+    PublicacionComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +56,7 @@ import { SeguimientoComponent } from './components/seguimiento/seguimiento.compo
     HttpClientModule,
 
   ],
-  providers: [ProyectoService,EncargadoService],
+  providers: [ProyectoService,EncargadoService,EtapasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

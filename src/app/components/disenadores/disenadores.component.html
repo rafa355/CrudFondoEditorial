@@ -15,8 +15,8 @@
                                 <table class="table no-cellborder">
                                     <thead>
                                         <tr>
-                                            <th>Type</th>
-                                            <th>Lead Name</th>
+                                            <th>Cargo</th>
+                                            <th>Nombre</th>
                                             <th>Views</th>
                                             <th>Favorites</th>
                                             <th>Last Visit</th>
@@ -25,7 +25,7 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let encargado of encargados">
-                                            <td class="text-danger">Buyer</td>
+                                            <td class="text-default">{{encargado.tipo}}</td>
                                             <td>{{encargado.nombre}}</td>
                                             <td>150</td>
                                             <td>3201</td>

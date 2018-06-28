@@ -4,6 +4,8 @@ import { ProyectoService } from '../../services/proyecto.service';
 import { Observable } from 'rxjs';
 import { Proyecto } from '../../models/proyecto'
 
+import { PreliminarComponent } from '../../components/seguimiento/preliminar/preliminar.component'
+
 @Component({
   selector: 'app-seguimiento',
   templateUrl: './seguimiento.component.html',
