@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';  
 
 import { AppComponent } from './app.component';
 
@@ -54,7 +55,7 @@ import { PublicacionComponent } from './components/seguimiento/publicacion/publi
     AppRoutingModule,
     HttpModule,
     HttpClientModule,
-
+    CommonModule,
   ],
   providers: [ProyectoService,EncargadoService,EtapasService],
   bootstrap: [AppComponent]

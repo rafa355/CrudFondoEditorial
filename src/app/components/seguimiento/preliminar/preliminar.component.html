@@ -1,10 +1,25 @@
 <div class="col-md-3 col-sm-6">
   <div class="widget stats-widget">
       <footer class="widget-footer bg-primary">
-          <small>Preliminar</small> <span class="label label-warning pull-right" style="font-size:20px" >Activa</span>
-      </footer>
+          <span style="font-size:20px">Preliminar</span> 
+          <span class="label label-warning pull-right" style="font-size:20px" *ngIf="this.etapa.estado == 1; else elseBlock" >Activa</span>
+          <ng-template #elseBlock>
+                <span  class="label label-danger pull-right" style="font-size:20px" >Finalizada</span>
+          </ng-template>
+            <br><br>
+            <div class="text-center"><span > Entrega Estimada: <br> {{etapa.estimado | date:'yyyy-MM-dd'}}</span></div>
+            
+        </footer>
       <div class="widget-body clearfix">
-          <span class="pull-right big-icon watermark"><i class="fa fa-paperclip"></i></span>
+          <div  *ngFor="let adjunto of adjuntos" class="widget">
+                <div class="widget-body">
+                    <div class="table-responsive">
+                      <a href="{{adjunto.archivo}}">  <i class="fa fa-download pull-right fa-2x" aria-hidden="true"></i></a>
+                            {{adjunto.comentario}}
+                    </div>
+                </div>
+            </div>
+            <!-- .widget -->
       </div>
   </div>
   <!-- .widget -->
