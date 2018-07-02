@@ -1,16 +1,27 @@
-
-                <div class="col-md-3 col-sm-6">
-                  <div class="widget stats-widget">
-                      <footer class="widget-footer bg-success">
-                          <small>Publicación</small><small class="pull-right">0</small>
-                      </footer>
-                      <div class="widget-body clearfix">
-                          <div class="pull-left">
-                              <small class="text-color">Producciones Completadas</small>
+<div class="col-md-3 col-sm-6">
+        <div class="widget stats-widget">
+            <footer class="widget-footer bg-success" [ngSwitch]="this.etapa.estado">
+                <span style="font-size:20px">Publicación</span> 
+                      <span *ngSwitchCase="1" class="label label-warning pull-right" style="font-size:20px" >Activa</span>
+                      <span *ngSwitchCase="2" class="label label-danger pull-right" style="font-size:20px" >Finalizada</span>
+                      <span *ngSwitchDefault class="label label-default pull-right" style="font-size:20px" >En espera</span>
+                  <br><br>
+                  <div class="text-center"><span > Entrega Estimada: <br> {{etapa.estimado | date:'yyyy-MM-dd'}}</span></div>
+                  
+              </footer>
+            <div class="widget-body clearfix">
+                <div *ngIf="this.etapa.estado == 1" class="text-center"><span class="fa fa-plus fa-2x "></span></div>
+                <div  *ngFor="let adjunto of adjuntos" class="widget">
+                      <div class="widget-body">
+                          <div class="table-responsive">
+                            <a href="{{adjunto.archivo}}">  <i class="fa fa-download pull-right fa-2x" aria-hidden="true"></i></a>
+                                  {{adjunto.comentario}}
                           </div>
-                          <span class="pull-right big-icon watermark"><i class="fa fa-unlock-alt"></i></span>
                       </div>
-
                   </div>
                   <!-- .widget -->
-              </div>
+            </div>
+        </div>
+        <!-- .widget -->
+      </div>
+      
