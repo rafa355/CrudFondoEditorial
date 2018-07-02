@@ -9,18 +9,21 @@
                   <div class="text-center"><span > Entrega Estimada: <br> {{etapa.estimado | date:'yyyy-MM-dd'}}</span></div>
                   
               </footer>
-            <div class="widget-body clearfix">
-                <div *ngIf="this.etapa.estado == 1" class="text-center"><span class="fa fa-plus fa-2x "></span></div>
-                <div  *ngFor="let adjunto of adjuntos" class="widget">
-                      <div class="widget-body">
-                          <div class="table-responsive">
-                            <a href="{{adjunto.archivo}}">  <i class="fa fa-download pull-right fa-2x" aria-hidden="true"></i></a>
-                                  {{adjunto.comentario}}
+              <div class="widget-body clearfix">
+                    <div *ngIf="this.etapa.estado == 1"  class="text-center" style="margin-top:25px"><span class="fa fa-plus fa-2x "></span></div>
+                    <div *ngFor="let adjunto of adjuntos">
+                      <br>
+                      <div  class="widget">
+                          <div  class="widget-body text-center">
+                          <a href="{{adjunto.archivo}}">  <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                              <div class="table-responsive text-justify">
+                                      {{adjunto.comentario}}
+                              </div>
                           </div>
                       </div>
-                  </div>
-                  <!-- .widget -->
-            </div>
+                      <!-- .widget -->
+                    </div>
+                </div>
         </div>
         <!-- .widget -->
       </div>
