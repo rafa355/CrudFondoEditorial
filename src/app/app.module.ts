@@ -1,18 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';  
+import { FormsModule }   from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
-//componente proyecto
-import { ProyectosComponent } from './components/proyectos/proyectos.component';
-import { ListadoProyectosComponent } from './components/proyectos/listado-proyectos/listado-proyectos.component';
-import { ProyectoComponent } from './components/proyectos/proyecto/proyecto.component';
+//componentes de administracion
+import { ProyectosComponent } from './components/administracion/proyectos/proyectos.component';
+import { DisenadoresComponent } from './components/administracion/disenadores/disenadores.component';
 
 //servicios
 import { ProyectoService } from './services/proyecto.service';
 import { EncargadoService } from './services/encargado.service';
 import { EtapasService } from './services/etapas.service';
+import { SolicitudesService } from './services/solicitudes.service';
 
 //http
 import { HttpModule } from '@angular/http';
@@ -26,19 +27,18 @@ import { EtapasProyectoComponent } from './components/template/mainpanel/etapas-
 
 //para rutas
 import { AppRoutingModule } from './routes/app-routing/app-routing.module';
-import { DisenadoresComponent } from './components/disenadores/disenadores.component';
 import { SeguimientoComponent } from './components/seguimiento/seguimiento.component';
 import { PreliminarComponent } from './components/seguimiento/preliminar/preliminar.component';
 import { DiagramacionComponent } from './components/seguimiento/diagramacion/diagramacion.component';
 import { RevisionComponent } from './components/seguimiento/revision/revision.component';
 import { PublicacionComponent } from './components/seguimiento/publicacion/publicacion.component';
+import { SolicitudesComponent } from './components/administracion/solicitudes/solicitudes.component';
+import { RegistroComponent } from './components/administracion/solicitudes/registro/registro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProyectosComponent,
-    ListadoProyectosComponent,
-    ProyectoComponent,
     NavbarComponent,
     SidepanelComponent,
     MainpanelComponent,
@@ -49,6 +49,8 @@ import { PublicacionComponent } from './components/seguimiento/publicacion/publi
     DiagramacionComponent,
     RevisionComponent,
     PublicacionComponent,
+    SolicitudesComponent,
+    RegistroComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,8 +58,9 @@ import { PublicacionComponent } from './components/seguimiento/publicacion/publi
     HttpModule,
     HttpClientModule,
     CommonModule,
+    FormsModule ,
   ],
-  providers: [ProyectoService,EncargadoService,EtapasService],
+  providers: [ProyectoService,EncargadoService,EtapasService,SolicitudesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

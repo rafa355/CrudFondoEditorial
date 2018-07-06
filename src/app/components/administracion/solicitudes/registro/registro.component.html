@@ -1,0 +1,13 @@
+<div class="col-md-4 col-md-offset-4">
+    <div class="wrap">
+        <p class="form-title">مستخدم جديد</p>
+
+        <form class="login" #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <input type="text" placeholder="اسم المستخدم" name="nombre" ngModel />
+            <input type="text" placeholder="البريد الالكتروني" name="descripcion" ngModel />
+            <input type="text" placeholder="كلمة المرور" name="solicitante_id" ngModel />
+            <input type="text" placeholder="تأكيد كلمة المرور" name="proyecto_type_id" ngModel />
+            <input type="submit" value="تسجيل" class="btn btn-success btn-sm" />
+        </form>
+    </div>
+</div>
