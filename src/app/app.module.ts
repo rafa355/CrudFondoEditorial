@@ -14,6 +14,7 @@ import { ProyectoService } from './services/proyecto.service';
 import { EncargadoService } from './services/encargado.service';
 import { EtapasService } from './services/etapas.service';
 import { SolicitudesService } from './services/solicitudes.service';
+import { SolicitantesService } from './services/solicitantes.service';
 
 //http
 import { HttpModule } from '@angular/http';
@@ -60,7 +61,7 @@ import { RegistroComponent } from './components/administracion/solicitudes/regis
     CommonModule,
     FormsModule ,
   ],
-  providers: [ProyectoService,EncargadoService,EtapasService,SolicitudesService],
+  providers: [ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

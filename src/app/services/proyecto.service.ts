@@ -19,7 +19,9 @@ export class ProyectoService  {
   obtener_proyectos() {
       return this.http.get('http://localhost:8000/api/ObtenetProyectos');
   }
-
+  obtener_tipos() {
+    return this.http.get('http://localhost:8000/api/ObtenerTiposProyectos');
+}
   obtener_proyecto(id: string):Observable<any> {
     return this.http.get('http://localhost:8000/api/ObtenetProyecto/' + id)
 }
