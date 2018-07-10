@@ -70,4 +70,50 @@
             </div>
         </section>
     </div>
+    <div class="container">
+        <div class="row">
+            <div>
+                <div>
+                    <h2>Add Languages</h2>
+                </div>
+                <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
+                    <div class="form-group">
+                        <label>publicacion</label>
+                        <input type="text" class="form-control" formControlName="publicacion"></div>
+                    <div class="form-group col-xs-6">
+                        <label>Nombre</label>
+                        <input type="text" class="form-control" formControlName="nombre"></div>
+                    <div class="form-group col-xs-6">
+                        <label>solicitante</label>
+                        <input type="text" class="form-control " formControlName="solicitante_id"></div>
+                    <div formArrayName="languages">
+                        <div *ngFor="let language of myForm.controls.languages.controls; let i=index" class="panel panel-default">
+                            <div class="panel-heading">
+                                <span>Language {{i + 1}}</span>
+                                <span class="fa fa-check pull-right" *ngIf="myForm.controls.languages.controls.length > 1" (click)="removeLanguage(i)"></span>
+                            </div>
+                            <div class="panel-body" [formGroupName]="i">
+                                <div class="form-group col-xs-6">
+                                    <label>React</label>
+                                    <input type="text" class="form-control" formControlName="nombre"></div>
+                                <div class="form-group col-xs-6">
+                                    <label>Angular5</label>
+                                    <input type="text" class="form-control " formControlName="solicitante_id"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="margin-20 ">
+                        <a (click)="addLanguage() " style="cursor: default ">Add another Language </a></div>
+                    <div class="margin-20 ">
+                        <button type="submit " class="btn btn-primary pull-right " [disabled]="!myForm.valid ">Submit</button></div>
+                    <div class="clearfix "></div>
+                    <div class="margin-20 ">
+                        <div>myForm details:-</div>
+                        <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
+                        <pre>form value: <br>{{myForm.value | json}}</pre>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </main>

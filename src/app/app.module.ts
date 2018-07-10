@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';  
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
@@ -59,7 +59,9 @@ import { RegistroComponent } from './components/administracion/solicitudes/regis
     HttpModule,
     HttpClientModule,
     CommonModule,
-    FormsModule ,
+    FormsModule ,    
+    ReactiveFormsModule,
+
   ],
   providers: [ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService],
   bootstrap: [AppComponent]

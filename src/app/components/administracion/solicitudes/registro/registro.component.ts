@@ -6,7 +6,7 @@ import { SolicitantesService } from '../../../../services/solicitantes.service'
 import { ProyectoService } from '../../../../services/proyecto.service'
 
 import { Observable } from 'rxjs';
-import { NgForm } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-registro',
@@ -15,20 +15,51 @@ import { NgForm } from '@angular/forms';
 })
 export class RegistroComponent implements OnInit {
 
-  constructor(private router:Router,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { }
+  constructor(private _fb: FormBuilder, private router:Router,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { }
   public solicitudes;
   public solicitantes;
   public tipos;
+  public myForm: FormGroup;
 
   ngOnInit() {
     this.ObtenerSolicitantes();
     this.ObtenerTipos();
+
+    this.myForm = this._fb.group({
+      nombre: [''],
+      publicacion: [''],
+      solicitante_id: [''],
+      languages: this._fb.array([
+      this.initlanguage(),
+      ])
+      });
   }
   onSubmit(form:NgForm){
     this.crear_solicitud(form.value);
 
     }
-    
+    initlanguage() {
+      return this._fb.group({
+      nombre: [''],
+      solicitante_id: ['']
+      });
+      }
+
+      addLanguage() {
+      const control = <FormArray>this.myForm.controls['languages'];
+      control.push(this.initlanguage());
+      }
+
+      removeLanguage(i: number) {
+      const control = <FormArray>this.myForm.controls['languages'];
+      control.removeAt(i);
+      }
+
+      save(model) {
+        this.crear_solicitud(model);
+      }
+
+
     ObtenerSolicitantes() {
       this.solicitantesservice.obtener_solicitantes().subscribe(
         data => { this.solicitantes = data},

@@ -18,6 +18,7 @@ export class SolicitudesService {
 
   crear_solicitud(solicitud) {
             let body = JSON.stringify(solicitud);
+            console.log(solicitud);
            return this.http.post('http://localhost:8000/api/CrearSolicitud', solicitud, httpOptions);
         }
           
