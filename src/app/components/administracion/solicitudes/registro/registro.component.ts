@@ -29,7 +29,7 @@ export class RegistroComponent implements OnInit {
       nombre: [''],
       publicacion: [''],
       solicitante_id: [''],
-      languages: this._fb.array([
+      proyectos: this._fb.array([
       this.initlanguage(),
       ])
       });
@@ -41,17 +41,18 @@ export class RegistroComponent implements OnInit {
     initlanguage() {
       return this._fb.group({
       nombre: [''],
-      solicitante_id: ['']
+      proyecto_type_id: [''],
+      descripcion: ['']
       });
       }
 
       addLanguage() {
-      const control = <FormArray>this.myForm.controls['languages'];
+      const control = <FormArray>this.myForm.controls['proyectos'];
       control.push(this.initlanguage());
       }
 
       removeLanguage(i: number) {
-      const control = <FormArray>this.myForm.controls['languages'];
+      const control = <FormArray>this.myForm.controls['proyectos'];
       control.removeAt(i);
       }
 

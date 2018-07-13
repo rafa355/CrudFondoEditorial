@@ -13,107 +13,102 @@
                         </header>
                         <hr class="widget-separator" />
                         <div class="widget-body">
-
-                            <form class="login" #f="ngForm" (ngSubmit)="onSubmit(f)">
-                                <div class="alert alert-danger print-error-msg" style="display: none;">
-                                    <ul></ul>
-                                </div>
-                                <div class="container-fluid">
-                                    <div class="row">
-
-                                        <div class="col-md-12">
-                                            <div class="col-md-3">
-                                                <div class="col-md-12 form-group">
-                                                    <label>Nombre</label>
-                                                    <input type="text" maxlength="30" name="nombre" class="form-control" required ngModel />
+                            <div class="container">
+                                <div class="row">
+                                    <div>
+                                        <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
+                                            <div class="form-group col-xs-3">
+                                                <label>Nombre</label>
+                                                <input type="text" class="form-control" formControlName="nombre">
+                                            </div>
+                                            <div class="form-group col-xs-3">
+                                                <label>Solicitante</label>
+                                                <select formControlName="solicitante_id" class="form-control">
+                                                    <option  *ngFor="let solicitante of solicitantes" value="{{solicitante.id}}">{{solicitante.nombre}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-xs-3">
+                                                <label>publicacion</label>
+                                                <select formControlName="publicacion" class="form-control">
+                                                    <option  value="si">SI</option>
+                                                    <option  value="no">NO</option>
+                                                </select>
+                                            </div>
+                                            <header class="widget-header">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <h1 class="h3 title-form">Proyectos</h1>
+                                                    </div>
                                                 </div>
-
-                                                <div class="col-md-12 form-group">
-                                                    <label>Tipo de Solicitud</label>
-                                                    <select name="proyecto_type_id" class="form-control" ngModel>
-                                    <option  *ngFor="let tipo of tipos" value="{{tipo.id}}">{{tipo.nombre}}</option>
-                            </select>
-                                                </div>
-                                                <div class="col-md-12 form-group">
-                                                    <label>Solicitante</label>
-                                                    <select name="solicitante_id" class="form-control" ngModel>
-					    	<option  *ngFor="let solicitante of solicitantes" value="{{solicitante.id}}">{{solicitante.nombre}}</option>
-					    </select>
+                                            </header>
+                                            <div formArrayName="proyectos">
+                                                <div *ngFor="let Proyecto of myForm.controls.proyectos.controls; let i=index" class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <span>Proyecto {{i + 1}}</span>
+                                                        <span class="fa fa-check pull-right" *ngIf="myForm.controls.proyectos.controls.length > 1" (click)="removeLanguage(i)"></span>
+                                                    </div>
+                                                    <div class="panel-body" [formGroupName]="i">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group col-xs-12">
+                                                                <label>Nombre</label>
+                                                                <input type="text" class="form-control" formControlName="nombre"></div>
+                                                            <div class="form-group col-xs-12">
+                                                                <label>Tipo de Solicitud</label>
+                                                                <select formControlName="proyecto_type_id" class="form-control">
+                                                                    <option  *ngFor="let tipo of tipos" value="{{tipo.id}}">{{tipo.nombre}}</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-xs-12">
+                                                                <label>Fecha de Entrega Estimada</label>
+                                                                <input type="date" name="" id="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-12 form-group">
+                                                                <label>Descripcion</label>
+                                                                <textarea class="form-control" formControlName="descripcion" id="" cols="30" rows="10"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-9">
-                                                <div class="col-md-12 form-group">
-                                                    <label>Descripcion</label>
-                                                    <textarea class="form-control" name="descripcion" id="" cols="30" rows="10" ngModel></textarea>
+                                            <header class="widget-header text-center">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3">
+                                                        <h1 class="h3 title-form">Añadir Proyecto</h1>
+                                                        <a (click)="addLanguage()" style="cursor: default">
+                                                            <button type="button" class="btn btn-primary btn-circle" data-toggle="tooltip" data-placement="top" title="Agregar Solicitud">
+                                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                                </button>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </header>
+                                            <div class="clearfix"></div>
+                                            <div class="clearfix"></div>
+                                            <div class="clearfix"></div>
+                                            <div class="col-xs-12">
+                                                <div class="form-group text-center">
+                                                    <button type="submit " class="btn btn-primary" [disabled]="!myForm.valid " style="margin-right:50px">Guardar</button>
+                                                    <a routerLink="/solicitudes">
+                                                        <input type="button" value="Cancelar" class="btn btn-danger cancel">
+                                                    </a>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="col-lg-12">
-                                            <div class="form-group text-center">
-                                                <input type="submit" value="Guardar" class="btn btn-primary" style="margin-right:50px">
-                                                <a routerLink="/solicitudes">
-                                                    <input type="button" value="Cancelar" class="btn btn-danger cancel">
-                                                </a>
+                                            <div class="clearfix "></div>
+                                            <div class="margin-20">
+                                                <div>myForm details:-</div>
+                                                <pre>form value: <br>{{myForm.value | json}}</pre>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="message-sucess alert alert-success" style="display: none;"> Los datos han sido guardados exitosamente!</div>
-                                            <div class="message-error alert alert-danger" style="display: none;"> Ha ocurrido un error en el guardado de los datos!</div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </div>
-    <div class="container">
-        <div class="row">
-            <div>
-                <div>
-                    <h2>Add Languages</h2>
-                </div>
-                <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
-                    <div class="form-group">
-                        <label>publicacion</label>
-                        <input type="text" class="form-control" formControlName="publicacion"></div>
-                    <div class="form-group col-xs-6">
-                        <label>Nombre</label>
-                        <input type="text" class="form-control" formControlName="nombre"></div>
-                    <div class="form-group col-xs-6">
-                        <label>solicitante</label>
-                        <input type="text" class="form-control " formControlName="solicitante_id"></div>
-                    <div formArrayName="languages">
-                        <div *ngFor="let language of myForm.controls.languages.controls; let i=index" class="panel panel-default">
-                            <div class="panel-heading">
-                                <span>Language {{i + 1}}</span>
-                                <span class="fa fa-check pull-right" *ngIf="myForm.controls.languages.controls.length > 1" (click)="removeLanguage(i)"></span>
-                            </div>
-                            <div class="panel-body" [formGroupName]="i">
-                                <div class="form-group col-xs-6">
-                                    <label>React</label>
-                                    <input type="text" class="form-control" formControlName="nombre"></div>
-                                <div class="form-group col-xs-6">
-                                    <label>Angular5</label>
-                                    <input type="text" class="form-control " formControlName="solicitante_id"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="margin-20 ">
-                        <a (click)="addLanguage() " style="cursor: default ">Add another Language </a></div>
-                    <div class="margin-20 ">
-                        <button type="submit " class="btn btn-primary pull-right " [disabled]="!myForm.valid ">Submit</button></div>
-                    <div class="clearfix "></div>
-                    <div class="margin-20 ">
-                        <div>myForm details:-</div>
-                        <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
-                        <pre>form value: <br>{{myForm.value | json}}</pre>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+
 </main>
