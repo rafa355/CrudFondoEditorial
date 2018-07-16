@@ -23,6 +23,7 @@
                                         <tr>
                                             <th>Nombre</th>
                                             <th>Solicitante</th>
+                                            <th>Estado</th>
                                             <th>Fecha de Solicitud</th>
                                             <th>Detalles</th>
                                             <th>Acciones</th>
@@ -32,9 +33,10 @@
                                         <tr *ngFor="let solicitud of solicitudes">
                                             <td>{{solicitud.nombre}}</td>
                                             <td>{{solicitud.solicitante.nombre}}</td>
+                                            <td>{{solicitud.status}}</td>
                                             <td>{{solicitud.created_at}}</td>
                                             <td class="text-center"><span class="fa fa-search fa-2x "></span></td>
-                                            <td><button type="button" class="btn btn-danger">Eliminar</button></td>
+                                            <td><a (click)="ActivarSolicitud(solicitud.id)" style="cursor: default;margin-right: 10px"> <button type="button" class="btn btn-success">activar</button></a><button type="button" class="btn btn-danger">Anular</button></td>
                                         </tr>
                                     </tbody>
                                 </table>

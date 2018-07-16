@@ -10,14 +10,22 @@ export class SolicitudesComponent implements OnInit {
 
   constructor(private solicitudesservice:SolicitudesService) { }
   public solicitudes;
+  public notificacion;
   ngOnInit() {
     this.ObtenerSolicitudes();
   }
- 
+
   ObtenerSolicitudes() {
    this.solicitudesservice.obtener_solicitudes().subscribe(
      data => { this.solicitudes = data},
      err => console.error(err),      () => console.log(this.solicitudes)
     );  }
+
+    ActivarSolicitud(id: string) {
+      this.solicitudesservice.activar_solicitud(id).subscribe(
+         data => { this.notificacion = data},
+         err => console.error(err),      () => console.log(this.notificacion)
+        );
+      }
 
 }
