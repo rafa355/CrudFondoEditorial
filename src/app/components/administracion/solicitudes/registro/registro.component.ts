@@ -29,6 +29,7 @@ export class RegistroComponent implements OnInit {
       nombre: [''],
       publicacion: [''],
       solicitante_id: [''],
+      status: [''],
       proyectos: this._fb.array([
       this.initlanguage(),
       ])

@@ -25,7 +25,7 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let proyecto of proyectos">
-                                            <td class="text-success">{{proyecto.tipo}}</td>
+                                            <td class="text-success">{{proyecto.proyecto_type.nombre}}</td>
                                             <td>{{proyecto.nombre}}</td>
                                             <td>{{proyecto.responsable}}</td>
                                             <td>{{proyecto.created_at | date:'yyyy-MM-dd'}}</td>

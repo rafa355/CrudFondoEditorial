@@ -21,19 +21,19 @@
                                 <table class="table no-cellborder">
                                     <thead>
                                         <tr>
-                                            <th>Tipo de Solicitud</th>
                                             <th>Nombre</th>
                                             <th>Solicitante</th>
                                             <th>Fecha de Solicitud</th>
-                                            <th>Last Action</th>
+                                            <th>Detalles</th>
+                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let solicitud of solicitudes">
-                                            <td class="text-default">{{solicitud.tipo}}</td>
                                             <td>{{solicitud.nombre}}</td>
-                                            <td>{{solicitud.solicitante}}</td>
-                                            <td>{{solicitud.creada}}</td>
+                                            <td>{{solicitud.solicitante.nombre}}</td>
+                                            <td>{{solicitud.created_at}}</td>
+                                            <td class="text-center"><span class="fa fa-search fa-2x "></span></td>
                                             <td><button type="button" class="btn btn-danger">Eliminar</button></td>
                                         </tr>
                                     </tbody>

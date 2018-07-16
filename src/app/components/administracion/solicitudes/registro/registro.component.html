@@ -17,6 +17,7 @@
                                 <div class="row">
                                     <div>
                                         <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
+                                            <input type="hidden" class="form-control" formControlName="status" value="activa">
                                             <div class="form-group col-xs-3">
                                                 <label>Nombre</label>
                                                 <input type="text" class="form-control" formControlName="nombre">
