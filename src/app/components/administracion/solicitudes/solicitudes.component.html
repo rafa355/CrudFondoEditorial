@@ -21,22 +21,22 @@
                                 <table class="table no-cellborder">
                                     <thead>
                                         <tr>
-                                            <th>Nombre</th>
-                                            <th>Solicitante</th>
-                                            <th>Estado</th>
-                                            <th>Fecha de Solicitud</th>
-                                            <th>Detalles</th>
-                                            <th>Acciones</th>
+                                            <th class="text-center">Nombre</th>
+                                            <th class="text-center">Solicitante</th>
+                                            <th class="text-center">Estado</th>
+                                            <th class="text-center">Fecha de Solicitud</th>
+                                            <th class="text-center">Detalles</th>
+                                            <th class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let solicitud of solicitudes">
-                                            <td>{{solicitud.nombre}}</td>
-                                            <td>{{solicitud.solicitante.nombre}}</td>
-                                            <td>{{solicitud.status}}</td>
-                                            <td>{{solicitud.created_at}}</td>
+                                            <td class="text-center">{{solicitud.nombre}}</td>
+                                            <td class="text-center">{{solicitud.solicitante.nombre}}</td>
+                                            <td class="text-center">{{solicitud.status}}</td>
+                                            <td class="text-center">{{solicitud.created_at}}</td>
                                             <td class="text-center"><span class="fa fa-search fa-2x "></span></td>
-                                            <td><a (click)="ActivarSolicitud(solicitud.id)" style="cursor: default;margin-right: 10px"> <button type="button" class="btn btn-success">activar</button></a><button type="button" class="btn btn-danger">Anular</button></td>
+                                            <td class="text-center"><a *ngIf="this.solicitud.status == 'pendiente'" routerLink="/activar_solicitud/{{solicitud.id}}" style="cursor: default;margin-right: 10px"> <button type="button" class="btn btn-success">activar</button></a><a (click)="AnularSolicitud(solicitud.id)" style="cursor: default;"><button type="button" class="btn btn-danger">Anular</button></a></td>
                                         </tr>
                                     </tbody>
                                 </table>

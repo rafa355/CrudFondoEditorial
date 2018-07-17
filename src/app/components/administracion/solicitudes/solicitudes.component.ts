@@ -21,11 +21,11 @@ export class SolicitudesComponent implements OnInit {
      err => console.error(err),      () => console.log(this.solicitudes)
     );  }
 
-    ActivarSolicitud(id: string) {
-      this.solicitudesservice.activar_solicitud(id).subscribe(
-         data => { this.notificacion = data},
-         err => console.error(err),      () => console.log(this.notificacion)
-        );
-      }
 
+      AnularSolicitud(id: string) {
+        this.solicitudesservice.anular_solicitud(id).subscribe(
+           data => { this.notificacion = data},
+           err => console.error(err),      () => console.log(this.notificacion)
+          );
+        }
 }

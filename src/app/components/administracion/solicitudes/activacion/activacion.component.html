@@ -1,0 +1,55 @@
+<!-- APP MAIN ==========-->
+<main id="app-main" class="col-md-12">
+  <div class="wrap">
+      <section class="app-content">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="widget">
+                      <header class="widget-header">
+                          <div class="col-lg-6 col-md-6">
+                              <h1 class="h3 title-form">Activar Solicitud</h1>
+                          </div>
+                          <a routerLink="/solicitudes">
+                              <button type="button" class="btn btn-primary btn-circle pull-right " data-toggle="tooltip" data-placement="top" title="Volver">
+                                          <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                              </button>
+                          </a>
+                      </header>
+                      <hr class="widget-separator" />
+                      <div class="widget-body">
+                          <div class="table-responsive">
+                              <table class="table no-cellborder">
+                                  <thead>
+                                      <tr>
+                                          <th>Tipo</th>
+                                          <th>Nombre</th>
+                                          <th>Responsable</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr *ngFor="let proyecto of proyectos">
+                                          <td class="text-success">{{proyecto.proyecto_type.nombre}}</td>
+                                          <td>{{proyecto.nombre}}</td>
+                                          <td>{{proyecto.responsable}}</td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                       <div class="text-center"> <a (click)="ActivarSolicitud(this.id)" style="cursor: default;"> <button type="button" class="btn btn-success">activar</button></a></div>
+                      </div>
+                  </div>
+                  <!-- .widget -->
+              </div>
+              <!-- END column -->
+
+
+          </div>
+
+          <!-- .row -->
+      </section>
+      <!-- #dash-content -->
+  </div>
+  <!-- .wrap -->
+
+</main>
+<!--========== END app main -->

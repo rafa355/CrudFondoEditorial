@@ -6,6 +6,7 @@ import { ProyectosComponent } from './../../components/administracion/proyectos/
 import { DisenadoresComponent } from './../../components/administracion/disenadores/disenadores.component'
 import { SolicitudesComponent } from './../../components/administracion/solicitudes/solicitudes.component'
 import { RegistroComponent } from './../../components/administracion/solicitudes/registro/registro.component'
+import { ActivacionComponent } from './../../components/administracion/solicitudes/activacion/activacion.component'
 import { SeguimientoComponent } from './../../components/seguimiento/seguimiento.component'
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'diseñadores', component: DisenadoresComponent },
   { path: 'solicitudes', component: SolicitudesComponent },
   { path: 'registro_solicitud', component: RegistroComponent },
+  { path: 'activar_solicitud/:id', component: ActivacionComponent },
   { path: 'seguimiento/:id', component: SeguimientoComponent },
 ];
 

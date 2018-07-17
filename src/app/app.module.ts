@@ -35,6 +35,7 @@ import { RevisionComponent } from './components/seguimiento/revision/revision.co
 import { PublicacionComponent } from './components/seguimiento/publicacion/publicacion.component';
 import { SolicitudesComponent } from './components/administracion/solicitudes/solicitudes.component';
 import { RegistroComponent } from './components/administracion/solicitudes/registro/registro.component';
+import { ActivacionComponent } from './components/administracion/solicitudes/activacion/activacion.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { RegistroComponent } from './components/administracion/solicitudes/regis
     PublicacionComponent,
     SolicitudesComponent,
     RegistroComponent,
+    ActivacionComponent,
   ],
   imports: [
     BrowserModule,
