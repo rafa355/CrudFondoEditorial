@@ -24,12 +24,14 @@
                                             <div class="form-group col-xs-3">
                                                 <label>Solicitante</label>
                                                 <select formControlName="solicitante_id" class="form-control">
+                                                    <option  value="" selected disabled hidden>Seleccionar</option>
                                                     <option  *ngFor="let solicitante of solicitantes" value="{{solicitante.id}}">{{solicitante.nombre}}</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-xs-3">
                                                 <label>publicacion</label>
                                                 <select formControlName="publicacion" class="form-control">
+                                                    <option  value="" selected disabled hidden>Seleccionar</option>
                                                     <option  value="si">SI</option>
                                                     <option  value="no">NO</option>
                                                 </select>
@@ -55,6 +57,7 @@
                                                             <div class="form-group col-xs-12">
                                                                 <label>Tipo de Solicitud</label>
                                                                 <select formControlName="proyecto_type_id" class="form-control">
+                                                                        <option  value="" selected disabled hidden>Seleccionar</option>
                                                                     <option  *ngFor="let tipo of tipos" value="{{tipo.id}}">{{tipo.nombre}}</option>
                                                                 </select>
                                                             </div>

@@ -74,6 +74,7 @@ export class RegistroComponent implements OnInit {
           err => console.error(err),      () => console.log(this.tipos)
          );  }
   
+
   crear_solicitud(solicitud) {
         this.solicitudesservice.crear_solicitud(solicitud).subscribe(
            data => {

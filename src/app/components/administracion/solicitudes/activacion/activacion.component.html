@@ -16,26 +16,31 @@
                           </a>
                       </header>
                       <hr class="widget-separator" />
-                      <div class="widget-body">
-                          <div class="table-responsive">
-                              <table class="table no-cellborder">
-                                  <thead>
-                                      <tr>
-                                          <th>Tipo</th>
-                                          <th>Nombre</th>
-                                          <th>Responsable</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                      <tr *ngFor="let proyecto of proyectos">
-                                          <td class="text-success">{{proyecto.proyecto_type.nombre}}</td>
-                                          <td>{{proyecto.nombre}}</td>
-                                          <td>{{proyecto.responsable}}</td>
-                                      </tr>
-                                  </tbody>
-                              </table>
-                          </div>
-                       <div class="text-center"> <a (click)="ActivarSolicitud(this.id)" style="cursor: default;"> <button type="button" class="btn btn-success">activar</button></a></div>
+                      <div class="widget-body  ">
+                        <div class="container">
+                            <div class="row">
+                                <div>
+                                    <form  novalidate (ngSubmit)="save(myForm.value)">
+                                        <div *ngFor="let proyecto of proyectos; let i=index">
+                                        <div class="form-group col-xs-6 col-xs-offset-1">
+                                            <label>Nombre</label>
+                                            <input type="text" value="{{proyecto.nombre}}" class="form-control" disabled>
+                                        </div>
+
+                                        <div class="form-group col-xs-3">
+                                            <label>Encargado</label>
+                                            <select  (change)="Asignar(proyecto.id,$event.target.value)" name="{{proyecto.nombre}}" class="form-control">
+                                                    <option  value="" selected disabled hidden>Seleccionar</option>
+                                                    <option  *ngFor="let encargado of encargados"  [value]="encargado.id">{{encargado.nombre}}</option>
+                                                </select>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="text-center">
+                        <a (click)="ActivarSolicitud(this.id)" style="cursor: default;"> <button type="button" class="btn btn-success">activar</button></a></div>
                       </div>
                   </div>
                   <!-- .widget -->

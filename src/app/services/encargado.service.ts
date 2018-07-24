@@ -19,4 +19,9 @@ export class EncargadoService {
   obtener_encargados():Observable<any> {
     return this.http.get('http://localhost:8000/api/ObtenerEncargados')
 }
+
+asignar_encargado(id_proyecto: string,id_encargado: string):Observable<any> {
+  return this.http.get('http://localhost:8000/api/AsignarEncargado/' + id_proyecto +'/'+ id_encargado)
+}
+
 }
