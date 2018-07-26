@@ -1,4 +1,4 @@
-import { Component, OnInit , OnChanges} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { SolicitudesService } from '../../../../services/solicitudes.service'
 import { ProyectoService } from '../../../../services/proyecto.service'
 import { EncargadoService } from '../../../../services/encargado.service'
@@ -23,20 +23,37 @@ export class ActivacionComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params["id"];
     this.MostrarProyectos(this.id);
-    this.ObtenerEncargados();
 
     this.myForm = this._fb.group({
+      nombre: [''],
+      publicacion: [''],
+      solicitante_id: [''],
+      status: [''],
       proyectos: this._fb.array([
-        this._fb.group({
-          proyecto_id: [''],
-          encargado_id: [''],
-          })
-        ])
+      ])
       });
 
   }
+  loadForm(proyects: any){
+    proyects.forEach((value) => {
+      this.addLanguage(value);
+      });
+  }
 
-  ngOnchanges(){}
+  initlanguage(proyecto: any) {
+    return this._fb.group({
+    nombre: [proyecto.nombre],
+    proyecto_type_id: [proyecto.id],
+    descripcion: ['']
+    });
+    }
+
+    addLanguage(proyecto: any) {
+    const control = <FormArray>this.myForm.controls['proyectos'];
+    control.push(this.initlanguage(proyecto));
+    }
+
+
   ActivarSolicitud(id: string) {
     this.solicitudesservice.activar_solicitud(id).subscribe(
        data => { this.notificacion = data},
@@ -45,8 +62,10 @@ export class ActivacionComponent implements OnInit {
     }
 
     MostrarProyectos(id: string) {
-      this.proyectoservice.obtener_proyectos_solicitud(id).subscribe(
-         data => { this.proyectos = data},
+       this.proyectoservice.obtener_proyectos_solicitud(id).subscribe(
+         data => { this.proyectos = data
+        ,this.loadForm(this.proyectos)
+        },
          err => console.error(err),      () => console.log(this.proyectos)
         );
       }

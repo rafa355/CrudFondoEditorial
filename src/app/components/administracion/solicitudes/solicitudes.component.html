@@ -36,7 +36,7 @@
                                             <td class="text-center">{{solicitud.status}}</td>
                                             <td class="text-center">{{solicitud.created_at}}</td>
                                             <td class="text-center"><span class="fa fa-search fa-2x "></span></td>
-                                            <td class="text-center"><a *ngIf="this.solicitud.status == 'pendiente'" routerLink="/activar_solicitud/{{solicitud.id}}" style="cursor: default;margin-right: 10px"> <button type="button" class="btn btn-success">activar</button></a><a (click)="AnularSolicitud(solicitud.id)" style="cursor: default;"><button type="button" class="btn btn-danger">Anular</button></a></td>
+                                            <td class="text-center"><a *ngIf="this.solicitud.status == 'pendiente'" (click)="ActivarSolicitud(solicitud.id)" style="cursor: default;margin-right: 10px"> <button type="button" class="btn btn-success">activar</button></a><a (click)="AnularSolicitud(solicitud.id)" style="cursor: default;"><button type="button" class="btn btn-danger">Anular</button></a></td>
                                         </tr>
                                     </tbody>
                                 </table>
