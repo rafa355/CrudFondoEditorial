@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 
-import { EtapasService } from '../../../services/etapas.service';
+import { EtapasService } from '../../../../services/etapas.service';
 import { Observable } from 'rxjs';
-import { Etapas } from '../../../models/etapas'
+import { Etapas } from '../../../../models/etapas'
 
 @Component({
   selector: 'app-revision',

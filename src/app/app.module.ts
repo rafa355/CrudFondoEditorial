@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';  
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -8,8 +8,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 
 //componentes de administracion
-import { ProyectosComponent } from './components/administracion/proyectos/proyectos.component';
-import { DisenadoresComponent } from './components/administracion/disenadores/disenadores.component';
+import { ProyectosComponent } from './components/planificacion_control/administracion/proyectos/proyectos.component';
+import { DisenadoresComponent } from './components/planificacion_control/administracion/disenadores/disenadores.component';
 
 //servicios
 import { ProyectoService } from './services/proyecto.service';
@@ -30,14 +30,14 @@ import { EtapasProyectoComponent } from './components/template/mainpanel/etapas-
 
 //para rutas
 import { AppRoutingModule } from './routes/app-routing/app-routing.module';
-import { SeguimientoComponent } from './components/seguimiento/seguimiento.component';
-import { PreliminarComponent } from './components/seguimiento/preliminar/preliminar.component';
-import { DiagramacionComponent } from './components/seguimiento/diagramacion/diagramacion.component';
-import { RevisionComponent } from './components/seguimiento/revision/revision.component';
-import { PublicacionComponent } from './components/seguimiento/publicacion/publicacion.component';
-import { SolicitudesComponent } from './components/administracion/solicitudes/solicitudes.component';
-import { RegistroComponent } from './components/administracion/solicitudes/registro/registro.component';
-import { ActivacionComponent } from './components/administracion/solicitudes/activacion/activacion.component';
+import { SeguimientoComponent } from './components/planificacion_control/seguimiento/seguimiento.component';
+import { PreliminarComponent } from './components/planificacion_control/seguimiento/preliminar/preliminar.component';
+import { DiagramacionComponent } from './components/planificacion_control/seguimiento/diagramacion/diagramacion.component';
+import { RevisionComponent } from './components/planificacion_control/seguimiento/revision/revision.component';
+import { PublicacionComponent } from './components/planificacion_control/seguimiento/publicacion/publicacion.component';
+import { SolicitudesComponent } from './components/planificacion_control/administracion/solicitudes/solicitudes.component';
+import { RegistroComponent } from './components/planificacion_control/administracion/solicitudes/registro/registro.component';
+import { ActivacionComponent } from './components/planificacion_control/administracion/solicitudes/activacion/activacion.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +63,7 @@ import { ActivacionComponent } from './components/administracion/solicitudes/act
     HttpModule,
     HttpClientModule,
     CommonModule,
-    FormsModule ,    
+    FormsModule ,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),

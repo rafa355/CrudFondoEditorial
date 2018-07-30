@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
-import { SolicitudesService } from '../../../../services/solicitudes.service'
-import { ProyectoService } from '../../../../services/proyecto.service'
-import { EncargadoService } from '../../../../services/encargado.service'
+import { SolicitudesService } from '../../../../../services/solicitudes.service'
+import { ProyectoService } from '../../../../../services/proyecto.service'
+import { EncargadoService } from '../../../../../services/encargado.service'
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 

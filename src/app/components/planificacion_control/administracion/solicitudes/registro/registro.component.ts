@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { SolicitudesService } from '../../../../services/solicitudes.service'
-import { SolicitantesService } from '../../../../services/solicitantes.service'
-import { ProyectoService } from '../../../../services/proyecto.service'
+import { SolicitudesService } from '../../../../../services/solicitudes.service'
+import { SolicitantesService } from '../../../../../services/solicitantes.service'
+import { ProyectoService } from '../../../../../services/proyecto.service'
 
 import { Observable } from 'rxjs';
 import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';

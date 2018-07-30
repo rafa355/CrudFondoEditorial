@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProyectoService } from '../../../services/proyecto.service';
+import { ProyectoService } from '../../../../services/proyecto.service';
 import { Observable } from 'rxjs';
 
 @Component({

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
-import { ProyectoService } from '../../services/proyecto.service';
+import { ProyectoService } from '../../../services/proyecto.service';
 import { Observable } from 'rxjs';
-import { Proyecto } from '../../models/proyecto'
+import { Proyecto } from '../../../models/proyecto'
 
-import { PreliminarComponent } from '../../components/seguimiento/preliminar/preliminar.component'
+import { PreliminarComponent } from '../../../components/planificacion_control/seguimiento/preliminar/preliminar.component'
 
 @Component({
   selector: 'app-seguimiento',

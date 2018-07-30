@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 
-import { EtapasService } from '../../../services/etapas.service';
+import { EtapasService } from '../../../../services/etapas.service';
 import { Observable } from 'rxjs';
-import { Etapas } from '../../../models/etapas'
+import { Etapas } from '../../../../models/etapas'
 
 
 @Component({
-  selector: 'app-publicacion',
-  templateUrl: './publicacion.component.html',
-  styleUrls: ['./publicacion.component.css']
+  selector: 'app-preliminar',
+  templateUrl: './preliminar.component.html',
+  styleUrls: ['./preliminar.component.css']
 })
-export class PublicacionComponent implements OnInit {
+
+export class PreliminarComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,private etapasservice: EtapasService) {}
   id: any;
@@ -20,7 +21,7 @@ export class PublicacionComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params["id"];
-    this.MostrarEtapa('4',this.id);
+    this.MostrarEtapa('1',this.id);
   }
  
     MostrarEtapa(etapa:string,id: string) {
@@ -31,5 +32,4 @@ export class PublicacionComponent implements OnInit {
             }
           );
         }
-
 }

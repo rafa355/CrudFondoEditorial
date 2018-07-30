@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { MainpanelComponent } from './../../components/template/mainpanel/mainpanel.component';
-import { ProyectosComponent } from './../../components/administracion/proyectos/proyectos.component';
-import { DisenadoresComponent } from './../../components/administracion/disenadores/disenadores.component'
-import { SolicitudesComponent } from './../../components/administracion/solicitudes/solicitudes.component'
-import { RegistroComponent } from './../../components/administracion/solicitudes/registro/registro.component'
-import { ActivacionComponent } from './../../components/administracion/solicitudes/activacion/activacion.component'
-import { SeguimientoComponent } from './../../components/seguimiento/seguimiento.component'
+import { ProyectosComponent } from './../../components/planificacion_control/administracion/proyectos/proyectos.component';
+import { DisenadoresComponent } from './../../components/planificacion_control/administracion/disenadores/disenadores.component'
+import { SolicitudesComponent } from './../../components/planificacion_control/administracion/solicitudes/solicitudes.component'
+import { RegistroComponent } from './../../components/planificacion_control/administracion/solicitudes/registro/registro.component'
+import { ActivacionComponent } from './../../components/planificacion_control/administracion/solicitudes/activacion/activacion.component'
+import { SeguimientoComponent } from './../../components/planificacion_control/seguimiento/seguimiento.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },

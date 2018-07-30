@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SolicitudesService } from '../../../services/solicitudes.service'
+import { SolicitudesService } from '../../../../services/solicitudes.service'
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
