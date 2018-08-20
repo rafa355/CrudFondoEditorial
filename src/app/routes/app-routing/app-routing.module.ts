@@ -8,12 +8,14 @@ import { SolicitudesComponent } from './../../components/planificacion_control/a
 import { RegistroComponent } from './../../components/planificacion_control/administracion/solicitudes/registro/registro.component'
 import { ActivacionComponent } from './../../components/planificacion_control/administracion/solicitudes/activacion/activacion.component'
 import { SeguimientoComponent } from './../../components/planificacion_control/seguimiento/seguimiento.component'
+import { RegistroDisenadoresComponent } from './../../components/planificacion_control/administracion/disenadores/registro-disenadores/registro-disenadores.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: MainpanelComponent },
   { path: 'proyectos', component: ProyectosComponent },
   { path: 'diseñadores', component: DisenadoresComponent },
+  { path: 'registro_disenador', component: RegistroDisenadoresComponent },
   { path: 'solicitudes', component: SolicitudesComponent },
   { path: 'registro_solicitud', component: RegistroComponent },
   { path: 'activar_solicitud/:id', component: ActivacionComponent },

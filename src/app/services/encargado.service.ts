@@ -7,6 +7,7 @@ import 'rxjs/Rx';
 import { map } from 'rxjs/operators';
 
 const httpOptions = {
+  method: 'POST',
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
@@ -16,8 +17,18 @@ export class EncargadoService {
 
   constructor(private http:HttpClient) { }
 
+  crear_encargado(encargado) {
+    let body = JSON.stringify(encargado);
+    console.log(encargado);
+   return this.http.post('http://localhost:8000/api/CrearEncargados', encargado, httpOptions);
+}
+
   obtener_encargados():Observable<any> {
     return this.http.get('http://localhost:8000/api/ObtenerEncargados')
+}
+
+obtener_tipos_encargados():Observable<any> {
+  return this.http.get('http://localhost:8000/api/ObtenerEncargadostype')
 }
 
 asignar_encargado(id_proyecto: string,id_encargado: string):Observable<any> {

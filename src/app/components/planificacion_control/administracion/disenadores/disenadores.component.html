@@ -7,7 +7,14 @@
                 <div class="col-md-12">
                     <div class="widget">
                         <header class="widget-header">
-                            <h4 class="widget-title">Listado de Diseñadores</h4>
+                            <div class="col-lg-6 col-md-6">
+                                <h1 class="h3 title-form">Listado de Encargados</h1>
+                            </div>
+                            <a routerLink="/registro_disenador">
+                                <button type="button" class="btn btn-primary btn-circle pull-right add" data-toggle="tooltip" data-placement="top" title="Agregar Solicitud">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </button>
+                            </a>
                         </header>
                         <hr class="widget-separator" />
                         <div class="widget-body">
@@ -25,7 +32,7 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let encargado of encargados">
-                                            <td class="text-default">{{encargado.tipo}}</td>
+                                            <td class="text-default">{{encargado.tipo.nombre}}</td>
                                             <td>{{encargado.nombre}}</td>
                                             <td>150</td>
                                             <td>3201</td>

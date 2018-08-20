@@ -38,6 +38,7 @@ import { PublicacionComponent } from './components/planificacion_control/seguimi
 import { SolicitudesComponent } from './components/planificacion_control/administracion/solicitudes/solicitudes.component';
 import { RegistroComponent } from './components/planificacion_control/administracion/solicitudes/registro/registro.component';
 import { ActivacionComponent } from './components/planificacion_control/administracion/solicitudes/activacion/activacion.component';
+import { RegistroDisenadoresComponent } from './components/planificacion_control/administracion/disenadores/registro-disenadores/registro-disenadores.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ActivacionComponent } from './components/planificacion_control/administ
     SolicitudesComponent,
     RegistroComponent,
     ActivacionComponent,
+    RegistroDisenadoresComponent,
   ],
   imports: [
     BrowserModule,
