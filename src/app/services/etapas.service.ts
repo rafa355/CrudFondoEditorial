@@ -19,6 +19,10 @@ export class EtapasService {
     return this.http.get('http://localhost:8000/api/ObtenerEtapa/' + etapa +'/'+ id)
 }
 
+activar_etapa( etapa: string, proyecto: string,):Observable<any> {
+  return this.http.get('http://localhost:8000/api/ActivarEtapa/' + etapa +'/'+ proyecto)
+}
+
     obtener_etapa_y_adjuntos(etapa: string,id: string,) {
           return Observable.forkJoin(
             this.http.get('http://localhost:8000/api/ObtenerEtapa/' + etapa +'/'+ id),

@@ -20,11 +20,11 @@
                                     <h4>Datos</h4>
                                     <br>
                                     <ul>
-                                        <li> <strong>Responsable:</strong>  {{proyecto.responsable}}</li>
+                                        <li> <strong>Responsable Principal:</strong> {{proyecto.responsable}}</li>
                                         <br>
-                                        <li> <strong>Tipo de Proyecto:</strong>  {{proyecto.proyecto_type.nombre}}</li>
+                                        <li> <strong>Tipo de Proyecto:</strong> {{proyecto.proyecto_type.nombre}}</li>
                                         <br>
-                                        <li> <strong>Fecha de entrada:</strong>  {{proyecto.created_at | date:'yyyy-MM-dd'}}</li>
+                                        <li> <strong>Fecha de entrada:</strong> {{proyecto.created_at | date:'yyyy-MM-dd'}}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -38,21 +38,21 @@
             <!-- .row -->
 
             <div class="row">
-            <!--  etapa preliminar -->
+                <!--  etapa preliminar -->
 
-                <app-preliminar ></app-preliminar>
+                <app-preliminar></app-preliminar>
 
-            <!--  etapa preliminar -->
+                <!--  etapa preliminar -->
 
-            <app-diagramacion ></app-diagramacion>
-             
-            <!--  etapa preliminar -->
+                <app-diagramacion></app-diagramacion>
 
-             <app-revision ></app-revision>               
-            
-             <!--  etapa preliminar -->
+                <!--  etapa preliminar -->
 
-            <app-publicacion ></app-publicacion>
+                <app-revision></app-revision>
+
+                <!--  etapa preliminar -->
+
+                <app-publicacion></app-publicacion>
 
             </div>
             <!-- .row -->

@@ -30,6 +30,6 @@ export class SolicitudesService {
     return this.http.get('http://localhost:8000/api/ActivarSolicitud/' + id)
 }
 anular_solicitud(id: string):Observable<any> {
-  return this.http.get('http://localhost:8000/api/AnularSolicitud/' + id)
+  return this.http.get('http://localhost:8000/api/EliminarSolicitud/' + id)
 }
 }

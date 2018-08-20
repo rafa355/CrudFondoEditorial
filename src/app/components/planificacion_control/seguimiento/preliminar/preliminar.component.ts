@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
+import { ToastrService } from 'ngx-toastr';
 
 import { EtapasService } from '../../../../services/etapas.service';
 import { Observable } from 'rxjs';
@@ -14,8 +15,9 @@ import { Etapas } from '../../../../models/etapas'
 
 export class PreliminarComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private etapasservice: EtapasService) {}
+  constructor(private route: ActivatedRoute,private etapasservice: EtapasService,private toastr:ToastrService) {}
   id: any;
+  public notificacion;
   etapa:any={estado:'',transcurrido:'',estimado:''};
   public adjuntos;
 
@@ -32,4 +34,11 @@ export class PreliminarComponent implements OnInit {
             }
           );
         }
+      
+        ActivarEtapa() {
+          this.etapasservice.activar_etapa('1',this.id).subscribe(
+             data => { this.notificacion = data,this.toastr.success('Etapa Activada'),this.ngOnInit()},
+             err => console.error(err),      () => console.log(this.notificacion)
+            );
+          }
 }

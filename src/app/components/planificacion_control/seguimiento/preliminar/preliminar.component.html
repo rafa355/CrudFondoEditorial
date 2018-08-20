@@ -1,29 +1,32 @@
 <div class="col-md-3 col-sm-6">
-  <div class="widget stats-widget">
-      <footer class="widget-footer bg-primary" [ngSwitch]="this.etapa.estado">
-          <span style="font-size:20px">Preliminar</span> 
-                <span *ngSwitchCase="1" class="label label-warning pull-right" style="font-size:20px" >Activa</span>
-                <span *ngSwitchCase="2" class="label label-danger pull-right" style="font-size:20px" >Finalizada</span>
-                <span *ngSwitchDefault class="label label-default pull-right" style="font-size:20px" >En espera</span>
+    <div class="widget stats-widget">
+        <footer class="widget-footer bg-primary" [ngSwitch]="this.etapa.estado">
+            <span style="font-size:20px">Preliminar</span>
+            <span *ngSwitchCase="1" class="label label-warning pull-right" style="font-size:20px">Activa</span>
+            <span *ngSwitchCase="2" class="label label-danger pull-right" style="font-size:20px">Finalizada</span>
+            <span *ngSwitchDefault class="label label-default pull-right" style="font-size:20px">En espera</span>
             <br><br>
-            <div class="text-center"><span > Entrega Estimada: <br> {{etapa.estimado | date:'yyyy-MM-dd'}}</span></div>
-            
+            <div class="text-center"><span> Entrega Estimada: <br> {{etapa.estimado | date:'yyyy-MM-dd'}}</span></div>
+
         </footer>
-      <div class="widget-body clearfix">
-          <div *ngIf="this.etapa.estado == 1"  class="text-center" style="margin-top:25px"><span class="fa fa-plus fa-2x "></span></div>
-          <div *ngFor="let adjunto of adjuntos">
-            <br>
-            <div  class="widget">
-                <div  class="widget-body text-center">
-                <a href="{{adjunto.archivo}}">  <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
-                    <div class="table-responsive text-justify">
+        <div class="widget-body clearfix">
+            <a (click)="ActivarEtapa()" style="cursor: pointer;margin-right: 10px">
+                <div *ngIf="!this.etapa.estado" class="text-center" style="margin-top:15px"><span class="fa fa-power-off fa-2x m-t-md-10"></span> <span style="font-size:20px"> Iniciar Etapa</span> </div>
+            </a>
+            <div *ngIf="this.etapa.estado == 1" class="text-center" style="margin-top:25px"><span class="fa fa-plus fa-2x "></span></div>
+            <div *ngFor="let adjunto of adjuntos">
+                <br>
+                <div class="widget">
+                    <div class="widget-body text-center">
+                        <a href="{{adjunto.archivo}}"> <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                        <div class="table-responsive text-justify">
                             {{adjunto.comentario}}
+                        </div>
                     </div>
                 </div>
+                <!-- .widget -->
             </div>
-            <!-- .widget -->
-          </div>
-      </div>
-  </div>
-  <!-- .widget -->
+        </div>
+    </div>
+    <!-- .widget -->
 </div>
