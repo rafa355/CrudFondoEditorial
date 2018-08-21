@@ -25,7 +25,9 @@ export class SolicitudesService {
   obtener_solicitudes():Observable<any> {
     return this.http.get('http://localhost:8000/api/ObtenerSolicitudes')
   }
-
+  datos_solicitud(id: string):Observable<any> {
+    return this.http.get('http://localhost:8000/api/ObtenerSolicitud/' + id)
+}
   activar_solicitud(id: string):Observable<any> {
     return this.http.get('http://localhost:8000/api/ActivarSolicitud/' + id)
 }

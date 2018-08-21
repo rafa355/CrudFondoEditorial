@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ModalModule } from 'ngx-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 
@@ -69,6 +70,7 @@ import { RegistroDisenadoresComponent } from './components/planificacion_control
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService],
   bootstrap: [AppComponent]
