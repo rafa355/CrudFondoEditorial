@@ -20,11 +20,22 @@
                                     <h4>Datos</h4>
                                     <br>
                                     <ul>
-                                        <li> <strong>Responsable Principal:</strong> {{proyecto.responsable}}</li>
+                                        <li> <strong>Responsable Principal:</strong>
+                                            <span *ngIf="this.e_principal != 'sin asignar';then encargado;else no_encargado"></span>
+                                            <ng-template #encargado> {{e_principal.encargado.nombre}}</ng-template>
+                                            <ng-template #no_encargado> Sin asignar</ng-template>
+
+                                        </li>
                                         <br>
                                         <li> <strong>Tipo de Proyecto:</strong> {{proyecto.proyectotype.nombre}}</li>
                                         <br>
                                         <li> <strong>Fecha de entrada:</strong> {{proyecto.created_at | date:'yyyy-MM-dd'}}</li>
+                                        <br>
+                                        <li>
+                                            <span *ngIf="this.e_principal != 'sin asignar';then c_encargado;else a_encargado"></span>
+                                            <ng-template #a_encargado> <span class="label label-danger pull-left" (click)="Modal_Encargado(template)" style="font-size:15px;cursor: pointer;">Asignar Encargaddo</span></ng-template>
+                                            <ng-template #c_encargado><span class="label label-warning pull-left" (click)="Modal_Encargado(template)" style="font-size:15px;cursor: pointer;">Cambiar encargado</span></ng-template>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -58,4 +69,26 @@
             <!-- .row -->
         </section>
     </div>
+
+    <ng-template #template>
+        <div class="modal-header">
+            <h4 class="modal-title text-center">Asignacion de encargado Principal</h4>
+        </div>
+        <div class="modal-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let encargado of this.listado_encargados">
+                            <td class="text-center"><span (click)="asignar_encargado(encargado.id)" style="cursor:pointer">{{encargado.nombre}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ng-template>
 </main>
