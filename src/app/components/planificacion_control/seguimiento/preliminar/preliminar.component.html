@@ -51,9 +51,7 @@
             <div class="col-xs-12">
                 <div class="form-group text-center">
                     <button type="submit " class="btn btn-primary" [disabled]="!myForm.valid " style="margin-right:50px">Guardar</button>
-                    <a routerLink="/solicitudes">
-                        <input type="button" value="Cancelar" class="btn btn-danger cancel">
-                    </a>
+                    <input type="button" value="Cancelar" class="btn btn-danger cancel" (click)="modalRef.hide()">
                 </div>
             </div>
             <div class="clearfix "></div>

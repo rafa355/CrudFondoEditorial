@@ -90,6 +90,12 @@
                         <tr *ngFor="let encargado of this.listado_encargados">
                             <td class="text-center"><span (click)="asignar_encargado(encargado.id)" style="cursor:pointer">{{encargado.nombre}}</span></td>
                         </tr>
+                        <br>
+                        <div class="col-xs-12">
+                            <div class="form-group text-center">
+                                <input type="button" value="Cancelar" class="btn btn-danger cancel" (click)="modalRef.hide()">
+                            </div>
+                        </div>
                     </tbody>
                 </table>
             </div>

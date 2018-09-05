@@ -63,7 +63,7 @@ export class PreliminarComponent implements OnInit {
           crear_adjunto(adjunto) {
             this.adjuntosservice.crear_adjunto(adjunto,'1',this.id).subscribe(
                data => {
-                this.toastr.success('Adjunto Creado'),this.ngOnInit()
+                this.toastr.success('Adjunto Creado'),this.ngOnInit(),this.modalRef.hide()
               },
                error => {
                  console.error("Error saving food!");
