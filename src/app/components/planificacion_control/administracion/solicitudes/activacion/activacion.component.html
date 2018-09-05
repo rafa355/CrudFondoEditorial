@@ -1,99 +1,52 @@
 <!-- APP MAIN ==========-->
 <main id="app-main" class="col-md-12">
-  <div class="wrap">
-      <section class="app-content">
-          <div class="row">
-              <div class="col-md-12">
-                  <div class="widget">
-                      <header class="widget-header">
-                          <div class="col-lg-6 col-md-6">
-                              <h1 class="h3 title-form">Activar Solicitud</h1>
-                          </div>
-                          <a routerLink="/solicitudes">
-                              <button type="button" class="btn btn-primary btn-circle pull-right " data-toggle="tooltip" data-placement="top" title="Volver">
+    <div class="wrap">
+        <section class="app-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget">
+                        <header class="widget-header">
+                            <div class="col-lg-6 col-md-6">
+                                <h1 class="h3 title-form">Activar Solicitud</h1>
+                            </div>
+                            <a routerLink="/solicitudes">
+                                <button type="button" class="btn btn-primary btn-circle pull-right " data-toggle="tooltip" data-placement="top" title="Volver">
                                           <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                               </button>
-                          </a>
-                      </header>
-                      <hr class="widget-separator" />
-                      <div class="widget-body  ">
-                        <div class="container">
-                            <div class="row">
-                                <div>
-                                    <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
-                                        <div *ngFor="let proyecto of proyectos; let i=index">
-                                        <div class="form-group col-xs-6 col-xs-offset-1">
-                                            <label>Nombre</label>
-                                            <input type="text" value="{{proyecto.nombre}}" class="form-control" disabled>
-                                        </div>
+                            </a>
+                        </header>
+                        <hr class="widget-separator" />
+                        <div class="widget-body  ">
+                            <div class="container">
+                                <div class="row">
+                                    <div>
 
-                                        <div class="form-group col-xs-3">
-                                            <label>Encargado</label>
-                                            <select  (change)="Asignar(proyecto.id,$event.target.value)" name="{{proyecto.nombre}}" class="form-control">
-                                                    <option  value="" selected disabled hidden>Seleccionar</option>
-                                                    <option  *ngFor="let encargado of encargados"  [value]="encargado.id">{{encargado.nombre}}</option>
-                                                </select>
-                                        </div>
                                     </div>
-                                    <div formArrayName="proyectos">
-                                        <div *ngFor="let Proyecto of myForm.controls.proyectos.controls; let i=index" class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <span>Proyecto {{i + 1}} de {{myForm.value.nombre}}</span>
-                                                <span class="fa fa-close pull-right" *ngIf="myForm.controls.proyectos.controls.length > 1" (click)="removeLanguage(i)"></span>
-                                            </div>
-                                            <div class="panel-body" [formGroupName]="i">
-                                                <div class="col-md-3">
-                                                    <div class="form-group col-xs-12">
-                                                        <label>Nombre</label>
-                                                        <input type="text" class="form-control" formControlName="nombre"></div>
-                                                    <div class="form-group col-xs-12">
-                                                        <label>Tipo de Solicitud</label>
-                                                        <select formControlName="proyecto_type_id" class="form-control">
-                                                                <option  value="" selected disabled hidden>Seleccionar</option>
-                                                            <option  *ngFor="let tipo of tipos" value="{{tipo.id}}">{{tipo.nombre}}</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group col-xs-12">
-                                                        <label>Fecha de Entrega Estimada</label>
-                                                        <input type="date" name="" id="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-9">
-                                                    <div class="col-md-12 form-group">
-                                                        <label>Descripcion</label>
-                                                        <textarea class="form-control" formControlName="descripcion" id="" cols="30" rows="10"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    </form>
                                 </div>
                             </div>
+                            <div class="text-center">
+                                <a (click)="ActivarSolicitud(this.id)" style="cursor: default;"> <button type="button" class="btn btn-success">activar</button></a>
+                                <a (click)="loadForm(this.proyectos)" style="cursor: default;"> <button type="button" class="btn btn-success">otro</button></a>
+                            </div>
                         </div>
-                       <div class="text-center">
-                        <a (click)="ActivarSolicitud(this.id)" style="cursor: default;"> <button type="button" class="btn btn-success">activar</button></a>
-                        <a (click)="loadForm(this.proyectos)" style="cursor: default;"> <button type="button" class="btn btn-success">otro</button></a></div>
-                      </div>
-                      <div class="margin-20">
-                        <div>myForm details:-</div>
-                        <pre>form value: <br>{{myForm.value | json}}</pre>
+                        <div class="margin-20">
+                            <div>myForm details:-</div>
+                            <pre>form value: <br>{{myForm.value | json}}</pre>
+                        </div>
+
                     </div>
-
-                  </div>
-                  <!-- .widget -->
-              </div>
-              <!-- END column -->
+                    <!-- .widget -->
+                </div>
+                <!-- END column -->
 
 
-          </div>
+            </div>
 
-          <!-- .row -->
-      </section>
-      <!-- #dash-content -->
-  </div>
-  <!-- .wrap -->
+            <!-- .row -->
+        </section>
+        <!-- #dash-content -->
+    </div>
+    <!-- .wrap -->
 
 </main>
 <!--========== END app main -->

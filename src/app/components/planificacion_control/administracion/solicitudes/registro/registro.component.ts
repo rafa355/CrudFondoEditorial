@@ -35,6 +35,7 @@ export class RegistroComponent implements OnInit {
       ])
       });
   }
+  get formData():  FormGroup {return this.myForm.get('proyectos') as FormGroup; }
   onSubmit(form:NgForm){
     this.crear_solicitud(form.value);
 

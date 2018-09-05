@@ -44,7 +44,7 @@
                                                 </div>
                                             </header>
                                             <div formArrayName="proyectos">
-                                                <div *ngFor="let Proyecto of myForm.controls.proyectos.controls; let i=index" class="panel panel-default">
+                                                <div *ngFor="let Proyecto of formData.controls; let i=index" class="panel panel-default">
                                                     <div class="panel-heading">
                                                         <span>Proyecto {{i + 1}} de {{myForm.value.nombre}}</span>
                                                         <span class="fa fa-close pull-right" *ngIf="myForm.controls.proyectos.controls.length > 1" (click)="removeLanguage(i)"></span>
