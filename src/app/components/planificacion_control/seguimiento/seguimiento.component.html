@@ -22,12 +22,16 @@
                                     <ul>
                                         <li> <strong>Responsable Principal:</strong>
                                             <span *ngIf="this.e_principal != 'sin asignar';then encargado;else no_encargado"></span>
-                                            <ng-template #encargado> {{e_principal.encargado.nombre}}</ng-template>
+                                            <ng-template #encargado>
+                                                <!-- {{e_principal.encargado.nombre}}-->
+                                            </ng-template>
                                             <ng-template #no_encargado> Sin asignar</ng-template>
 
                                         </li>
                                         <br>
-                                        <li> <strong>Tipo de Proyecto:</strong> {{proyecto.proyectotype.nombre}}</li>
+                                        <li> <strong>Tipo de Proyecto:</strong>
+                                            <!-- {{proyecto.proyectotype.nombre}} -->
+                                        </li>
                                         <br>
                                         <li> <strong>Fecha de entrada:</strong> {{proyecto.created_at | date:'yyyy-MM-dd'}}</li>
                                         <br>

@@ -13,14 +13,17 @@
             <a (click)="ActivarEtapa()" style="cursor: pointer;margin-right: 10px">
                 <div *ngIf="!this.etapa.estado" class="text-center" style="margin-top:15px"><span class="fa fa-power-off fa-2x m-t-md-10"></span> <span style="font-size:20px"> Iniciar Etapa</span> </div>
             </a>
-            <div *ngIf="this.etapa.estado == 1" class="text-center" style="margin-top:25px"><span class="fa fa-plus fa-2x "></span></div>
+            <div *ngIf="this.etapa.estado == 1" class="text-center" (click)="Modal_Preliminar(preliminar)" style="margin-top:25px;cursor: pointer;"><span class="fa fa-plus fa-2x "></span></div>
             <div *ngFor="let adjunto of adjuntos">
                 <br>
                 <div class="widget">
                     <div class="widget-body text-center">
-                        <a href="{{adjunto.archivo}}"> <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                        <a href="{{adjunto.archivo}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
                         <div class="table-responsive text-justify">
-                            {{adjunto.comentario}}
+                            <span class="text-center" *ngFor="let comentario of adjunto.comentarios">
+                                        <span class="text-center">{{comentario.conteido}}</span>
+                            <br>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -30,3 +33,32 @@
     </div>
     <!-- .widget -->
 </div>
+
+<ng-template #preliminar>
+    <div class="modal-header">
+        <h4 class="modal-title text-center">Adición de Adjunto</h4>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
+            <div class="form-group col-md-10 col-md-offset-1">
+                <label>Ubicacion</label>
+                <input type="text" class="form-control" formControlName="ubicacion">
+            </div>
+            <div class="form-group col-md-10 col-md-offset-1">
+                <label>Comentario</label>
+                <textarea class="form-control" formControlName="comentario" id="" cols="30" rows="10"></textarea>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group text-center">
+                    <button type="submit " class="btn btn-primary" [disabled]="!myForm.valid " style="margin-right:50px">Guardar</button>
+                    <a routerLink="/solicitudes">
+                        <input type="button" value="Cancelar" class="btn btn-danger cancel">
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix "></div>
+            <div class="margin-20">
+            </div>
+        </form>
+    </div>
+</ng-template>

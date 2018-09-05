@@ -18,6 +18,7 @@ import { EncargadoService } from './services/encargado.service';
 import { EtapasService } from './services/etapas.service';
 import { SolicitudesService } from './services/solicitudes.service';
 import { SolicitantesService } from './services/solicitantes.service';
+import { AdjuntoService } from './services/adjunto.service';
 
 //http
 import { HttpModule } from '@angular/http';
@@ -72,7 +73,7 @@ import { RegistroDisenadoresComponent } from './components/planificacion_control
     ToastrModule.forRoot(),
     ModalModule.forRoot()
   ],
-  providers: [ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService],
+  providers: [ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

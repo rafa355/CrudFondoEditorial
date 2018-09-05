@@ -11,14 +11,14 @@ const httpOptions = {
 
 @Injectable()
 
-export class EncargadoService {
+export class AdjuntoService {
 
   constructor(private http:HttpClient) { }
 
-  crear_encargado(encargado) {
-    let body = JSON.stringify(encargado);
-    console.log(encargado);
-   return this.http.post('http://localhost:8000/api/CrearEncargados', encargado, httpOptions);
+  crear_adjunto(adjunto,etapa: string,id: string) {
+    let body = JSON.stringify(adjunto);
+    console.log(adjunto);
+   return this.http.post('http://localhost:8000/api/CrearAdjunto/'+ etapa +'/'+ id, adjunto, httpOptions);
 }
 
   obtener_encargados():Observable<any> {
@@ -34,5 +34,4 @@ obtener_tipos_encargados():Observable<any> {
 asignar_encargado(id_proyecto: string,id_encargado: string):Observable<any> {
   return this.http.get('http://localhost:8000/api/AsignarEncargado/' + id_proyecto +'/'+ id_encargado)
 }
-
 }
