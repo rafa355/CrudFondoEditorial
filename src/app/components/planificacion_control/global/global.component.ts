@@ -7,6 +7,6 @@ import { Component,Injectable } from '@angular/core';
   styleUrls: ['./global.component.css']
 })
 export class GlobalComponent {
-  url: string = 'http://back-fondo-editorial.herokuapp.com/api/';
+  url: string = 'https://back-fondo-editorial.herokuapp.com/api/';
 }
 
