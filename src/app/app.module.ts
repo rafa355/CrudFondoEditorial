@@ -41,6 +41,7 @@ import { SolicitudesComponent } from './components/planificacion_control/adminis
 import { RegistroComponent } from './components/planificacion_control/administracion/solicitudes/registro/registro.component';
 import { ActivacionComponent } from './components/planificacion_control/administracion/solicitudes/activacion/activacion.component';
 import { RegistroDisenadoresComponent } from './components/planificacion_control/administracion/disenadores/registro-disenadores/registro-disenadores.component';
+import { GlobalComponent } from './components/planificacion_control/global/global.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { RegistroDisenadoresComponent } from './components/planificacion_control
     RegistroComponent,
     ActivacionComponent,
     RegistroDisenadoresComponent,
+    GlobalComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,7 @@ import { RegistroDisenadoresComponent } from './components/planificacion_control
     ToastrModule.forRoot(),
     ModalModule.forRoot()
   ],
-  providers: [ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
+  providers: [GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
  //http
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/Rx';
-import { map } from 'rxjs/operators';
+import { GlobalComponent } from '../components/planificacion_control/global/global.component' ;
 
 const httpOptions = {
   method: 'POST',
@@ -13,10 +13,10 @@ const httpOptions = {
 @Injectable()
 export class SolicitantesService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private global: GlobalComponent) { }
 
           
   obtener_solicitantes():Observable<any> {
-    return this.http.get('http://localhost:8000/api/ObtenerSolicitantes')
+    return this.http.get(this.global.url+'ObtenerSolicitantes')
   }
 }

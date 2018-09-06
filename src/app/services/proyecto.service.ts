@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
  //http
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/Rx';
-import { map } from 'rxjs/operators';
+import { GlobalComponent } from '../components/planificacion_control/global/global.component' ;
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,18 +14,18 @@ const httpOptions = {
 
 export class ProyectoService  {
 
-  constructor(private http:HttpClient) {}
+  constructor(private http:HttpClient,private global: GlobalComponent) {}
  
   obtener_proyectos() {
-      return this.http.get('http://localhost:8000/api/ObtenerProyectos');
+      return this.http.get(this.global.url+'ObtenerProyectos');
   }
   obtener_tipos() {
-    return this.http.get('http://localhost:8000/api/ObtenerTiposProyectos');
+    return this.http.get(this.global.url+'ObtenerTiposProyectos');
 }
   obtener_proyecto(id: string):Observable<any> {
-    return this.http.get('http://localhost:8000/api/ObtenerProyecto/' + id)
+    return this.http.get(this.global.url+'ObtenerProyecto/' + id)
 }
 obtener_proyectos_solicitud(id: string):Observable<any> {
-    return this.http.get('http://localhost:8000/api/ObtenerProyectos_solicitud/' + id)
+    return this.http.get(this.global.url+'ObtenerProyectos_solicitud/' + id)
 }
 }

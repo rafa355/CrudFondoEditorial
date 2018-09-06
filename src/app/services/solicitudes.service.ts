@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
  //http
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/Rx';
-import { map } from 'rxjs/operators';
+import { GlobalComponent } from '../components/planificacion_control/global/global.component' ;
 
 const httpOptions = {
   method: 'POST',
@@ -14,24 +14,24 @@ const httpOptions = {
 
 export class SolicitudesService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private global: GlobalComponent) { }
 
   crear_solicitud(solicitud) {
             let body = JSON.stringify(solicitud);
             console.log(solicitud);
-           return this.http.post('http://localhost:8000/api/CrearSolicitud', solicitud, httpOptions);
+           return this.http.post(this.global.url+'CrearSolicitud', solicitud, httpOptions);
         }
 
   obtener_solicitudes():Observable<any> {
-    return this.http.get('http://localhost:8000/api/ObtenerSolicitudes')
+    return this.http.get(this.global.url+'ObtenerSolicitudes')
   }
   datos_solicitud(id: string):Observable<any> {
-    return this.http.get('http://localhost:8000/api/ObtenerSolicitud/' + id)
+    return this.http.get(this.global.url+'ObtenerSolicitud/' + id)
 }
   activar_solicitud(id: string):Observable<any> {
-    return this.http.get('http://localhost:8000/api/ActivarSolicitud/' + id)
+    return this.http.get(this.global.url+'ActivarSolicitud/' + id)
 }
 anular_solicitud(id: string):Observable<any> {
-  return this.http.get('http://localhost:8000/api/EliminarSolicitud/' + id)
+  return this.http.get(this.global.url+'EliminarSolicitud/' + id)
 }
 }
