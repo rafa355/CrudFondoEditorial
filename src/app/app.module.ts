@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ModalModule } from 'ngx-bootstrap';
+import { ModalModule,AccordionModule  } from 'ngx-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 
@@ -73,7 +73,8 @@ import { GlobalComponent } from './components/planificacion_control/global/globa
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    AccordionModule.forRoot()
   ],
   providers: [GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
   bootstrap: [AppComponent]

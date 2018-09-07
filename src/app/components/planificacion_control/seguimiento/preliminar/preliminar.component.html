@@ -8,6 +8,7 @@
             <br><br>
             <div class="text-center"><span> Entrega Estimada: <br> {{etapa.estimado | date:'yyyy-MM-dd'}}</span></div>
 
+
         </footer>
         <div class="widget-body clearfix">
             <a (click)="ActivarEtapa()" style="cursor: pointer;margin-right: 10px">
@@ -18,12 +19,26 @@
                 <br>
                 <div class="widget">
                     <div class="widget-body text-center">
-                        <a href="{{adjunto.archivo}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                        <div>
+                            <a href="{{adjunto.archivo}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                        </div>
+                        <br>
                         <div class="table-responsive text-justify">
-                            <span class="text-center" *ngFor="let comentario of adjunto.comentarios">
-                                        <span class="text-center">{{comentario.conteido}}</span>
-                            <br>
-                            </span>
+                            <accordion style="padding:0">
+                                <accordion-group>
+                                    <button class="btn btn-link btn-block clearfix" style="padding:0" accordion-heading>
+                                        <div class="pull-left float-left">Comentarios</div>
+                                      </button>
+                                    <span *ngFor="let comentario of adjunto.comentarios">
+                                            <div class="panel panel-default box-comentario">
+                                                    <div class="panel-body comentario">
+                                                        {{comentario.conteido}}
+                                                    </div>
+                                                  </div>
+                                            <br>
+                                      </span>
+                                </accordion-group>
+                            </accordion>
                         </div>
                     </div>
                 </div>

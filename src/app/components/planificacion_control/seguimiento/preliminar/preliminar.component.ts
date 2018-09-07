@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef  } from '@angular/core';
+import { Component, OnInit, TemplateRef   } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { BsModalService } from 'ngx-bootstrap/modal';
