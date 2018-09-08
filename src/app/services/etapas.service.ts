@@ -22,6 +22,9 @@ export class EtapasService {
 activar_etapa( etapa: string, proyecto: string,):Observable<any> {
   return this.http.get(this.global.url+'ActivarEtapa/' + etapa +'/'+ proyecto)
 }
+cerrar_etapa( etapa: string, proyecto: string,):Observable<any> {
+  return this.http.get(this.global.url+'CerrarEtapa/' + etapa +'/'+ proyecto)
+}
 
     obtener_etapa_y_adjuntos(etapa: string,id: string,) {
           return Observable.forkJoin(

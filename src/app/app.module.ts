@@ -19,7 +19,7 @@ import { EtapasService } from './services/etapas.service';
 import { SolicitudesService } from './services/solicitudes.service';
 import { SolicitantesService } from './services/solicitantes.service';
 import { AdjuntoService } from './services/adjunto.service';
-import { CargarimagenService } from './services/cargarimagen.service';
+import { CargararchivoService } from './services/cargararchivo.service';
 
 //http
 import { HttpModule } from '@angular/http';
@@ -78,7 +78,7 @@ import { GlobalComponent } from './components/planificacion_control/global/globa
     BsDatepickerModule.forRoot(),
     AccordionModule.forRoot()
   ],
-  providers: [CargarimagenService,GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
+  providers: [CargararchivoService,GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

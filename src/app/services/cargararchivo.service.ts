@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import {Observable} from 'rxjs';
  //http
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,14 +11,14 @@ const httpOptions = {
 };
 
 @Injectable()
-export class CargarimagenService {
+export class CargararchivoService {
 
 	constructor(private http: HttpClient,private global: GlobalComponent){}
 
-	public postFileImagen(imagenParaSubir: File,etapa: string,id: string){
+	public EnviarArchivo(Archivo: File,etapa: string,id: string){
 
 		const formData = new FormData(); 
-		formData.append('imagenPropia', imagenParaSubir, imagenParaSubir.name); 
+		formData.append('imagenPropia', Archivo, Archivo.name); 
 		return this.http.post(this.global.url+'CargarImagen/'+ etapa +'/'+ id, formData);
 
   }

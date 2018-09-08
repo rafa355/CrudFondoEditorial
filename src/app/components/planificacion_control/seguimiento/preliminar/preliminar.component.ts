@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 import { EtapasService } from '../../../../services/etapas.service';
 import { AdjuntoService } from '../../../../services/adjunto.service';
-import { CargarimagenService } from '../../../../services/cargarimagen.service';
+import { CargararchivoService } from '../../../../services/cargararchivo.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
 
 export class PreliminarComponent implements OnInit {
 
-  constructor(private enviandoImagen: CargarimagenService,private _fb: FormBuilder,private router:Router,private route: ActivatedRoute,private etapasservice: EtapasService,private adjuntosservice: AdjuntoService,private toastr:ToastrService,private modalService: BsModalService) {}
+constructor(private enviandoArchivo: CargararchivoService,private _fb: FormBuilder,private router:Router,private route: ActivatedRoute,private etapasservice: EtapasService,private adjuntosservice: AdjuntoService,private toastr:ToastrService,private modalService: BsModalService) {}
   id: any;
   comentario: any;
   archivo: any;
@@ -32,40 +32,48 @@ export class PreliminarComponent implements OnInit {
   public respuestaImagenEnviada;
   public resultadoCarga;
 
-  ngOnInit() {
-    this.id = this.route.snapshot.params["id"];
-    this.MostrarEtapa('1',this.id);
-    this.myForm = this._fb.group({
-      ubicacion: [''],
-      comentario: [''],
-      });
-  }
-
-  save(model) {
-    this.comentario = model;
-    this.cargandoImagen(this.archivo)
-  }
-
-    MostrarEtapa(etapa:string,id: string) {
-      this.etapasservice.obtener_etapa_y_adjuntos(etapa,id).subscribe(
-            data => {
-              this.etapa = data[0]
-              this.adjuntos = data[1]
-            }
-          );
-        }
-      
+    ngOnInit() {
+      this.id = this.route.snapshot.params["id"];
+      this.MostrarEtapa('1',this.id);
+      this.myForm = this._fb.group({
+        ubicacion: [''],
+        comentario: [''],
+        });
+    }
+    //Metodo para guardar archivo y comentario
+    save(model) {
+      this.comentario = model;
+      this.CargarArchivo(this.archivo)
+    }
+        //Metodo para activar etapa
+        MostrarEtapa(etapa:string,id: string) {
+          this.etapasservice.obtener_etapa_y_adjuntos(etapa,id).subscribe(
+              data => {
+                this.etapa = data[0]
+                this.adjuntos = data[1]
+              }
+            );
+          }
+        //Metodo para activar etapa
         ActivarEtapa() {
           this.etapasservice.activar_etapa('1',this.id).subscribe(
              data => { this.notificacion = data,this.toastr.success('Etapa Activada'),this.ngOnInit()},
              err => console.error(err),      () => console.log(this.notificacion)
             );
           }
-
-          Modal_Preliminar(template: TemplateRef<any>) {
-            this.modalRef = this.modalService.show(template);
-          }
-          crear_adjunto(adjunto) {
+        //Metodo para cerrar la etapa
+        CerrarEtapa() {
+          this.etapasservice.cerrar_etapa('1',this.id).subscribe(
+             data => { this.notificacion = data,this.toastr.success('Etapa Finalizada'),this.ngOnInit()},
+             err => console.error(err),      () => console.log(this.notificacion)
+          );
+        }
+        //Metodo para mostrar modal
+        Modal_Preliminar(template: TemplateRef<any>) {
+           this.modalRef = this.modalService.show(template);
+        }
+        //Metodo para cargar comentario
+        crear_comentario(adjunto) {
             this.adjuntosservice.crear_adjunto(adjunto,this.adjunto_id).subscribe(
                data => {
                 this.toastr.success('Adjunto Creado'),this.ngOnInit(),this.modalRef.hide()
@@ -76,23 +84,21 @@ export class PreliminarComponent implements OnInit {
                }
             );
           }
+          //al seleccionar archivo se guarga el valor en una auxiliar
           onSelected(files: FileList){
              this.archivo =files;
-
           }
-          public cargandoImagen(files: FileList){
-
-            this.enviandoImagen.postFileImagen(files[0],'1',this.id).subscribe(
+          //Metodo para cargar el archivo
+          public CargarArchivo(files: FileList){
+            this.enviandoArchivo.EnviarArchivo(files[0],'1',this.id).subscribe(
               data => {
                 this.adjunto_id= data,
-                this.crear_adjunto(this.comentario),
+                this.crear_comentario(this.comentario),
               () => console.log(data)
               },
               error => {
                 console.log(<any>error);
               }
-        
             );//FIN DE METODO SUBSCRIBE
-        
           }
 }
