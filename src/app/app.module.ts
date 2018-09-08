@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ModalModule,AccordionModule  } from 'ngx-bootstrap';
+import { ModalModule,AccordionModule,BsDatepickerModule   } from 'ngx-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 
@@ -19,6 +19,7 @@ import { EtapasService } from './services/etapas.service';
 import { SolicitudesService } from './services/solicitudes.service';
 import { SolicitantesService } from './services/solicitantes.service';
 import { AdjuntoService } from './services/adjunto.service';
+import { CargarimagenService } from './services/cargarimagen.service';
 
 //http
 import { HttpModule } from '@angular/http';
@@ -74,9 +75,10 @@ import { GlobalComponent } from './components/planificacion_control/global/globa
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ModalModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     AccordionModule.forRoot()
   ],
-  providers: [GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
+  providers: [CargarimagenService,GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 
 import { EtapasService } from '../../../../services/etapas.service';
 import { AdjuntoService } from '../../../../services/adjunto.service';
+import { CargarimagenService } from '../../../../services/cargarimagen.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,13 +19,18 @@ import { Router } from '@angular/router';
 
 export class PreliminarComponent implements OnInit {
 
-  constructor(private _fb: FormBuilder,private router:Router,private route: ActivatedRoute,private etapasservice: EtapasService,private adjuntosservice: AdjuntoService,private toastr:ToastrService,private modalService: BsModalService) {}
+  constructor(private enviandoImagen: CargarimagenService,private _fb: FormBuilder,private router:Router,private route: ActivatedRoute,private etapasservice: EtapasService,private adjuntosservice: AdjuntoService,private toastr:ToastrService,private modalService: BsModalService) {}
   id: any;
+  comentario: any;
+  archivo: any;
+  adjunto_id: any;
   public notificacion;
   etapa:any={estado:'',transcurrido:'',estimado:''};
   public adjuntos;
   modalRef: BsModalRef;
   public myForm: FormGroup;
+  public respuestaImagenEnviada;
+  public resultadoCarga;
 
   ngOnInit() {
     this.id = this.route.snapshot.params["id"];
@@ -35,12 +41,11 @@ export class PreliminarComponent implements OnInit {
       });
   }
 
-  onSubmit(form:NgForm){
-    this.crear_adjunto(form.value);
-  }
   save(model) {
-    this.crear_adjunto(model);
+    this.comentario = model;
+    this.cargandoImagen(this.archivo)
   }
+
     MostrarEtapa(etapa:string,id: string) {
       this.etapasservice.obtener_etapa_y_adjuntos(etapa,id).subscribe(
             data => {
@@ -61,7 +66,7 @@ export class PreliminarComponent implements OnInit {
             this.modalRef = this.modalService.show(template);
           }
           crear_adjunto(adjunto) {
-            this.adjuntosservice.crear_adjunto(adjunto,'1',this.id).subscribe(
+            this.adjuntosservice.crear_adjunto(adjunto,this.adjunto_id).subscribe(
                data => {
                 this.toastr.success('Adjunto Creado'),this.ngOnInit(),this.modalRef.hide()
               },
@@ -70,5 +75,24 @@ export class PreliminarComponent implements OnInit {
                  return Observable.throw(error);
                }
             );
+          }
+          onSelected(files: FileList){
+             this.archivo =files;
+
+          }
+          public cargandoImagen(files: FileList){
+
+            this.enviandoImagen.postFileImagen(files[0],'1',this.id).subscribe(
+              data => {
+                this.adjunto_id= data,
+                this.crear_adjunto(this.comentario),
+              () => console.log(data)
+              },
+              error => {
+                console.log(<any>error);
+              }
+        
+            );//FIN DE METODO SUBSCRIBE
+        
           }
 }

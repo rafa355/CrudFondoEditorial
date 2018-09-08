@@ -20,25 +20,27 @@
                 <div class="widget">
                     <div class="widget-body text-center">
                         <div>
-                            <a href="{{adjunto.archivo}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                            <a href="{{adjunto.ubicacion}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
                         </div>
                         <br>
                         <div class="table-responsive text-justify">
-                            <accordion style="padding:0">
-                                <accordion-group>
-                                    <button class="btn btn-link btn-block clearfix" style="padding:0" accordion-heading>
-                                        <div class="pull-left float-left">Comentarios</div>
-                                      </button>
-                                    <span *ngFor="let comentario of adjunto.comentarios">
-                                            <div class="panel panel-default box-comentario">
-                                                    <div class="panel-body comentario">
-                                                        {{comentario.conteido}}
-                                                    </div>
-                                                  </div>
-                                            <br>
-                                      </span>
-                                </accordion-group>
-                            </accordion>
+                            <div class="panel-group accordion col-md-12" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading-1">
+                                        <a class="accordion-toggle" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{adjunto.id}}" aria-expanded="false" aria-controls="collapse-1">
+                                            <h4 class="panel-title">Comentarios</h4>
+                                            <i class="fa acc-switch"></i>
+                                        </a>
+                                    </div>
+                                    <div id="collapse-{{adjunto.id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-1">
+                                        <div class="panel-body" *ngFor="let comentario of adjunto.comentarios">
+                                            <div class="panel-body comentario">
+                                                {{comentario.conteido}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -49,6 +51,7 @@
     <!-- .widget -->
 </div>
 
+
 <ng-template #preliminar>
     <div class="modal-header">
         <h4 class="modal-title text-center">Adición de Adjunto</h4>
@@ -57,7 +60,7 @@
         <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
             <div class="form-group col-md-10 col-md-offset-1">
                 <label>Ubicacion</label>
-                <input type="text" class="form-control" formControlName="ubicacion">
+                <input type="file" (change)="onSelected($event.target.files)" multiple>
             </div>
             <div class="form-group col-md-10 col-md-offset-1">
                 <label>Comentario</label>

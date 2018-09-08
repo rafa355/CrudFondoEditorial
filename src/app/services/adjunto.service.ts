@@ -16,10 +16,10 @@ export class AdjuntoService {
 
   constructor(private http:HttpClient,private global: GlobalComponent) { }
 
-  crear_adjunto(adjunto,etapa: string,id: string) {
+  crear_adjunto(adjunto,id: string) {
     let body = JSON.stringify(adjunto);
     console.log(adjunto);
-   return this.http.post(this.global.url+'CrearAdjunto/'+ etapa +'/'+ id, adjunto, httpOptions);
+   return this.http.post(this.global.url+'CrearAdjunto/'+ id, adjunto, httpOptions);
 }
 
   obtener_encargados():Observable<any> {
