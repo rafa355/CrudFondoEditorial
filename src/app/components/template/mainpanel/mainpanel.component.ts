@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class MainpanelComponent implements OnInit {
 
-  public foods;
+  public proyectos;
    constructor(private proyectoservice:ProyectoService) {}
    ngOnInit() {
     this.obtener_proyectos();
@@ -19,8 +19,8 @@ export class MainpanelComponent implements OnInit {
  
   obtener_proyectos() {
    this.proyectoservice.obtener_proyectos().subscribe(
-     data => { this.foods = data},
-     err => console.error(err),      () => console.log(this.foods)
+     data => { this.proyectos = data},
+     err => console.error(err),      () => console.log(this.proyectos)
     );  }
 
 }

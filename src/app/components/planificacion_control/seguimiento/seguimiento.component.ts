@@ -16,7 +16,8 @@ export class SeguimientoComponent implements OnInit {
   id: any;
   proyecto:any={id:'',nombre:'',responsable:'',descripcion:''};
   listado_encargados: any={};
-  e_principal: any={};
+  e_principal: '';
+  tipo: '';
   modalRef: BsModalRef;
 
   constructor(private route: ActivatedRoute,private proyectoservice: ProyectoService,private encargadoservice: EncargadoService,private toastr:ToastrService,private modalService: BsModalService) {}
@@ -29,7 +30,7 @@ export class SeguimientoComponent implements OnInit {
 
   MostrarProyecto(id: string) {
    this.proyectoservice.obtener_proyecto(id).subscribe(
-      data => { this.proyecto = data},
+      data => { this.proyecto = data,this.tipo = data.proyectotype.nombre},
       err => console.error(err),      () => console.log(this.proyecto)
      ); 
    }
@@ -43,15 +44,15 @@ export class SeguimientoComponent implements OnInit {
   }
   asignar_encargado(encargado:string) {
     this.encargadoservice.asignar_encargado(this.id,encargado).subscribe(
-      data => { this.toastr.success('Encargado Asignado'),this.ngOnInit()},
+      data => { this.toastr.success('Encargado Asignado'),this.ngOnInit(),this.modalRef.hide();},
       err => console.error(err)
      );
   }
 
   mostrar_principal() {
     this.encargadoservice.obtener_encargado_principal(this.id).subscribe(
-      data => { this.e_principal = data},
-      err => console.error(err)
+    data => { if(data != 'sin asignar'){ this.e_principal = data.encargado.nombre}else{this.e_principal = data}},
+      err => console.error(err),() => console.log(this.e_principal)
      );
   }
 }

@@ -19,15 +19,18 @@
                                             <th>Tipo de Proyecto</th>
                                             <th>Fecha de entrada</th>
                                             <th>Tiempo Dedicado</th>
+                                            <th>Entrega Estimada</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{{food.responsable}}</td>
-                                            <td>{{food.proyectotype.nombre}}</td>
+                                            <td *ngIf="food.responsable;else sin_asginar">{{food.responsable}}</td>
+                                            <ng-template #sin_asginar><td class="text-danger">Sin Asignar</td></ng-template>
+                                            <td>{{food.tipo}}</td>
                                             <td>{{food.created_at | date:'yyyy-MM-dd'}}</td>
                                             <td>9:23 AM</td>
+                                            <td>{{food.created_at | date:'yyyy-MM-dd'}}</td>
                                             <td>
                                                 <a routerLink="/seguimiento/ {{food.id}}">
                                                     <button class="btn btn-primary">
