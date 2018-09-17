@@ -3,13 +3,9 @@ import { ActivatedRoute } from "@angular/router";
 import { ProyectoService } from '../../../services/proyecto.service';
 import { EncargadoService } from '../../../services/encargado.service';
 
-import { Observable } from 'rxjs';
-import { Proyecto } from '../../../models/proyecto'
 import { ToastrService } from 'ngx-toastr';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-
-import { PreliminarComponent } from '../../../components/planificacion_control/seguimiento/preliminar/preliminar.component'
 
 @Component({
   selector: 'app-seguimiento',
