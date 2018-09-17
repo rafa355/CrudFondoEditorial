@@ -34,15 +34,12 @@ import { EtapasProyectoComponent } from './components/template/mainpanel/etapas-
 //para rutas
 import { AppRoutingModule } from './routes/app-routing/app-routing.module';
 import { SeguimientoComponent } from './components/planificacion_control/seguimiento/seguimiento.component';
-import { PreliminarComponent } from './components/planificacion_control/seguimiento/preliminar/preliminar.component';
-import { DiagramacionComponent } from './components/planificacion_control/seguimiento/diagramacion/diagramacion.component';
-import { RevisionComponent } from './components/planificacion_control/seguimiento/revision/revision.component';
-import { PublicacionComponent } from './components/planificacion_control/seguimiento/publicacion/publicacion.component';
 import { SolicitudesComponent } from './components/planificacion_control/administracion/solicitudes/solicitudes.component';
 import { RegistroComponent } from './components/planificacion_control/administracion/solicitudes/registro/registro.component';
 import { ActivacionComponent } from './components/planificacion_control/administracion/solicitudes/activacion/activacion.component';
 import { RegistroDisenadoresComponent } from './components/planificacion_control/administracion/disenadores/registro-disenadores/registro-disenadores.component';
 import { GlobalComponent } from './components/planificacion_control/global/global.component';
+import { EtapasComponent } from './components/planificacion_control/seguimiento/etapas/etapas.component';
 
 @NgModule({
   declarations: [
@@ -54,15 +51,12 @@ import { GlobalComponent } from './components/planificacion_control/global/globa
     DisenadoresComponent,
     EtapasProyectoComponent,
     SeguimientoComponent,
-    PreliminarComponent,
-    DiagramacionComponent,
-    RevisionComponent,
-    PublicacionComponent,
     SolicitudesComponent,
     RegistroComponent,
     ActivacionComponent,
     RegistroDisenadoresComponent,
     GlobalComponent,
+    EtapasComponent,
   ],
   imports: [
     BrowserModule,

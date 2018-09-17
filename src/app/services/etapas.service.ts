@@ -22,14 +22,27 @@ export class EtapasService {
 activar_etapa( etapa: string, proyecto: string,):Observable<any> {
   return this.http.get(this.global.url+'ActivarEtapa/' + etapa +'/'+ proyecto)
 }
+
+finalizar_etapa( etapa: string, proyecto: string,):Observable<any> {
+  return this.http.get(this.global.url+'FinalizarEtapa/' + etapa +'/'+ proyecto)
+}
+
+consultar_etapa( etapa: string, proyecto: string,):Observable<any> {
+  return this.http.get(this.global.url+'ConsultarEtapa/' + etapa +'/'+ proyecto)
+}
+
 cerrar_etapa( etapa: string, proyecto: string,):Observable<any> {
   return this.http.get(this.global.url+'CerrarEtapa/' + etapa +'/'+ proyecto)
 }
 
-    obtener_etapa_y_adjuntos(etapa: string,id: string,) {
+    obtener_etapas_y_adjuntos(id: string,) {
           return Observable.forkJoin(
-            this.http.get(this.global.url+'ObtenerEtapa/' + etapa +'/'+ id),
-            this.http.get(this.global.url+'ObtenerAdjuntos/' + etapa +'/'+ id)
+            this.http.get(this.global.url+'ObtenerEtapa/' + 1 +'/'+ id),
+            this.http.get(this.global.url+'ObtenerEtapa/' + 2 +'/'+ id),
+            this.http.get(this.global.url+'ObtenerEtapa/' + 3 +'/'+ id),
+            this.http.get(this.global.url+'ObtenerAdjuntos/' + 1 +'/'+ id),
+            this.http.get(this.global.url+'ObtenerAdjuntos/' + 2 +'/'+ id),
+            this.http.get(this.global.url+'ObtenerAdjuntos/' + 3 +'/'+ id),
           );
       }
 }
