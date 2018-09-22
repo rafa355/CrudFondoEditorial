@@ -26,10 +26,12 @@
                                     <tbody>
                                         <tr>
                                             <td *ngIf="food.responsable;else sin_asginar">{{food.responsable}}</td>
-                                            <ng-template #sin_asginar><td class="text-danger">Sin Asignar</td></ng-template>
+                                            <ng-template #sin_asginar>
+                                                <td class="text-danger">Sin Asignar</td>
+                                            </ng-template>
                                             <td>{{food.tipo}}</td>
                                             <td>{{food.created_at | date:'yyyy-MM-dd'}}</td>
-                                            <td>9:23 AM</td>
+                                            <td>{{food.tiempo_transcurrido}}</td>
                                             <td>{{food.fecha_estimada}}</td>
                                             <td>
                                                 <a routerLink="/seguimiento/ {{food.id}}">

@@ -24,6 +24,7 @@ import { SolicitudesService } from './services/solicitudes.service';
 import { SolicitantesService } from './services/solicitantes.service';
 import { AdjuntoService } from './services/adjunto.service';
 import { CargararchivoService } from './services/cargararchivo.service';
+import { ContadorService } from './services/contador.service';
 
 //http
 import { HttpModule } from '@angular/http';
@@ -76,7 +77,7 @@ import { EtapasComponent } from './components/planificacion_control/seguimiento/
     BsDatepickerModule.forRoot(),
     AccordionModule.forRoot()
   ],
-  providers: [CargararchivoService,GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
+  providers: [ContadorService,CargararchivoService,GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

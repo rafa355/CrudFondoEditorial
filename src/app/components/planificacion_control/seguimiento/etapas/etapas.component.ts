@@ -81,7 +81,6 @@ export class EtapasComponent implements OnInit {
                 if(this.etapa_preliminar.estado == 1){this.etapa_activa = '1' }
                 else if(this.etapa_diagramacion.estado == 1 || this.etapa_diagramacion.estado == 3 ){this.etapa_activa = '2' }
                 else if(this.etapa_publicacion.estado == 1){this.etapa_activa = '3' }
-                alert(this.etapa_activa);
                 this.estimado_demas = this._fb.group({
                   etapa: [this.etapa_activa],
                   proyecto: [this.id],
