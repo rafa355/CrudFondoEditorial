@@ -5,6 +5,10 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ModalModule,AccordionModule,BsDatepickerModule   } from 'ngx-bootstrap';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+defineLocale('es', esLocale); 
+
+import { esLocale } from 'ngx-bootstrap/locale';
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 

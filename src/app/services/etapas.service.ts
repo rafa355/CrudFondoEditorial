@@ -19,12 +19,11 @@ export class EtapasService {
     return this.http.get(this.global.url+'ObtenerEtapa/' + etapa +'/'+ id)
 }
 
-activar_etapa( etapa: string, proyecto: string,):Observable<any> {
-  return this.http.get(this.global.url+'ActivarEtapa/' + etapa +'/'+ proyecto)
+activar_etapa(estimado) {
+ return this.http.post(this.global.url+'ActivarEtapa/', estimado, httpOptions);
 }
-
-finalizar_etapa( etapa: string, proyecto: string,):Observable<any> {
-  return this.http.get(this.global.url+'FinalizarEtapa/' + etapa +'/'+ proyecto)
+finalizar_etapa(estimado):Observable<any> {
+  return this.http.post(this.global.url+'FinalizarEtapa/', estimado, httpOptions);
 }
 
 consultar_etapa( etapa: string, proyecto: string,):Observable<any> {

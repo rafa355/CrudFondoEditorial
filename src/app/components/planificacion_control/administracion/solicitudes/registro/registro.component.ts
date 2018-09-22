@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SolicitudesService } from '../../../../../services/solicitudes.service'
 import { SolicitantesService } from '../../../../../services/solicitantes.service'
 import { ProyectoService } from '../../../../../services/proyecto.service'
+import { BsDatepickerConfig, BsLocaleService } from 'ngx-bootstrap/datepicker';
 
 import { Observable } from 'rxjs';
 import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';
@@ -15,15 +16,22 @@ import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/
 })
 export class RegistroComponent implements OnInit {
 
-  constructor(private _fb: FormBuilder, private router:Router,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { }
+  constructor(private localeService: BsLocaleService,private _fb: FormBuilder, private router:Router,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { }
   public solicitudes;
   public solicitantes;
   public tipos;
   public myForm: FormGroup;
+  //propiedades para el calendario
+  locale = 'es';
+  colorTheme = 'theme-dark-blue';
+  bsConfig: Partial<BsDatepickerConfig>;
 
   ngOnInit() {
     this.ObtenerSolicitantes();
     this.ObtenerTipos();
+    //Aplicar idioma español
+    this.localeService.use(this.locale);
+    this.bsConfig = Object.assign({}, { containerClass: this.colorTheme },{ dateInputFormat: 'YYYY-MM-DD' });
 
     this.myForm = this._fb.group({
       nombre: [''],
@@ -44,7 +52,8 @@ export class RegistroComponent implements OnInit {
       return this._fb.group({
       nombre: [''],
       proyecto_type_id: [''],
-      descripcion: ['']
+      descripcion: [''],
+      tiempo_planificado_total : ['']
       });
       }
 

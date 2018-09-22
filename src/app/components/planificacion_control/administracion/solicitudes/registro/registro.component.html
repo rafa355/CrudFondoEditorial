@@ -61,10 +61,11 @@
                                                                     <option  *ngFor="let tipo of tipos" value="{{tipo.id}}">{{tipo.nombre}}</option>
                                                                 </select>
                                                             </div>
-                                                            <div class="form-group col-xs-12">
+                                                            <div class="col-xs-12 col-12 col-md-12 form-group">
                                                                 <label>Fecha de Entrega Estimada</label>
-                                                                <input type="text" id="datetimepicker5" class="form-control" data-plugin="datetimepicker">
+                                                                <input type="text" formControlName="tiempo_planificado_total" placeholder="Datepicker" class="form-control" bsDatepicker [bsConfig]="bsConfig">
                                                             </div>
+
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="col-md-12 form-group">

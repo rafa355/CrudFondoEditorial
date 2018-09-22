@@ -31,7 +31,7 @@ export class SeguimientoComponent implements OnInit {
   MostrarProyecto(id: string) {
    this.proyectoservice.obtener_proyecto(id).subscribe(
       data => { this.proyecto = data,this.tipo = data.proyectotype.nombre},
-      err => console.error(err),      () => console.log(this.proyecto)
+      err => console.error(err)
      ); 
    }
 
@@ -51,7 +51,7 @@ export class SeguimientoComponent implements OnInit {
 
   mostrar_principal() {
     this.encargadoservice.obtener_encargado_principal(this.id).subscribe(
-    data => { if(data != 'sin asignar'){ this.e_principal = data.encargado.nombre}else{this.e_principal = data}},
+    data => { if(data){ this.e_principal = data.encargado.nombre}else{this.e_principal = data}},
       err => console.error(err),() => console.log(this.e_principal)
      );
   }
