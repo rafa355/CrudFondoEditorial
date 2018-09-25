@@ -6,8 +6,9 @@ import 'rxjs/Rx';
 import { GlobalComponent } from '../components/planificacion_control/global/global.component' ;
 
 const httpOptions = {
+  method: 'POST',
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-}; 
+};
 
 @Injectable()
 
