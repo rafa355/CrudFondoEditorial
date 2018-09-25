@@ -21,10 +21,10 @@ export class EtapasService {
 }
 
 activar_etapa(estimado) {
- return this.http.post(this.global.url+'ActivarEtapa/', estimado, httpOptions);
+ return this.http.post(this.global.url+'ActivarEtapa', estimado, httpOptions);
 }
 finalizar_etapa(estimado):Observable<any> {
-  return this.http.post(this.global.url+'FinalizarEtapa/', estimado, httpOptions);
+  return this.http.post(this.global.url+'FinalizarEtapa', estimado, httpOptions);
 }
 
 consultar_etapa( etapa: string, proyecto: string,):Observable<any> {
