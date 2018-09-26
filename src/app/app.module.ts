@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { ModalModule,AccordionModule,BsDatepickerModule   } from 'ngx-bootstrap';
 import { defineLocale } from 'ngx-bootstrap/chronos';
@@ -80,6 +81,8 @@ import { EstadisticasComponent } from './components/planificacion_control/estadi
     BsDatepickerModule.forRoot(),
     AccordionModule.forRoot(),
     NgxChartsModule,
+        NgxSpinnerModule
+
   ],
   providers: [ContadorService,CargararchivoService,GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
   bootstrap: [AppComponent]

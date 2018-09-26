@@ -1,11 +1,14 @@
 import { Component, OnInit} from '@angular/core';
+import { BsDatepickerConfig, BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { Observable } from 'rxjs';
+import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { ActivatedRoute } from "@angular/router";
+
 import { SolicitudesService } from '../../../../../services/solicitudes.service'
 import { ProyectoService } from '../../../../../services/proyecto.service'
-import { EncargadoService } from '../../../../../services/encargado.service'
-import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { SolicitantesService } from '../../../../../services/solicitantes.service'
 
-import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-activacion',
@@ -13,73 +16,90 @@ import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/
   styleUrls: ['./activacion.component.css']
 })
 export class ActivacionComponent implements OnInit {
-  public notificacion;
-  public myForm: FormGroup;
 
-  constructor(private router:Router,private _fb: FormBuilder,private route: ActivatedRoute,private solicitudesservice:SolicitudesService,private proyectoservice:ProyectoService,private encargadoservice:EncargadoService) { }
+  constructor(private route: ActivatedRoute,private localeService: BsLocaleService,private _fb: FormBuilder, private router:Router,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { }
+  public solicitud;
+  public solicitantes;
+  public tipos;
   id: any;
-  proyectos: any;
-  encargados: any;
+
+  public myForm: FormGroup;
+  //propiedades para el calendario
+  locale = 'es';
+  colorTheme = 'theme-dark-blue';
+  bsConfig: Partial<BsDatepickerConfig>;
+
   ngOnInit() {
     this.id = this.route.snapshot.params["id"];
-    this.MostrarProyectos(this.id);
+    this.ObtenerSolicitantes();
+    this.ObtenerTipos();
+    this.ObtenerSolicitud();
+    //Aplicar idioma español
+    this.localeService.use(this.locale);
+    this.bsConfig = Object.assign({}, { containerClass: this.colorTheme },{ dateInputFormat: 'YYYY-MM-DD' });
 
     this.myForm = this._fb.group({
-      nombre: [''],
-      publicacion: [''],
-      solicitante_id: [''],
-      status: [''],
       proyectos: this._fb.array([
+      this.initlanguage(),
       ])
       });
-
   }
-  loadForm(proyects: any){
-    proyects.forEach((value) => {
-      this.addLanguage(value);
+  get formData():  FormGroup {return this.myForm.get('proyectos') as FormGroup; }
+
+    initlanguage() {
+      return this._fb.group({
+      nombre: [''],
+      proyecto_type_id: [''],
+      descripcion: [''],
+      tiempo_planificado_total : ['']
       });
-  }
+      }
 
-  initlanguage(proyecto: any) {
-    return this._fb.group({
-    nombre: [proyecto.nombre],
-    proyecto_type_id: [proyecto.id],
-    descripcion: ['']
-    });
-    }
+      addLanguage() {
+      const control = <FormArray>this.myForm.controls['proyectos'];
+      control.push(this.initlanguage());
+      }
 
-    addLanguage(proyecto: any) {
-    const control = <FormArray>this.myForm.controls['proyectos'];
-    control.push(this.initlanguage(proyecto));
-    }
+      removeLanguage(i: number) {
+      const control = <FormArray>this.myForm.controls['proyectos'];
+      control.removeAt(i);
+      }
+
+      save(model) {
+        this.activar_solicitud(model);
+      }
 
 
-  ActivarSolicitud(id: string) {
-    this.solicitudesservice.activar_solicitud(id).subscribe(
-       data => { this.notificacion = data},
-       err => console.error(err),      () => console.log(this.notificacion)
-      );
-    }
+    ObtenerSolicitantes() {
+      this.solicitantesservice.obtener_solicitantes().subscribe(
+        data => { this.solicitantes = data},
+        err => console.error(err),      () => console.log(this.solicitantes)
+       );  }
+   
+       ObtenerTipos() {
+        this.proyectoservice.obtener_tipos().subscribe(
+          data => { this.tipos = data},
+          err => console.error(err),      () => console.log(this.tipos)
+         );  }
+  
 
-    MostrarProyectos(id: string) {
-       this.proyectoservice.obtener_proyectos_solicitud(id).subscribe(
-         data => { this.proyectos = data
-        ,this.loadForm(this.proyectos)
-        },
-         err => console.error(err),      () => console.log(this.proyectos)
+  activar_solicitud(solicitud) {
+        this.solicitudesservice.activar_solicitud(solicitud,this.id).subscribe(
+           data => {
+            this.router.navigate(['/solicitudes']);
+          },
+           error => {
+             console.error("Error saving food!");
+             return Observable.throw(error);
+           }
         );
       }
 
-      ObtenerEncargados() {
-        this.encargadoservice.obtener_encargados().subscribe(
-          data => { this.encargados = data},
-          err => console.error(err),      () => console.log(this.encargados)
+      ObtenerSolicitud() {
+        this.solicitudesservice.datos_solicitud(this.id).subscribe(
+          data => { this.solicitud = data},
+          err => console.error(err),      () => console.log(this.solicitud)
          );  }
 
-      Asignar(id_proyecto:string,id_encargado:string){
-        this.encargadoservice.asignar_encargado(id_proyecto,id_encargado).subscribe(
-          data => { this.notificacion = data},
-          err => console.error(err),      () => console.log(this.notificacion)
-         );       }
-
+  
 }

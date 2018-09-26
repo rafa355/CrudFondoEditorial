@@ -17,8 +17,6 @@ export class SolicitudesService {
   constructor(private http:HttpClient,private global: GlobalComponent) { }
 
   crear_solicitud(solicitud) {
-            let body = JSON.stringify(solicitud);
-            console.log(solicitud);
            return this.http.post(this.global.url+'CrearSolicitud', solicitud, httpOptions);
         }
 
@@ -28,8 +26,8 @@ export class SolicitudesService {
   datos_solicitud(id: string):Observable<any> {
     return this.http.get(this.global.url+'ObtenerSolicitud/' + id)
 }
-  activar_solicitud(id: string):Observable<any> {
-    return this.http.get(this.global.url+'ActivarSolicitud/' + id)
+  activar_solicitud(formulario,id: string):Observable<any> {
+    return this.http.post(this.global.url+'ActivarSolicitud/'+ id, formulario, httpOptions);
 }
 anular_solicitud(id: string):Observable<any> {
   return this.http.get(this.global.url+'EliminarSolicitud/' + id)

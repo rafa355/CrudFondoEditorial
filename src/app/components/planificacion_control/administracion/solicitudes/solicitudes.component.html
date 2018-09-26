@@ -35,9 +35,9 @@
                                             <td class="text-center">{{solicitud.solicitante.nombre}}</td>
                                             <td class="text-center">{{solicitud.status}}</td>
                                             <td class="text-center">{{solicitud.created_at  | date:'yyyy-MM-dd'}}</td>
-                                            <td class="text-center"><span class="fa fa-search fa-2x " (click)="openModal(template,solicitud.id)" style="cursor:pointer"></span></td>
+                                            <td class="text-center"><span class="fa fa-th-list fa-2x " (click)="openModal(template,otro,solicitud.id)" style="cursor:pointer"></span></td>
                                             <td class="text-center">
-                                                <a *ngIf="this.solicitud.status == 'pendiente'" (click)="ActivarSolicitud(solicitud.id)" style="cursor: default;margin-right: 10px"> <button type="button" class="btn btn-success">activar</button></a><a (click)="AnularSolicitud(solicitud.id)" style="cursor: default;"><button type="button" class="btn btn-danger">Anular</button></a></td>
+                                                <a *ngIf="this.solicitud.status == 'pendiente'" routerLink="/activar_solicitud/{{solicitud.id}}" style="cursor: default;margin-right: 10px"> <button type="button" class="btn btn-success">activar</button></a><a (click)="AnularSolicitud(solicitud.id)" style="cursor: default;"><button type="button" class="btn btn-danger">Anular</button></a></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -75,17 +75,30 @@
                             <th class="text-center">Tipo</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody > 
                         <tr *ngFor="let proyecto of solicitud.proyecto">
-                            <td class="text-center">{{proyecto.nombre}}</td>
-                            <td class="text-center">{{proyecto.descripcion}}</td>
-                            <td class="text-center">{{proyecto.proyectotype.nombre}}</td>
+                            <td class="text-center" *ngIf="proyecto">{{proyecto.nombre}}</td>
+                            <td class="text-center" *ngIf="proyecto">{{proyecto.descripcion}}</td>
+                            <td class="text-center" *ngIf="proyecto">{{proyecto.proyectotype.nombre}}</td>
                         </tr>
+
                     </tbody>
                 </table>
             </div>
         </div>
     </ng-template>
-
+    <ng-template #otro>
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">{{solicitud.nombre}}</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive text-center">
+                    <span>La solicitud <strong>{{solicitud.nombre}}</strong>, No se encuentra activada por ende, no posee ningun Proyecto o SubProyecto asociado.</span>
+                </div>
+            </div>
+        </ng-template>
 </main>
 <!--========== END app main -->
