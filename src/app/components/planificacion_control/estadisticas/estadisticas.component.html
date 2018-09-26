@@ -1,0 +1,27 @@
+<div class="wrap">
+    <section class="app-content">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="widget">
+                    <header class="widget-header">
+                        <h4 class="widget-title">Categorical Chart</h4>
+                    </header>
+                    <!-- .widget-header -->
+                    <hr class="widget-separator">
+                    <div class="widget-body" style="display: flex; overflow: hidden;">
+                        <ngx-charts-pie-chart [scheme]="colorScheme" [view]="view" [results]="single" [legend]="showLegend" [explodeSlices]="explodeSlices" [labels]="showLabels" [doughnut]="doughnut" [gradient]="gradient" (select)="onSelect($event)">
+                        </ngx-charts-pie-chart>
+                    </div>
+                    <!-- .widget-body -->
+                </div>
+                <!-- .widget -->
+            </div>
+            <!-- END column -->
+
+
+        </div>
+        <!-- END row -->
+    </section>
+    <!-- #dash-content -->
+</div>
+<!-- .wrap -->

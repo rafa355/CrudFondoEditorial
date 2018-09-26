@@ -20,17 +20,20 @@
                                             <th>Responsable</th>
                                             <th>Fecha de Registro</th>
                                             <th>Fecha de Entrega Estimada</th>
-                                            <th>Tiempo Total Estimado</th>
+                                            <th>Tiempo Transcurrido Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let proyecto of proyectos">
-                                            <td class="text-success">{{proyecto.proyectotype.nombre}}</td>
+                                            <td class="text-success">{{proyecto.tipo}}</td>
                                             <td>{{proyecto.nombre}}</td>
-                                            <td>{{proyecto.responsable}}</td>
+                                            <td *ngIf="proyecto.responsable;else sin_asginar">{{proyecto.responsable}}</td>
+                                            <ng-template #sin_asginar>
+                                                <td class="text-danger">Sin Asignar</td>
+                                            </ng-template>
                                             <td>{{proyecto.created_at | date:'yyyy-MM-dd'}}</td>
-                                            <td>{{proyecto.created_at | date:'yyyy-MM-dd'}}</td>
-                                            <td>{{proyecto.created_at | date:'yyyy-MM-dd'}}</td>
+                                            <td>{{proyecto.fecha_estimada | date:'yyyy-MM-dd'}}</td>
+                                            <td>{{proyecto.tiempo_transcurrido }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

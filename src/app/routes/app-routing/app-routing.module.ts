@@ -9,6 +9,7 @@ import { RegistroComponent } from './../../components/planificacion_control/admi
 import { ActivacionComponent } from './../../components/planificacion_control/administracion/solicitudes/activacion/activacion.component'
 import { SeguimientoComponent } from './../../components/planificacion_control/seguimiento/seguimiento.component'
 import { RegistroDisenadoresComponent } from './../../components/planificacion_control/administracion/disenadores/registro-disenadores/registro-disenadores.component'
+import { EstadisticasComponent } from './../../components/planificacion_control/estadisticas/estadisticas.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'registro_solicitud', component: RegistroComponent },
   { path: 'activar_solicitud/:id', component: ActivacionComponent },
   { path: 'seguimiento/:id', component: SeguimientoComponent },
+  { path: 'estadisticas', component: EstadisticasComponent },
 ];
 
 @NgModule({

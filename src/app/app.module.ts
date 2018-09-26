@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 import { ModalModule,AccordionModule,BsDatepickerModule   } from 'ngx-bootstrap';
 import { defineLocale } from 'ngx-bootstrap/chronos';
@@ -45,6 +46,7 @@ import { ActivacionComponent } from './components/planificacion_control/administ
 import { RegistroDisenadoresComponent } from './components/planificacion_control/administracion/disenadores/registro-disenadores/registro-disenadores.component';
 import { GlobalComponent } from './components/planificacion_control/global/global.component';
 import { EtapasComponent } from './components/planificacion_control/seguimiento/etapas/etapas.component';
+import { EstadisticasComponent } from './components/planificacion_control/estadisticas/estadisticas.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,7 @@ import { EtapasComponent } from './components/planificacion_control/seguimiento/
     RegistroDisenadoresComponent,
     GlobalComponent,
     EtapasComponent,
+    EstadisticasComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,8 @@ import { EtapasComponent } from './components/planificacion_control/seguimiento/
     ToastrModule.forRoot(),
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    NgxChartsModule,
   ],
   providers: [ContadorService,CargararchivoService,GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
   bootstrap: [AppComponent]
