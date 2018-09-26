@@ -27,6 +27,7 @@ export class EstadisticasComponent implements OnInit {
   showLabels = true;
   explodeSlices = false;
   doughnut = false;
+  gradient = true;
   constructor(private contador: ContadorService) {
 
     Object.assign(this, this.single);
