@@ -1,0 +1,68 @@
+<main id="app-main" class="col-md-12">
+    <div class="wrap">
+        <section class="app-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget">
+                        <header class="widget-header">
+                            <div class=" col-md-4">
+                                <h1 class="h3 title-form">Proyecciones {{ viewDate | calendarDate:(view + 'ViewTitle'):'es' }}</h1>
+                            </div>
+                            <div class="col-md-8 ">
+                                <div class="btn-group pull-right">
+                                    <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+                                        Mes Anterior
+                                    </div>
+                                    <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+                                        Hoy
+                                    </div>
+                                    <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+                                        Mes Siguiente
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+                        <hr class="widget-separator" />
+                        <div class="widget-body">
+                            <ng-template #modalContent let-close="close">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Event action occurred</h5>
+                                    <button type="button" class="close" (click)="close()"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div>
+                                        Action:
+                                        <pre>{{ modalData?.action }}</pre>
+                                    </div>
+                                    <div>
+                                        Event:
+                                        <pre>{{ modalData?.event | json }}</pre>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
+                                </div>
+                            </ng-template>
+
+
+                            <br>
+                            <div [ngSwitch]="view">
+                                <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [locale]="locale" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)"
+                                    (eventTimesChanged)="eventTimesChanged($event)">
+                                </mwl-calendar-month-view>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .widget -->
+                </div>
+                <!-- END column -->
+
+
+            </div>
+
+            <!-- .row -->
+        </section>
+        <!-- #dash-content -->
+    </div>
+    <!-- .wrap -->
+</main>

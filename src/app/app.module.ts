@@ -1,14 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule,registerLocaleData  } from '@angular/common';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { ModalModule,AccordionModule,BsDatepickerModule   } from 'ngx-bootstrap';
 import { defineLocale } from 'ngx-bootstrap/chronos';
+import localeEs from '@angular/common/locales/es';
+
 defineLocale('es', esLocale); 
+registerLocaleData(localeEs);
 
 import { esLocale } from 'ngx-bootstrap/locale';
 import { ToastrModule } from 'ngx-toastr';
@@ -48,6 +56,7 @@ import { RegistroDisenadoresComponent } from './components/planificacion_control
 import { GlobalComponent } from './components/planificacion_control/global/global.component';
 import { EtapasComponent } from './components/planificacion_control/seguimiento/etapas/etapas.component';
 import { EstadisticasComponent } from './components/planificacion_control/estadisticas/estadisticas.component';
+import { ProyeccionesComponent } from './components/planificacion_control/proyecciones/proyecciones.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +75,7 @@ import { EstadisticasComponent } from './components/planificacion_control/estadi
     GlobalComponent,
     EtapasComponent,
     EstadisticasComponent,
+    ProyeccionesComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,7 +91,14 @@ import { EstadisticasComponent } from './components/planificacion_control/estadi
     BsDatepickerModule.forRoot(),
     AccordionModule.forRoot(),
     NgxChartsModule,
-        NgxSpinnerModule
+    NgxSpinnerModule,
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
+
 
   ],
   providers: [ContadorService,CargararchivoService,GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],

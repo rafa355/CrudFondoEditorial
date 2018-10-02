@@ -10,6 +10,7 @@ import { ActivacionComponent } from './../../components/planificacion_control/ad
 import { SeguimientoComponent } from './../../components/planificacion_control/seguimiento/seguimiento.component'
 import { RegistroDisenadoresComponent } from './../../components/planificacion_control/administracion/disenadores/registro-disenadores/registro-disenadores.component'
 import { EstadisticasComponent } from './../../components/planificacion_control/estadisticas/estadisticas.component'
+import { ProyeccionesComponent } from './../../components/planificacion_control/proyecciones/proyecciones.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'activar_solicitud/:id', component: ActivacionComponent },
   { path: 'seguimiento/:id', component: SeguimientoComponent },
   { path: 'estadisticas', component: EstadisticasComponent },
+  { path: 'proyecciones', component: ProyeccionesComponent },
 ];
 
 @NgModule({
