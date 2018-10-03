@@ -1,6 +1,8 @@
 import { Component, OnInit,  ChangeDetectionStrategy,ViewChild,TemplateRef } from '@angular/core';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { SolicitudesService } from '../../../services/solicitudes.service'
+
 import {
   startOfDay,
   endOfDay,
@@ -33,6 +35,10 @@ const colors: any = {
   yellow: {
     primary: '#e3bc08',
     secondary: '#FDF1BA'
+  },
+  green: {
+    primary: '#10c469',
+    secondary: '#10c469'
   }
 };
 
@@ -41,11 +47,11 @@ const colors: any = {
   templateUrl: './proyecciones.component.html',
   styleUrls: ['./proyecciones.component.css']
 })
-export class ProyeccionesComponent {
+export class ProyeccionesComponent implements OnInit {
   @ViewChild('modalContent')
   modalContent: TemplateRef<any>;
   locale: string = 'es';
-
+public solicitudes;
   view: CalendarView = CalendarView.Month;
 
   CalendarView = CalendarView;
@@ -61,7 +67,6 @@ export class ProyeccionesComponent {
     {
       label: '<i class="fa fa-fw fa-pencil"></i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
       }
     },
     {
@@ -77,9 +82,8 @@ export class ProyeccionesComponent {
 
   events: CalendarEvent[] = [
     {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
+      start: startOfDay('2018-10-06'),
+      title: 'Evento 1',
       color: colors.red,
       actions: this.actions,
       allDay: true,
@@ -91,21 +95,21 @@ export class ProyeccionesComponent {
     },
     {
       start: startOfDay(new Date()),
-      title: 'An event with no end date',
+      title: 'Evento 2',
       color: colors.yellow,
       actions: this.actions
     },
     {
       start: subDays(endOfMonth(new Date()), 3),
       end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
+      title: 'Evento largo',
       color: colors.blue,
       allDay: true
     },
     {
       start: addHours(startOfDay(new Date()), 2),
       end: new Date(),
-      title: 'A draggable and resizable event',
+      title: 'Otro evento',
       color: colors.yellow,
       actions: this.actions,
       resizable: {
@@ -118,8 +122,11 @@ export class ProyeccionesComponent {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private solicitudesservice:SolicitudesService,private modal: NgbModal) {}
 
+  ngOnInit() {
+    this.ObtenerSolicitudes();
+  }
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
       this.viewDate = date;
@@ -147,21 +154,33 @@ export class ProyeccionesComponent {
 
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
+    this.modal.open(this.modalContent, { size: 'lg' });
   }
 
-  addEvent(): void {
-    this.events.push({
-      title: 'New event',
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
-      color: colors.red,
-      draggable: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
+  ObtenerSolicitudes() {
+    this.solicitudesservice.obtener_solicitudes().subscribe(
+      data => { this.solicitudes = data,this.addEvent(data),console.log(this.solicitudes)},
+      err => {console.error(err)},      
+      );}
+
+  addEvent(fechas): void {
+    for (var solicitud of fechas) {
+      if(solicitud.status == "pendiente"){
+          this.events.push({
+            title: solicitud.nombre,
+            start: startOfDay(new Date()),
+            color: colors.red,
+          });
+          this.refresh.next();
+      }else{
+        this.events.push({
+          title: solicitud.nombre,
+          start: startOfDay(solicitud.created_at),
+          color: colors.blue,
+        });
+        this.refresh.next();
       }
-    });
-    this.refresh.next();
+    }
   }
 
 }

@@ -6,7 +6,7 @@
                     <div class="widget">
                         <header class="widget-header">
                             <div class=" col-md-4">
-                                <h1 class="h3 title-form">Proyecciones {{ viewDate | calendarDate:(view + 'ViewTitle'):'es' }}</h1>
+                                <h1 (click)="addEvent()" class="h3 title-form">Proyecciones {{ viewDate | calendarDate:(view + 'ViewTitle'):'es' }}</h1>
                             </div>
                             <div class="col-md-8 ">
                                 <div class="btn-group pull-right">
@@ -66,3 +66,26 @@
     </div>
     <!-- .wrap -->
 </main>
+
+
+<ng-template #modalContent let-close="close">
+    <div class="modal-header">
+        <h5 class="modal-title">Event action occurred</h5>
+        <button type="button" class="close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+    </div>
+    <div class="modal-body">
+        <div>
+            Action:
+            <pre>{{ modalData?.action }}</pre>
+        </div>
+        <div>
+            Event:
+            <pre>{{ modalData?.event | json }}</pre>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
+    </div>
+</ng-template>
