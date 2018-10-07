@@ -57,6 +57,8 @@ import { GlobalComponent } from './components/planificacion_control/global/globa
 import { EtapasComponent } from './components/planificacion_control/seguimiento/etapas/etapas.component';
 import { EstadisticasComponent } from './components/planificacion_control/estadisticas/estadisticas.component';
 import { ProyeccionesComponent } from './components/planificacion_control/proyecciones/proyecciones.component';
+import { SolicitantesComponent } from './components/planificacion_control/administracion/solicitantes/solicitantes.component';
+import { RegistroSolicitanteComponent } from './components/planificacion_control/administracion/solicitantes/registro-solicitante/registro-solicitante.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +78,8 @@ import { ProyeccionesComponent } from './components/planificacion_control/proyec
     EtapasComponent,
     EstadisticasComponent,
     ProyeccionesComponent,
+    SolicitantesComponent,
+    RegistroSolicitanteComponent,
   ],
   imports: [
     BrowserModule,

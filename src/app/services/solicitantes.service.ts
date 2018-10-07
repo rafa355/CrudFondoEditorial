@@ -15,8 +15,14 @@ export class SolicitantesService {
 
   constructor(private http:HttpClient,private global: GlobalComponent) { }
 
-          
   obtener_solicitantes():Observable<any> {
     return this.http.get(this.global.url+'ObtenerSolicitantes')
   }
+
+  crear_solicitante(solicitante) {
+   return this.http.post(this.global.url+'CrearSolicitante', solicitante, httpOptions);
+}
+eliminar_solicitante(id: string):Observable<any> {
+  return this.http.get(this.global.url+'EliminarSolicitante/' + id)
+}
 }

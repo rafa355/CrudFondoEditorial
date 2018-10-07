@@ -1,0 +1,57 @@
+<!-- APP MAIN ==========-->
+<main id="app-main" class="col-md-12">
+    <div class="wrap">
+        <section class="app-content">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget">
+                        <header class="widget-header">
+                            <div class="col-lg-6 col-md-6">
+                                <h1 class="h3 title-form">Listado de Solicitantes</h1>
+                            </div>
+                            <a routerLink="/registro_solicitante">
+                                <button type="button" class="btn btn-primary btn-circle pull-right add" data-toggle="tooltip" data-placement="top" title="Agregar Solicitante">
+                                          <i class="fa fa-plus" aria-hidden="true"></i>
+                                      </button>
+                            </a>
+                        </header>
+                        <hr class="widget-separator" />
+                        <div class="widget-body">
+                            <div class="table-responsive">
+                                <table class="table no-cellborder">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo de Solicitante</th>
+                                            <th>Nombre</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let solicitante of solicitantes">
+                                            <td class="text-default"><span *ngIf="solicitante.solicitante_type_id == 1 ;else c_fecha">Cliente</span>
+                                                <ng-template #c_fecha> <span>Usuario</span> </ng-template>
+                                            </td>
+                                            <td class="text-default">{{solicitante.nombre}}</td>
+                                            <td><a (click)="EliminarSolicitante(solicitante.id)" style="cursor: default;"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .widget -->
+                </div>
+                <!-- END column -->
+
+
+            </div>
+
+            <!-- .row -->
+        </section>
+        <!-- #dash-content -->
+    </div>
+    <!-- .wrap -->
+
+</main>
+<!--========== END app main -->

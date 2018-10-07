@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { MainpanelComponent } from './../../components/template/mainpanel/mainpanel.component';
 import { ProyectosComponent } from './../../components/planificacion_control/administracion/proyectos/proyectos.component';
+import { SolicitantesComponent } from './../../components/planificacion_control/administracion/solicitantes/solicitantes.component';
+import { RegistroSolicitanteComponent } from './../../components/planificacion_control/administracion/solicitantes/registro-solicitante/registro-solicitante.component';
 import { DisenadoresComponent } from './../../components/planificacion_control/administracion/disenadores/disenadores.component'
 import { SolicitudesComponent } from './../../components/planificacion_control/administracion/solicitudes/solicitudes.component'
 import { RegistroComponent } from './../../components/planificacion_control/administracion/solicitudes/registro/registro.component'
@@ -24,6 +26,8 @@ const routes: Routes = [
   { path: 'seguimiento/:id', component: SeguimientoComponent },
   { path: 'estadisticas', component: EstadisticasComponent },
   { path: 'proyecciones', component: ProyeccionesComponent },
+  { path: 'solicitantes', component: SolicitantesComponent },
+  { path: 'registro_solicitante', component: RegistroSolicitanteComponent },
 ];
 
 @NgModule({
