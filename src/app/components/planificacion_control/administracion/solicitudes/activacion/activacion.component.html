@@ -16,67 +16,67 @@
                             <div class="container">
                                 <div class="row">
                                     <div>
-                                            <div class="form-group col-xs-3 col-xs-offset-1">
-                                                    <label>Nombre</label>
-                                                    <input type="text" class="form-control"  value="{{this.solicitud.nombre}}" readonly="readonly">
-                                                </div>
-                                                <div class="form-group col-xs-4">
-                                                    <label>Solicitante</label>
-                                                    <input type="text" class="form-control"  value="{{this.solicitud.solicitante.nombre}}" readonly="readonly">
-                                                </div>
-                                                <div class="form-group col-xs-3">
-                                                    <label>publicacion</label>
-                                                    <input type="text" class="form-control"  value="{{this.solicitud.publicacion}}" readonly="readonly">
-                                                </div>
-                                                <div class=" form-group col-xs-10 col-xs-offset-1">
-                                                        <div class="col-md-12 form-group">
-                                                            <label>Descripcion</label>
-                                                            <textarea class="form-control" formControlName="descripcion" id="" cols="30" rows="10" readonly="readonly">{{this.solicitud.descripcion}}</textarea>
-                                                        </div>
-                                                    </div>
+                                        <div class="form-group col-xs-3 col-xs-offset-1">
+                                            <label>Nombre</label>
+                                            <input type="text" class="form-control" value="{{this.solicitud.nombre}}" readonly="readonly">
+                                        </div>
+                                        <div class="form-group col-xs-4">
+                                            <label>Solicitante</label>
+                                            <input type="text" class="form-control" value="{{this.solicitud.solicitante.nombre}}" readonly="readonly">
+                                        </div>
+                                        <div class="form-group col-xs-3">
+                                            <label>publicacion</label>
+                                            <input type="text" class="form-control" value="{{this.solicitud.publicacion}}" readonly="readonly">
+                                        </div>
+                                        <div class=" form-group col-xs-10 col-xs-offset-1">
+                                            <div class="col-md-12 form-group">
+                                                <label>Descripcion</label>
+                                                <textarea class="form-control" formControlName="descripcion" id="" cols="30" rows="10" readonly="readonly">{{this.solicitud.descripcion}}</textarea>
+                                            </div>
+                                        </div>
                                         <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
 
                                             <header class="widget-header">
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6">
-                                                            <h1 *ngIf="this.solicitud.publicacion == 'si';else no_publicacion">Proyecto</h1>
-                                                            <ng-template #no_publicacion>
-                                                                <h1 class="h3 title-form">Subproyectos</h1>
-                                                            </ng-template>
+                                                        <h1 *ngIf="this.solicitud.publicacion == 'si';else no_publicacion">Proyecto</h1>
+                                                        <ng-template #no_publicacion>
+                                                            <h1 class="h3 title-form">Subproyectos</h1>
+                                                        </ng-template>
                                                     </div>
                                                 </div>
                                             </header>
                                             <div formArrayName="proyectos">
                                                 <div *ngFor="let Proyecto of formData.controls; let i=index" class="panel panel-default">
                                                     <div *ngIf="this.solicitud.publicacion != 'si'" class="panel-heading">
-                                                        <span>SubProyecto {{i + 1}} de {{myForm.value.nombre}}</span>
+                                                        <span>SubProyecto {{i + 1}} de {{this.solicitud.nombre}}</span>
                                                         <span class="fa fa-close pull-right" *ngIf="myForm.controls.proyectos.controls.length > 1" (click)="removeLanguage(i)"></span>
                                                     </div>
                                                     <div class="panel-body" [formGroupName]="i">
                                                         <div class="col-md-3">
                                                             <div class="form-group col-xs-12">
                                                                 <label>Nombre</label>
-                                                                <input type="text" class="form-control" formControlName="nombre"></div>
+                                                                <input type="text" class="form-control" formControlName="nombre" required></div>
                                                             <div class="form-group col-xs-12">
                                                                 <label *ngIf="this.solicitud.publicacion == 'si';else no_publicacion">Tipo de Proyecto</label>
                                                                 <ng-template #no_publicacion>
                                                                     <label> Tipo de Subproyecto</label>
                                                                 </ng-template>
-                                                                <select formControlName="proyecto_type_id" class="form-control">
+                                                                <select formControlName="proyecto_type_id" class="form-control" required>
                                                                         <option  value="" selected disabled hidden>Seleccionar</option>
                                                                     <option  *ngFor="let tipo of tipos" value="{{tipo.id}}">{{tipo.nombre}}</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col-xs-12 col-12 col-md-12 form-group">
                                                                 <label>Fecha de Entrega Estimada</label>
-                                                                <input type="text" formControlName="tiempo_planificado_total" placeholder="Datepicker" class="form-control" bsDatepicker [bsConfig]="bsConfig">
+                                                                <input type="text" formControlName="tiempo_planificado_total" placeholder="Datepicker" class="form-control" bsDatepicker [bsConfig]="bsConfig" required>
                                                             </div>
 
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="col-md-12 form-group">
                                                                 <label>Descripcion</label>
-                                                                <textarea class="form-control" formControlName="descripcion" id="" cols="30" rows="10"></textarea>
+                                                                <textarea class="form-control" formControlName="descripcion" id="" cols="30" rows="10" required></textarea>
                                                             </div>
                                                         </div>
                                                     </div>

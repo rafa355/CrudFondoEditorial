@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SolicitantesService } from '../../../../services/solicitantes.service'
 import { ToastrService } from 'ngx-toastr';
 
@@ -9,8 +9,16 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SolicitantesComponent implements OnInit {
 
+  @Input('data') solicitantes: Object[] = [];
+  page: number = 1;
+  userFilter: any = { nombre: '' };
+  public labels: any = {
+    previousLabel: 'Anterior',
+    nextLabel: 'Siguiente',
+};
+
+
   constructor(private toastr:ToastrService,private solicitantesServices:SolicitantesService) { }
-  public solicitantes;
   public notificacion;
   ngOnInit() {
     this.ObtenerSolicitante();
@@ -18,7 +26,7 @@ export class SolicitantesComponent implements OnInit {
  
   ObtenerSolicitante() {
    this.solicitantesServices.obtener_solicitantes().subscribe(
-     data => { this.solicitantes = data},
+     data => { this.solicitantes = data },
      err => console.error(err),      () => console.log(this.solicitantes)
     );  }
 

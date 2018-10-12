@@ -18,22 +18,33 @@
                         </header>
                         <hr class="widget-separator" />
                         <div class="widget-body">
+                            <div class="table-responsive" style="width:300px">
+                                <input type="text" class="form-control " placeholder="Filtrar por Nombre" [(ngModel)]="userFilter.nombre">
+                            </div>
+                            <br>
                             <div class="table-responsive">
-                                <table class="table no-cellborder">
+                                <table class="table no-cellborder text-center">
                                     <thead>
                                         <tr>
-                                            <th>Tipo de Solicitante</th>
-                                            <th>Nombre</th>
-                                            <th>Acción</th>
+                                            <th class="text-center">Tipo de Solicitante</th>
+                                            <th class="text-center">Nombre</th>
+                                            <th class="text-center">Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let solicitante of solicitantes">
+                                        <tr *ngFor="let solicitante of solicitantes| filterBy: userFilter | paginate: { itemsPerPage: 10, currentPage: page }">
                                             <td class="text-default"><span *ngIf="solicitante.solicitante_type_id == 1 ;else c_fecha">Cliente</span>
                                                 <ng-template #c_fecha> <span>Usuario</span> </ng-template>
                                             </td>
                                             <td class="text-default">{{solicitante.nombre}}</td>
                                             <td><a (click)="EliminarSolicitante(solicitante.id)" style="cursor: default;"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+                                        </tr>
+                                        <tr>
+                                            <div class="pull-right">
+                                                <div class="text-center">
+                                                    <pagination-controls [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel" (pageChange)="page = $event"></pagination-controls>
+                                                </div>
+                                            </div>
                                         </tr>
                                     </tbody>
                                 </table>

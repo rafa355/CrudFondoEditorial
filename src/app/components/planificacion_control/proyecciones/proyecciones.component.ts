@@ -82,41 +82,10 @@ public solicitudes;
 
   events: CalendarEvent[] = [
     {
-      start: startOfDay('2018-10-06'),
-      title: 'Evento 1',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    },
-    {
       start: startOfDay(new Date()),
       title: 'Evento 2',
       color: colors.yellow,
       actions: this.actions
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'Evento largo',
-      color: colors.blue,
-      allDay: true
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: new Date(),
-      title: 'Otro evento',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
     }
   ];
 
@@ -167,16 +136,18 @@ public solicitudes;
     for (var solicitud of fechas) {
       if(solicitud.status == "pendiente"){
           this.events.push({
-            title: solicitud.nombre,
-            start: startOfDay(new Date()),
+            title: solicitud.nombre+' (Pendiente)',
+            start: startOfDay(solicitud.created_at),
+            end: startOfDay(new Date()),
             color: colors.red,
+            allDay: true
           });
           this.refresh.next();
       }else{
         this.events.push({
           title: solicitud.nombre,
           start: startOfDay(solicitud.created_at),
-          color: colors.blue,
+          color: colors.green,
         });
         this.refresh.next();
       }

@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -15,7 +17,7 @@ import { ModalModule,AccordionModule,BsDatepickerModule   } from 'ngx-bootstrap'
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import localeEs from '@angular/common/locales/es';
 
-defineLocale('es', esLocale); 
+defineLocale('es', esLocale);
 registerLocaleData(localeEs);
 
 import { esLocale } from 'ngx-bootstrap/locale';
@@ -101,8 +103,9 @@ import { RegistroSolicitanteComponent } from './components/planificacion_control
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
-
+    }),
+    NgxPaginationModule,
+    FilterPipeModule,
 
   ],
   providers: [ContadorService,CargararchivoService,GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
