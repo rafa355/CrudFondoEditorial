@@ -26,7 +26,7 @@ import { AppComponent } from './app.component';
 
 //componentes de administracion
 import { ProyectosComponent } from './components/planificacion_control/administracion/proyectos/proyectos.component';
-import { DisenadoresComponent } from './components/planificacion_control/administracion/disenadores/disenadores.component';
+import { DisenadoresComponent } from './components/planificacion_control/parametros/disenadores/disenadores.component';
 
 //servicios
 import { ProyectoService } from './services/proyecto.service';
@@ -37,7 +37,7 @@ import { SolicitantesService } from './services/solicitantes.service';
 import { AdjuntoService } from './services/adjunto.service';
 import { CargararchivoService } from './services/cargararchivo.service';
 import { ContadorService } from './services/contador.service';
-
+import { ProyeccionesService } from './services/proyecciones.service';
 //http
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -54,13 +54,15 @@ import { SeguimientoComponent } from './components/planificacion_control/seguimi
 import { SolicitudesComponent } from './components/planificacion_control/administracion/solicitudes/solicitudes.component';
 import { RegistroComponent } from './components/planificacion_control/administracion/solicitudes/registro/registro.component';
 import { ActivacionComponent } from './components/planificacion_control/administracion/solicitudes/activacion/activacion.component';
-import { RegistroDisenadoresComponent } from './components/planificacion_control/administracion/disenadores/registro-disenadores/registro-disenadores.component';
+import { RegistroDisenadoresComponent } from './components/planificacion_control/parametros/disenadores/registro-disenadores/registro-disenadores.component';
 import { GlobalComponent } from './components/planificacion_control/global/global.component';
 import { EtapasComponent } from './components/planificacion_control/seguimiento/etapas/etapas.component';
 import { EstadisticasComponent } from './components/planificacion_control/estadisticas/estadisticas.component';
 import { ProyeccionesComponent } from './components/planificacion_control/proyecciones/proyecciones.component';
-import { SolicitantesComponent } from './components/planificacion_control/administracion/solicitantes/solicitantes.component';
-import { RegistroSolicitanteComponent } from './components/planificacion_control/administracion/solicitantes/registro-solicitante/registro-solicitante.component';
+import { SolicitantesComponent } from './components/planificacion_control/parametros/solicitantes/solicitantes.component';
+import { RegistroSolicitanteComponent } from './components/planificacion_control/parametros/solicitantes/registro-solicitante/registro-solicitante.component';
+import { TipoProyectoComponent } from './components/planificacion_control/parametros/tipo-proyecto/tipo-proyecto.component';
+import { RegistroTipoProyectoComponent } from './components/planificacion_control/parametros/tipo-proyecto/registro-tipo-proyecto/registro-tipo-proyecto.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +84,8 @@ import { RegistroSolicitanteComponent } from './components/planificacion_control
     ProyeccionesComponent,
     SolicitantesComponent,
     RegistroSolicitanteComponent,
+    TipoProyectoComponent,
+    RegistroTipoProyectoComponent,
   ],
   imports: [
     BrowserModule,
@@ -108,7 +112,7 @@ import { RegistroSolicitanteComponent } from './components/planificacion_control
     FilterPipeModule,
 
   ],
-  providers: [ContadorService,CargararchivoService,GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
+  providers: [ProyeccionesService,ContadorService,CargararchivoService,GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

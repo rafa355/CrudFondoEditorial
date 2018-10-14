@@ -1,0 +1,66 @@
+<!-- APP MAIN ==========-->
+<main id="app-main" class="col-md-12">
+    <div class="wrap">
+        <section class="app-content">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget">
+                        <header class="widget-header">
+                            <div class="col-lg-6 col-md-6">
+                                <h1 class="h3 title-form">Listado de Solicitantes</h1>
+                            </div>
+                            <a routerLink="/registro_solicitante">
+                                <button type="button" class="btn btn-primary btn-circle pull-right add" data-toggle="tooltip" data-placement="top" title="Agregar Solicitante">
+                                          <i class="fa fa-plus" aria-hidden="true"></i>
+                                      </button>
+                            </a>
+                        </header>
+                        <hr class="widget-separator" />
+                        <div class="widget-body">
+                            <div class="table-responsive" style="width:300px">
+                                <input type="text" class="form-control " placeholder="Filtrar por Nombre" [(ngModel)]="userFilter.nombre">
+                            </div>
+                            <br>
+                            <div class="table-responsive">
+                                <table class="table no-cellborder text-center">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Tipo de Solicitante</th>
+                                            <th class="text-center">Nombre</th>
+                                            <th class="text-center">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let solicitante of solicitantes| filterBy: userFilter | paginate: { itemsPerPage: 10, currentPage: page }">
+                                            <td class="text-default"><span *ngIf="solicitante.solicitante_type_id == 1 ;else c_fecha">Cliente</span>
+                                                <ng-template #c_fecha> <span>Usuario</span> </ng-template>
+                                            </td>
+                                            <td class="text-default">{{solicitante.nombre}}</td>
+                                            <td><a (click)="EliminarSolicitante(solicitante.id)" style="cursor: default;"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="text-center">
+                                    <div class="text-center">
+                                        <pagination-controls [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel" (pageChange)="page = $event"></pagination-controls>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .widget -->
+                </div>
+                <!-- END column -->
+
+
+            </div>
+
+            <!-- .row -->
+        </section>
+        <!-- #dash-content -->
+    </div>
+    <!-- .wrap -->
+
+</main>
+<!--========== END app main -->

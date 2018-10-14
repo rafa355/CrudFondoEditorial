@@ -8,12 +8,12 @@
                     <div class="widget">
                         <header class="widget-header">
                             <div class="col-lg-6 col-md-6">
-                                <h1 class="h3 title-form">Listado de Solicitantes</h1>
+                                <h1 class="h3 title-form">Listado de Tipos de Proyectos</h1>
                             </div>
-                            <a routerLink="/registro_solicitante">
+                            <a routerLink="/registro_tipo_proyecto">
                                 <button type="button" class="btn btn-primary btn-circle pull-right add" data-toggle="tooltip" data-placement="top" title="Agregar Solicitante">
-                                          <i class="fa fa-plus" aria-hidden="true"></i>
-                                      </button>
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
                             </a>
                         </header>
                         <hr class="widget-separator" />
@@ -26,28 +26,22 @@
                                 <table class="table no-cellborder text-center">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">Tipo de Solicitante</th>
                                             <th class="text-center">Nombre</th>
                                             <th class="text-center">Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let solicitante of solicitantes| filterBy: userFilter | paginate: { itemsPerPage: 10, currentPage: page }">
-                                            <td class="text-default"><span *ngIf="solicitante.solicitante_type_id == 1 ;else c_fecha">Cliente</span>
-                                                <ng-template #c_fecha> <span>Usuario</span> </ng-template>
-                                            </td>
-                                            <td class="text-default">{{solicitante.nombre}}</td>
-                                            <td><a (click)="EliminarSolicitante(solicitante.id)" style="cursor: default;"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
-                                        </tr>
-                                        <tr>
-                                            <div class="pull-right">
-                                                <div class="text-center">
-                                                    <pagination-controls [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel" (pageChange)="page = $event"></pagination-controls>
-                                                </div>
-                                            </div>
+                                        <tr *ngFor="let tipo of tipos| filterBy: userFilter | paginate: { itemsPerPage: 10, currentPage: page }">
+                                            <td class="text-default">{{tipo.nombre}}</td>
+                                            <td><a (click)="EliminarTipoProyecto(tipo.id)" style="cursor: default;"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div class="text-center">
+                                    <div class="text-center">
+                                        <pagination-controls [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel" (pageChange)="page = $event"></pagination-controls>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { EncargadoService } from '../../../../services/encargado.service'
 @Component({
   selector: 'app-disenadores',
@@ -6,9 +6,14 @@ import { EncargadoService } from '../../../../services/encargado.service'
   styleUrls: ['./disenadores.component.css']
 })
 export class DisenadoresComponent implements OnInit {
-
+  @Input('data') encargados: Object[] = [];
+  page: number = 1;
+  userFilter: any = { nombre: '' };
+  public labels: any = {
+    previousLabel: 'Anterior',
+    nextLabel: 'Siguiente',
+};
   constructor(private encargadoservice:EncargadoService) { }
-  public encargados;
   ngOnInit() {
     this.ObtenerEncargados();
   }

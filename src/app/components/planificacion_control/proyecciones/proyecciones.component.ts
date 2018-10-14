@@ -2,6 +2,7 @@ import { Component, OnInit,  ChangeDetectionStrategy,ViewChild,TemplateRef } fro
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { SolicitudesService } from '../../../services/solicitudes.service'
+import { ProyeccionesService } from '../../../services/proyecciones.service'
 
 import {
   startOfDay,
@@ -51,7 +52,8 @@ export class ProyeccionesComponent implements OnInit {
   @ViewChild('modalContent')
   modalContent: TemplateRef<any>;
   locale: string = 'es';
-public solicitudes;
+  public solicitudes;
+  public proyecciones;
   view: CalendarView = CalendarView.Month;
 
   CalendarView = CalendarView;
@@ -65,8 +67,9 @@ public solicitudes;
 
   actions: CalendarEventAction[] = [
     {
-      label: '<i class="fa fa-fw fa-pencil"></i>',
+      label: '<i class="fa fa-fw fa-envelope"></i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
+        alert("enviado");
       }
     },
     {
@@ -91,10 +94,11 @@ public solicitudes;
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private solicitudesservice:SolicitudesService,private modal: NgbModal) {}
+  constructor(private solicitudesservice:SolicitudesService,private ProyeccionesService:ProyeccionesService,private modal: NgbModal) {}
 
   ngOnInit() {
     this.ObtenerSolicitudes();
+    this.ObtenerProyecciones();
   }
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -126,28 +130,40 @@ public solicitudes;
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
-  ObtenerSolicitudes() {
-    this.solicitudesservice.obtener_solicitudes().subscribe(
-      data => { this.solicitudes = data,this.addEvent(data),console.log(this.solicitudes)},
+   ObtenerProyecciones() {
+    this.ProyeccionesService.obtener_proyecciones().subscribe(
+      data => { this.proyecciones = data,this.addEvent(data),console.log(this.proyecciones)},
       err => {console.error(err)},      
       );}
+
+      ObtenerSolicitudes() {
+        this.solicitudesservice.obtener_solicitudes().subscribe(
+          data => { this.solicitudes = data,this.addEvent(data),console.log(this.solicitudes)},
+          err => {console.error(err)},      
+          );}
 
   addEvent(fechas): void {
     for (var solicitud of fechas) {
       if(solicitud.status == "pendiente"){
           this.events.push({
             title: solicitud.nombre+' (Pendiente)',
-            start: startOfDay(solicitud.created_at),
-            end: startOfDay(new Date()),
+            start: startOfDay(new Date()),
             color: colors.red,
-            allDay: true
           });
           this.refresh.next();
-      }else{
+      }else if(solicitud.status == "activa"){
         this.events.push({
           title: solicitud.nombre,
           start: startOfDay(solicitud.created_at),
           color: colors.green,
+        });
+        this.refresh.next();
+      }else {
+        this.events.push({
+          title: 'Proyeccion de solicitud '+solicitud.solicitudes.nombre,
+          start: startOfDay(solicitud.fecha_entrega),
+          color: colors.blue,
+          actions: this.actions
         });
         this.refresh.next();
       }
