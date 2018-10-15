@@ -67,25 +67,40 @@
     <!-- .wrap -->
 </main>
 
-
-<ng-template #modalContent let-close="close">
-    <div class="modal-header">
-        <h5 class="modal-title">Event action occurred</h5>
-        <button type="button" class="close" (click)="close()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-    </div>
-    <div class="modal-body">
-        <div>
-            Action:
-            <pre>{{ modalData?.action }}</pre>
+<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-child-name" class="modal-title pull-left">Solicitud de Proyección </h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
+                    <div class="form-group col-xs-12 col-md-12">
+                        <label>Correo</label>
+                        <input type="email" class="form-control" formControlName="correo" required>
+                    </div>
+                    <div class="form-group col-xs-12 col-md-12">
+                        <label>Mensaje</label>
+                        <textarea class="form-control" cols="30" rows="10" formControlName="mensaje" required></textarea>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group text-center">
+                            <button type="submit " class="btn btn-primary" [disabled]="!myForm.valid " style="margin-right:50px">Enviar</button>
+                            <a (click)="hideChildModal()">
+                                <input type="button" value="Cancelar" class="btn btn-danger cancel">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="clearfix "></div>
+                    <div class="margin-20">
+                        <div>myForm details:-</div>
+                        <pre>form value: <br>{{myForm.value | json}}</pre>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div>
-            Event:
-            <pre>{{ modalData?.event | json }}</pre>
-        </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
-    </div>
-</ng-template>
+</div>

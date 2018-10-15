@@ -18,5 +18,8 @@ export class ProyeccionesService {
 
   obtener_proyecciones() {
     return this.http.get(this.global.url+'ObtenerProyecciones');
-}
+  }
+  enviar_mensaje(mensaje) {
+    return this.http.post(this.global.url+'EnviarMensaje', mensaje, httpOptions);
+ }
 }

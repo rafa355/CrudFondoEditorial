@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewChild,TemplateRef } from '@angular/core';
 import { SolicitudesService } from '../../../services/solicitudes.service'
 import { ProyeccionesService } from '../../../services/proyecciones.service'
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import {
   startOfDay,
@@ -21,6 +22,8 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView
 } from 'angular-calendar';
+import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 const colors: any = {
   red: {
@@ -47,7 +50,7 @@ const colors: any = {
   styleUrls: ['./proyecciones.component.css']
 })
 export class ProyeccionesComponent implements OnInit {
-  @ViewChild('modalContent')
+  @ViewChild('childModal') childModal: ModalDirective;
   modalContent: TemplateRef<any>;
   locale: string = 'es';
   public solicitudes;
@@ -65,9 +68,9 @@ export class ProyeccionesComponent implements OnInit {
 
   actions: CalendarEventAction[] = [
     {
-      label: '<i class="fa fa-fw fa-envelope"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        alert("enviado");
+      label: '<i class="fa fa-fw fa-envelope" (click)="showChildModal()"></i>',
+      onClick: (): void => {
+        this.showChildModal();
       }
     },
     {
@@ -85,9 +88,14 @@ export class ProyeccionesComponent implements OnInit {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private solicitudesservice:SolicitudesService,private ProyeccionesService:ProyeccionesService,private modal: NgbModal) {}
+  constructor(private toastr:ToastrService,private _fb: FormBuilder,private solicitudesservice:SolicitudesService,private ProyeccionesService:ProyeccionesService,private modal: NgbModal) {}
+  public myForm: FormGroup;
 
   ngOnInit() {
+    this.myForm = this._fb.group({
+      correo: [''],
+      mensaje: [''],
+      });
     this.ObtenerSolicitudes();
     this.ObtenerProyecciones();
   }
@@ -161,4 +169,26 @@ export class ProyeccionesComponent implements OnInit {
     }
   }
 
+  showChildModal(): void {
+    this.childModal.show();
+  }
+ 
+  hideChildModal(): void {
+    this.childModal.hide();
+  }
+
+  save(model) {
+    this.enviar_mensaje(model);
+  }
+  enviar_mensaje(mensaje) {
+    this.ProyeccionesService.enviar_mensaje(mensaje).subscribe(
+       data => {
+        this.hideChildModal();
+        this.toastr.success('Mensaje Enviado');
+      },
+       error => {
+         console.error("Error saving food!");
+       }
+    );
+  }
 }
