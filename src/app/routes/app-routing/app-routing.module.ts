@@ -15,6 +15,7 @@ import { RegistroDisenadoresComponent } from './../../components/planificacion_c
 import { EstadisticasComponent } from './../../components/planificacion_control/estadisticas/estadisticas.component'
 import { ProyeccionesComponent } from './../../components/planificacion_control/proyecciones/proyecciones.component'
 import { RegistroTipoProyectoComponent } from './../../components/planificacion_control/parametros/tipo-proyecto/registro-tipo-proyecto/registro-tipo-proyecto.component';
+import { ProyeccionesProyectoComponent } from './../../components/planificacion_control/proyecciones/proyecciones-proyecto/proyecciones-proyecto.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'seguimiento/:id', component: SeguimientoComponent },
   { path: 'estadisticas', component: EstadisticasComponent },
   { path: 'proyecciones', component: ProyeccionesComponent },
+  { path: 'proyecciones_proyecto', component: ProyeccionesProyectoComponent },
   { path: 'solicitantes', component: SolicitantesComponent },
   { path: 'tipo_proyecto', component: TipoProyectoComponent },
   { path: 'registro_solicitante', component: RegistroSolicitanteComponent },

@@ -1,7 +1,6 @@
-import { Component, OnInit,ViewChild,TemplateRef } from '@angular/core';
-import { SolicitudesService } from '../../../services/solicitudes.service'
-import { ProyeccionesService } from '../../../services/proyecciones.service'
-
+import { ProyectoService } from './../../../../services/proyecto.service';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { SolicitudesService } from 'src/app/services/solicitudes.service';
 import {
   startOfDay,
   endOfDay,
@@ -22,6 +21,7 @@ import {
   CalendarView
 } from 'angular-calendar';
 
+
 const colors: any = {
   red: {
     primary: '#ad2121',
@@ -40,13 +40,12 @@ const colors: any = {
     secondary: '#10c469'
   }
 };
-
 @Component({
-  selector: 'app-proyecciones',
-  templateUrl: './proyecciones.component.html',
-  styleUrls: ['./proyecciones.component.css']
+  selector: 'app-proyecciones-proyecto',
+  templateUrl: './proyecciones-proyecto.component.html',
+  styleUrls: ['./proyecciones-proyecto.component.css']
 })
-export class ProyeccionesComponent implements OnInit {
+export class ProyeccionesProyectoComponent implements OnInit {
   @ViewChild('modalContent')
   modalContent: TemplateRef<any>;
   locale: string = 'es';
@@ -85,11 +84,10 @@ export class ProyeccionesComponent implements OnInit {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private solicitudesservice:SolicitudesService,private ProyeccionesService:ProyeccionesService,private modal: NgbModal) {}
+  constructor(private solicitudesservice:SolicitudesService,private ProyectoService:ProyectoService,private modal: NgbModal) {}
 
   ngOnInit() {
-    this.ObtenerSolicitudes();
-    this.ObtenerProyecciones();
+    this.ObtenerProyectos();
   }
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -121,43 +119,26 @@ export class ProyeccionesComponent implements OnInit {
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
-   ObtenerProyecciones() {
-    this.ProyeccionesService.obtener_proyecciones().subscribe(
-      data => { this.proyecciones = data,this.addEvent(data),console.log(this.proyecciones)},
-      err => {console.error(err)},      
-      );}
 
-      ObtenerSolicitudes() {
-        this.solicitudesservice.obtener_solicitudes().subscribe(
+      ObtenerProyectos() {
+        this.ProyectoService.obtener_proyectos().subscribe(
           data => { this.solicitudes = data,this.addEvent(data),console.log(this.solicitudes)},
           err => {console.error(err)},      
           );}
 
   addEvent(fechas): void {
-    for (var solicitud of fechas) {
-      if(solicitud.status == "pendiente"){
-          this.events.push({
-            title: solicitud.nombre+' (Pendiente)',
-            start: startOfDay(new Date()),
-            color: colors.red,
-          });
-          this.refresh.next();
-      }else if(solicitud.status == "activa"){
+    for (var proyecto of fechas) {
         this.events.push({
-          title: solicitud.nombre,
-          start: startOfDay(solicitud.created_at),
-          color: colors.green,
+          title: 'Creación - '+proyecto.nombre,
+          start: startOfDay(proyecto.created_at),
+          color: colors.green
+        });
+        this.events.push({
+          title: 'Entrega estimada - '+proyecto.nombre,
+          start: startOfDay(proyecto.fecha_estimada),
+          color: colors.blue
         });
         this.refresh.next();
-      }else {
-        this.events.push({
-          title: 'Proyeccion de solicitud '+solicitud.solicitudes.nombre,
-          start: startOfDay(solicitud.fecha_entrega),
-          color: colors.blue,
-          actions: this.actions
-        });
-        this.refresh.next();
-      }
     }
   }
 
