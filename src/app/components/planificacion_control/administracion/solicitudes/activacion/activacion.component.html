@@ -53,11 +53,11 @@
                                                         <span class="fa fa-close pull-right" *ngIf="myForm.controls.proyectos.controls.length > 1" (click)="removeLanguage(i)"></span>
                                                     </div>
                                                     <div class="panel-body" [formGroupName]="i">
-                                                        <div class="col-md-3">
-                                                            <div class="form-group col-xs-12">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group col-xs-6">
                                                                 <label>Nombre</label>
                                                                 <input type="text" class="form-control" formControlName="nombre" required></div>
-                                                            <div class="form-group col-xs-12">
+                                                            <div class="form-group col-xs-6">
                                                                 <label *ngIf="this.solicitud.publicacion == 'si';else no_publicacion">Tipo de Proyecto</label>
                                                                 <ng-template #no_publicacion>
                                                                     <label> Tipo de Subproyecto</label>
@@ -67,13 +67,21 @@
                                                                     <option  *ngFor="let tipo of tipos" value="{{tipo.id}}">{{tipo.nombre}}</option>
                                                                 </select>
                                                             </div>
-                                                            <div class="col-xs-12 col-12 col-md-12 form-group">
+                                                            <div class="col-xs-6 form-group">
                                                                 <label>Fecha de Entrega Estimada</label>
                                                                 <input type="text" formControlName="tiempo_planificado_total" placeholder="Datepicker" class="form-control" bsDatepicker [bsConfig]="bsConfig" required>
                                                             </div>
-
+                                                            <div class="form-group col-xs-6">
+                                                                <label>Autor</label>
+                                                                <input type="text" class="form-control" formControlName="autor" required></div>
+                                                            <div class="form-group col-xs-6">
+                                                                <label>Correo</label>
+                                                                <input type="email" class="form-control" formControlName="correo" required></div>
+                                                            <div class="form-group col-xs-6">
+                                                                <label>Telefono</label>
+                                                                <input type="text" class="form-control" formControlName="telefono" required></div>
                                                         </div>
-                                                        <div class="col-md-9">
+                                                        <div class="col-md-6">
                                                             <div class="col-md-12 form-group">
                                                                 <label>Descripcion</label>
                                                                 <textarea class="form-control" formControlName="descripcion" id="" cols="30" rows="10" required></textarea>

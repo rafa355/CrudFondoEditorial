@@ -48,10 +48,13 @@ export class ActivacionComponent implements OnInit {
 
     initlanguage() {
       return this._fb.group({
-      nombre: [''],
-      proyecto_type_id: [''],
-      descripcion: [''],
-      tiempo_planificado_total : ['']
+        nombre: [''],
+        autor: [''],
+        correo: [''],
+        telefono: [''],
+        proyecto_type_id: [''],
+        descripcion: [''],
+        tiempo_planificado_total : ['']
       });
       }
 

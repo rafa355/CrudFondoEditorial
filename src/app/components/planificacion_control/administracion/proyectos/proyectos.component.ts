@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { ProyectoService } from '../../../../services/proyecto.service';
 import { Observable } from 'rxjs';
 
@@ -8,7 +8,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./proyectos.component.css']
 })
 export class ProyectosComponent implements OnInit {
-
+  @Input('data') encargados: Object[] = [];
+  page: number = 1;
+  userFilter: any = { nombre: '' };
+  public labels: any = {
+    previousLabel: 'Anterior',
+    nextLabel: 'Siguiente',
+};
   public proyectos;
    constructor(private proyectoservice:ProyectoService) {}
    ngOnInit() {
