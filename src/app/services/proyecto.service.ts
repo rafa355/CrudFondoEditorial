@@ -35,6 +35,9 @@ crear_tipo_proyecto(tipo) {
  }
 
 eliminar_tipo_proyecto(id: string):Observable<any> {
-    return this.http.get(this.global.url+'EliminarTipoProyecto/' + id)
+    return this.http.get(this.global.url+'EliminarTipoProyecto/' + id);
   }
+  generar_reporte():Observable<any> {
+    return this.http.get(this.global.url+'ImprimirReporte');
+}
 }

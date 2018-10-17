@@ -68,7 +68,7 @@
 
 			$('[data-switchery]').each(function(){
 				var $this = $(this),
-						color = $this.attr('data-color') || '#188ae2',
+						color = $this.attr('data-color') || '#0a3677',
 						jackColor = $this.attr('data-jackColor') || '#ffffff',
 						size = $this.attr('data-size') || 'default'
 

@@ -1754,7 +1754,7 @@
 }
 
 .dropzone {
-    border: 2px dashed #188ae2;
+    border: 2px dashed #0a3677;
 }
 
 body.mce-fullscreen #dash-navbar {
@@ -2224,12 +2224,12 @@ body.menubar-unfold .app-menu .submenu .menu-icon+.menu-text {
 .app-menu li.active>a,
 .app-menu li:hover>a,
 .app-menu li.menu-heading>a {
-    color: #188ae2;
+    color: #0a3677;
 }
 
 body.menubar-left .app-menu li.open,
 body.menubar-left .app-menu li.active {
-    border-left-color: #188ae2;
+    border-left-color: #0a3677;
 }
 
 .menubar.light .app-menu li.open,
@@ -2390,7 +2390,7 @@ body.menubar-top .menubar.dark .app-menu .submenu {
 .navbar-inverse .navbar-brand,
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
-    color: #188ae2;
+    color: #0a3677;
 }
 
 @media (max-width: 767px) {
@@ -2809,7 +2809,7 @@ body.menubar-left .navbar-container {
 }
 
 .action-panel-toggle .fa:hover {
-    color: #188ae2;
+    color: #0a3677;
 }
 
 .action-panel-toggle .fa.fa-chevron-right {
@@ -2901,7 +2901,7 @@ body.menubar-left .navbar-container {
 .app-customizer .nav-tabs>li.active>a,
 .app-customizer .nav-tabs>li.active>a:hover,
 .app-customizer .nav-tabs>li.active>a:focus {
-    border-bottom: 1px solid #188ae2;
+    border-bottom: 1px solid #0a3677;
 }
 
 .app-customizer .tab-pane {
@@ -3240,12 +3240,12 @@ h3.widget-title {
 }
 
 .sl-primary {
-    border-left-color: #188ae2;
+    border-left-color: #0a3677;
 }
 
 .sl-primary:before,
 .sl-primary:last-child:after {
-    background-color: #188ae2;
+    background-color: #0a3677;
 }
 
 .sl-success {
@@ -3311,7 +3311,7 @@ h3.widget-title {
 .countries-widget .list-group-item.active,
 .countries-widget .list-group-item:hover,
 .countries-widget .list-group-item:focus {
-    background: #188ae2;
+    background: #0a3677;
     color: #fff;
 }
 
@@ -3336,7 +3336,7 @@ h3.widget-title {
 .products-widget .product:hover,
 .products-widget .product:focus,
 .products-widget .product.active {
-    border-color: #188ae2;
+    border-color: #0a3677;
 }
 
 .products-widget .product:hover .product-caption,
@@ -3350,7 +3350,7 @@ h3.widget-title {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: #188ae2;
+    background: #0a3677;
     padding: 16px 24px;
     font-weight: 600;
     color: #fff;
@@ -3707,7 +3707,7 @@ td.mail-right {
 .promo-tab a:hover,
 .promo-tab a:focus,
 .promo-tab a:active {
-    color: #188ae2;
+    color: #0a3677;
 }
 
 .search-result {
@@ -3957,13 +3957,13 @@ td.mail-right {
 }
 
 .price-box-best {
-    border-top-color: #188ae2;
+    border-top-color: #0a3677;
 }
 
 .price-box-best li,
 .price-box-best .box-title,
 .price-box-best .box-title small {
-    color: #188ae2 !important;
+    color: #0a3677 !important;
 }
 
 #buttons-demo-page .btn {
@@ -3977,23 +3977,23 @@ td.mail-right {
 .theme-primary .navbar-brand,
 .theme-primary .navbar-brand:hover,
 .theme-primary .navbar-brand:focus {
-    color: #188ae2;
+    color: #0a3677;
 }
 
 .theme-primary .theme-color {
-    color: #188ae2;
+    color: #0a3677;
 }
 
 .theme-primary .menubar .app-menu li.open,
 .theme-primary .menubar .app-menu li.active {
-    border-left-color: #188ae2;
+    border-left-color: #0a3677;
 }
 
 .theme-primary .menubar .app-menu li.open>a,
 .theme-primary .menubar .app-menu li.active>a,
 .theme-primary .menubar .app-menu li:hover>a,
 .theme-primary .menubar .app-menu li.menu-heading>a {
-    color: #188ae2;
+    color: #0a3677;
 }
 
 .theme-success .navbar-brand,
@@ -4140,14 +4140,14 @@ td.mail-right {
 
 .theme-inverse .menubar .app-menu li.open,
 .theme-inverse .menubar .app-menu li.active {
-    border-left-color: #188ae2;
+    border-left-color: #0a3677;
 }
 
 .theme-inverse .menubar .app-menu li.open>a,
 .theme-inverse .menubar .app-menu li.active>a,
 .theme-inverse .menubar .app-menu li:hover>a,
 .theme-inverse .menubar .app-menu li.menu-heading>a {
-    color: #188ae2;
+    color: #0a3677;
 }
 
 .theme-dark .navbar-brand,
@@ -4162,14 +4162,14 @@ td.mail-right {
 
 .theme-dark .menubar .app-menu li.open,
 .theme-dark .menubar .app-menu li.active {
-    border-left-color: #188ae2;
+    border-left-color: #0a3677;
 }
 
 .theme-dark .menubar .app-menu li.open>a,
 .theme-dark .menubar .app-menu li.active>a,
 .theme-dark .menubar .app-menu li:hover>a,
 .theme-dark .menubar .app-menu li.menu-heading>a {
-    color: #188ae2;
+    color: #0a3677;
 }
 
 .theme-deepOrange .navbar-brand,

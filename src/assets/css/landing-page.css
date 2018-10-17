@@ -102,7 +102,7 @@ section {
     .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
       background: #fff; }
       .navbar-default .navbar-toggle:hover .icon-bar, .navbar-default .navbar-toggle:focus .icon-bar {
-        background-color: #188ae2; }
+        background-color: #0a3677; }
   body.navbar-collapse-show .navbar-default {
     border-bottom: none; }
 
@@ -112,26 +112,26 @@ section {
   -webkit-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); }
   .navbar-default.shrink .navbar-brand {
-    color: #188ae2; }
+    color: #0a3677; }
   .navbar-default.shrink .navbar-nav > li > a {
-    color: #188ae2; }
+    color: #0a3677; }
   .navbar-default.shrink .navbar-nav > li.active > a,
   .navbar-default.shrink .navbar-nav > li.active > a:hover,
   .navbar-default.shrink .navbar-nav > li.active > a:focus {
     color: #fff;
-    background-color: #188ae2; }
+    background-color: #0a3677; }
   .navbar-default.shrink .navbar-toggle {
-    border-color: #188ae2; }
+    border-color: #0a3677; }
     .navbar-default.shrink .navbar-toggle .icon-bar {
-      background-color: #188ae2; }
+      background-color: #0a3677; }
     .navbar-default.shrink .navbar-toggle:hover, .navbar-default.shrink .navbar-toggle:focus {
-      background: #188ae2; }
+      background: #0a3677; }
       .navbar-default.shrink .navbar-toggle:hover .icon-bar, .navbar-default.shrink .navbar-toggle:focus .icon-bar {
         background-color: #fff; }
 
 @media (max-width: 768px) {
   .navbar-collapse {
-    background: #188ae2;
+    background: #0a3677;
     overflow-y: auto; }
     .shrink .navbar-collapse {
       background: #fff; } }
@@ -140,7 +140,7 @@ section {
 #header {
   text-align: center;
   padding-top: 200px;
-  background-color: #188ae2;
+  background-color: #0a3677;
   background-image: url("../images/landing-page/header-bg.jpg");
   background-size: cover;
   background-position: center;
@@ -432,7 +432,7 @@ section {
     color: #a2a2a2;
     font-weight: 600; }
   #footer .news .text-primary {
-    color: #188ae2;
+    color: #0a3677;
     font-weight: normal;
     font-style: italic; }
   #footer .images a {
@@ -459,7 +459,7 @@ section {
       margin-bottom: 0;
       border: none; }
       #footer .icons .icon:hover {
-        background: #188ae2; }
+        background: #0a3677; }
 
 /* copyright section */
 #copyright {
