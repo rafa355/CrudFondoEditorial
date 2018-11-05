@@ -7,6 +7,8 @@ import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/
 import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
 import { BsDatepickerConfig, BsLocaleService } from 'ngx-bootstrap/datepicker';
+import {DomSanitizer} from '@angular/platform-browser';
+import { GlobalComponent } from './../../global/global.component';
 
 import { EtapasService } from '../../../../services/etapas.service';
 import { AdjuntoService } from '../../../../services/adjunto.service';
@@ -19,7 +21,7 @@ import { Router } from '@angular/router';
 })
 export class EtapasComponent implements OnInit {
 
-  constructor(private localeService: BsLocaleService,private location: Location,private enviandoArchivo: CargararchivoService,private _fb: FormBuilder,private router:Router,private route: ActivatedRoute,private etapasservice: EtapasService,private adjuntosservice: AdjuntoService,private toastr:ToastrService,private modalService: BsModalService) {}
+  constructor(private sanitizer:DomSanitizer,private GlobalComponent:GlobalComponent,private localeService: BsLocaleService,private location: Location,private enviandoArchivo: CargararchivoService,private _fb: FormBuilder,private router:Router,private route: ActivatedRoute,private etapasservice: EtapasService,private adjuntosservice: AdjuntoService,private toastr:ToastrService,private modalService: BsModalService) {}
   id: any;
   comentario: any;
   archivo: any;
@@ -40,6 +42,8 @@ export class EtapasComponent implements OnInit {
   public respuestaImagenEnviada;
   public resultadoCarga;
   public etapa_activa = '';
+  url = this.GlobalComponent.url;
+
   //propiedades para el calendario
   locale = 'es';
   colorTheme = 'theme-dark-blue';
@@ -142,5 +146,8 @@ export class EtapasComponent implements OnInit {
               }
             );//FIN DE METODO SUBSCRIBE
           }
+          sanitize(url:string){
+            return this.sanitizer.bypassSecurityTrustUrl(url);
+        }
 
 }

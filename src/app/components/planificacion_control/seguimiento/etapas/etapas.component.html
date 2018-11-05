@@ -13,7 +13,7 @@
 
 
         </footer>
-        <div class="widget-body clearfix">
+        <div class="widget-body clearfix" style="min-height: 160px;">
             <a (click)="Modal(iniciar)" style="cursor: pointer;margin-right: 10px">
                 <div *ngIf="!this.etapa_preliminar.estado" class="text-center" style="margin-top:15px"><span class="fa fa-power-off fa-2x m-t-md-10"></span> <span style="font-size:20px"> Iniciar Etapa</span> </div>
             </a>
@@ -24,7 +24,7 @@
                 <div class="widget">
                     <div class="widget-body text-center">
                         <div>
-                            <a href="{{adjunto.ubicacion}}" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                            <a href="{{this.url}}descargar/{{adjunto.id}}" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
                         </div>
                         <br>
                         <div class="table-responsive text-justify">
@@ -64,26 +64,31 @@
             <span *ngSwitchCase="3" class="label label-success pull-right" style="font-size:20px">En Revision</span>
             <span *ngSwitchDefault class="label label-default pull-right" style="font-size:20px">En espera</span>
             <br><br>
-            <div class="text-center"><span> Entrega Estimada: <br> {{etapa_diagramacion.estimado | date:'yyyy-MM-dd'}}</span></div>
+            <div class="text-center"><span> Entrega Estimada: <br><span *ngIf="this.etapa_diagramacion.estado ;else c_fecha">{{etapa_diagramacion.estimado}}</span>
+                <ng-template #c_fecha> <span>Sin definir</span> </ng-template>
+                </span>
+            </div>
         </footer>
-        <div class="widget-body clearfix">
+        <div class="widget-body clearfix" style="min-height: 160px;">
             <div class="col-md-12">
                 <div *ngIf="this.etapa_diagramacion.estado == 1" class="pull-left" (click)="Modal(finalizar)" style="cursor: pointer;"><span class="fa fa-power-off  "></span> Finalizar Etapa</div><br><br>
                 <div *ngIf="this.etapa_diagramacion.estado == 1" class="pull-left" (click)="Modal(preliminar)" style="cursor: pointer;"><span class="fa fa-plus"></span> Añadir adjunto</div>
             </div>
-            <div class="col-md-5 text-center text-warning">
-                <h3>Diagramado</h3>
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-5 pull-right text-center text-success">
-                <h3>Revisado</h3>
+            <div *ngIf="this.etapa_diagramacion.estado == '' ">
+                <div class="col-md-5 text-center text-warning">
+                    <h3>Diagramado</h3>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-5 pull-right text-center text-success">
+                    <h3>Revisado</h3>
+                </div>
             </div>
             <div *ngFor="let adjunto of adjuntos_diagramacion ;let i = index;let ultimo = first;let par=even; let impar=odd;">
                 <br>
                 <div *ngIf="adjunto.status == 1" class="col-md-12">
                     <div class="widget-body text-center">
                         <div>
-                            <a href="{{adjunto.ubicacion}}" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                            <a href="sanitize({{adjunto.ubicacion}})" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
                         </div>
                         <br>
                         <div class="table-responsive text-justify">
@@ -110,7 +115,7 @@
                 <div *ngIf="adjunto.status == 2" class="widget col-md-5" style="height: 170px">
                     <div class="widget-body text-center">
                         <div>
-                            <a href="{{adjunto.ubicacion}}" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                            <a href="sanitize({{adjunto.ubicacion}})" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
                         </div>
                         <br>
                         <div class="table-responsive text-justify">
@@ -138,7 +143,7 @@
                 <div *ngIf="adjunto.status == 3" class="widget col-md-5 pull-right" style="height: 170px">
                     <div class="widget-body text-center">
                         <div>
-                            <a href="{{adjunto.ubicacion}}" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                            <a href="sanitize({{adjunto.ubicacion}})" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
                         </div>
                         <br>
                         <div class="table-responsive text-justify">
@@ -180,11 +185,14 @@
             <span *ngSwitchCase="2" class="label label-danger pull-right" style="font-size:20px">Finalizada</span>
             <span *ngSwitchDefault class="label label-default pull-right" style="font-size:20px">En espera</span>
             <br><br>
-            <div class="text-center"><span> Entrega Estimada: <br> {{etapa_publicacion.estimado | date:'yyyy-MM-dd'}}</span></div>
+            <div class="text-center"><span> Entrega Estimada: <br><span *ngIf="this.etapa_publicacion.estado ;else c_fecha">{{etapa_publicacion.estimado}}</span>
+                <ng-template #c_fecha> <span>Sin definir</span> </ng-template>
+                </span>
+            </div>
 
 
         </footer>
-        <div class="widget-body clearfix">
+        <div class="widget-body clearfix" style="min-height: 160px;">
             <div *ngIf="this.etapa_publicacion.estado == 1" class="pull-left" (click)="Modal(finalizar)" style="cursor: pointer;"><span class="fa fa-power-off  "></span> Finalizar Etapa</div><br><br>
             <div *ngIf="this.etapa_publicacion.estado == 1" class="pull-left" (click)="Modal(preliminar)" style="cursor: pointer;"><span class="fa fa-plus"></span> Añadir adjunto</div>
             <div *ngFor="let adjunto of adjuntos_publicacion">
@@ -192,7 +200,7 @@
                 <div class="widget">
                     <div class="widget-body text-center">
                         <div>
-                            <a href="{{adjunto.ubicacion}}" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                            <a href="sanitize({{adjunto.ubicacion}})" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
                         </div>
                         <br>
                         <div class="table-responsive text-justify">
@@ -262,7 +270,6 @@
             <div class="col-xs-12 col-12 col-md-12 form-group text-center">
                 <label>Fecha de Entrega Estimada</label>
                 <input formControlName="estimado" type="text" placeholder="Datepicker" class="form-control" bsDatepicker [bsConfig]="bsConfig">
-                <div>{{estimado_demas.value | json}}</div>
             </div>
 
             <div class="col-xs-12">
@@ -289,13 +296,12 @@
         <form [formGroup]="estimado_preliminar" novalidate (ngSubmit)="ActivarEtapa(estimado_preliminar.value)">
             <div class="col-xs-12 col-12 col-md-12 form-group text-center">
                 <label>Fecha de Entrega Estimada</label>
-                <input formControlName="estimado" type="text" placeholder="Datepicker" class="form-control" bsDatepicker [bsConfig]="bsConfig">
-                <div>{{estimado_preliminar.value | json}}</div>
+                <input formControlName="estimado" type="text" placeholder="Fecha Estimada" class="form-control" bsDatepicker [bsConfig]="bsConfig" required>
             </div>
 
             <div class="col-xs-12">
                 <div class="form-group text-center">
-                    <button type="submit " class="btn btn-primary" style="margin-right:50px">Inciar</button>
+                    <button type="submit " [disabled]="!estimado_preliminar.valid " class="btn btn-primary" style="margin-right:50px">Inciar</button>
                     <input type="button" value="Cancelar" class="btn btn-danger cancel" (click)="modalRef.hide()">
                 </div>
             </div>

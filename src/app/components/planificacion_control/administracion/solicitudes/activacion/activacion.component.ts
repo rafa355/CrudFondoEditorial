@@ -52,6 +52,7 @@ export class ActivacionComponent implements OnInit {
         autor: [''],
         correo: [''],
         telefono: [''],
+        periodico: [''],
         proyecto_type_id: [''],
         descripcion: [''],
         tiempo_planificado_total : ['']

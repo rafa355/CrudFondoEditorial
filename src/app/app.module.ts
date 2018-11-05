@@ -64,6 +64,7 @@ import { RegistroSolicitanteComponent } from './components/planificacion_control
 import { TipoProyectoComponent } from './components/planificacion_control/parametros/tipo-proyecto/tipo-proyecto.component';
 import { RegistroTipoProyectoComponent } from './components/planificacion_control/parametros/tipo-proyecto/registro-tipo-proyecto/registro-tipo-proyecto.component';
 import { ProyeccionesProyectoComponent } from './components/planificacion_control/proyecciones/proyecciones-proyecto/proyecciones-proyecto.component';
+import { ReportesComponent } from './components/planificacion_control/reportes/reportes.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { ProyeccionesProyectoComponent } from './components/planificacion_contro
     TipoProyectoComponent,
     RegistroTipoProyectoComponent,
     ProyeccionesProyectoComponent,
+    ReportesComponent,
   ],
   imports: [
     BrowserModule,

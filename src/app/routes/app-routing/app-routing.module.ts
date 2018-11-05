@@ -16,6 +16,7 @@ import { EstadisticasComponent } from './../../components/planificacion_control/
 import { ProyeccionesComponent } from './../../components/planificacion_control/proyecciones/proyecciones.component'
 import { RegistroTipoProyectoComponent } from './../../components/planificacion_control/parametros/tipo-proyecto/registro-tipo-proyecto/registro-tipo-proyecto.component';
 import { ProyeccionesProyectoComponent } from './../../components/planificacion_control/proyecciones/proyecciones-proyecto/proyecciones-proyecto.component';
+import { ReportesComponent } from './../../components/planificacion_control/reportes/reportes.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'tipo_proyecto', component: TipoProyectoComponent },
   { path: 'registro_solicitante', component: RegistroSolicitanteComponent },
   { path: 'registro_tipo_proyecto', component: RegistroTipoProyectoComponent },
+  { path: 'reportes', component: ReportesComponent },
 ];
 
 @NgModule({

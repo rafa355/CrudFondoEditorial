@@ -68,13 +68,13 @@ export class ProyeccionesComponent implements OnInit {
 
   actions: CalendarEventAction[] = [
     {
-      label: '<i class="fa fa-fw fa-envelope" (click)="showChildModal()"></i>',
+      label: '<i class="fa fa-fw fa-envelope" (click)="showChildModal()" style="color:white"></i>',
       onClick: (): void => {
         this.showChildModal();
       }
     },
     {
-      label: '<i class="fa fa-fw fa-times"></i>',
+      label: '<i class="fa fa-fw fa-times" style="color:white"></i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter(iEvent => iEvent !== event);
         this.handleEvent('Deleted', event);
