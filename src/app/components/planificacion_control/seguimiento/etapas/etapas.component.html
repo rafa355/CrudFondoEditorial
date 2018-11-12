@@ -88,7 +88,7 @@
                 <div *ngIf="adjunto.status == 1" class="col-md-12">
                     <div class="widget-body text-center">
                         <div>
-                            <a href="sanitize({{adjunto.ubicacion}})" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                            <a href="{{this.url}}descargar/{{adjunto.id}}" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
                         </div>
                         <br>
                         <div class="table-responsive text-justify">
@@ -115,7 +115,7 @@
                 <div *ngIf="adjunto.status == 2" class="widget col-md-5" style="height: 170px">
                     <div class="widget-body text-center">
                         <div>
-                            <a href="sanitize({{adjunto.ubicacion}})" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                            <a href="{{this.url}}descargar/{{adjunto.id}}" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
                         </div>
                         <br>
                         <div class="table-responsive text-justify">
@@ -143,7 +143,7 @@
                 <div *ngIf="adjunto.status == 3" class="widget col-md-5 pull-right" style="height: 170px">
                     <div class="widget-body text-center">
                         <div>
-                            <a href="sanitize({{adjunto.ubicacion}})" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                            <a href="{{this.url}}descargar/{{adjunto.id}}" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
                         </div>
                         <br>
                         <div class="table-responsive text-justify">
@@ -200,7 +200,7 @@
                 <div class="widget">
                     <div class="widget-body text-center">
                         <div>
-                            <a href="sanitize({{adjunto.ubicacion}})" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                            <a href="{{this.url}}descargar/{{adjunto.id}}" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
                         </div>
                         <br>
                         <div class="table-responsive text-justify">

@@ -26,6 +26,7 @@
                                             <th class="text-center">Estado</th>
                                             <th class="text-center">Fecha de Solicitud</th>
                                             <th class="text-center">Proyectos</th>
+                                            <th class="text-center">Edición</th>
                                             <th class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
@@ -34,10 +35,12 @@
                                             <td class="text-center">{{solicitud.nombre}}</td>
                                             <td class="text-center">{{solicitud.solicitante.nombre}}</td>
                                             <td class="text-center">{{solicitud.status}}</td>
-                                            <td class="text-center">{{solicitud.created_at  | date:'yyyy-MM-dd'}}</td>
+                                            <td class="text-center">{{solicitud.created_at | date:'yyyy-MM-dd'}}</td>
                                             <td class="text-center"><span class="fa fa-th-list fa-2x " (click)="openModal(template,otro,solicitud.id)" style="cursor:pointer"></span></td>
+                                            <td class="text-center"><a routerLink="/editar_solicitud/{{solicitud.id}}"><span class="fa fa-pencil-square-o fa-2x " style="cursor:pointer"></span></a></td>
                                             <td class="text-center">
-                                                <a *ngIf="this.solicitud.status == 'pendiente'" routerLink="/activar_solicitud/{{solicitud.id}}" style="cursor: default;margin-right: 10px"> <button type="button" class="btn btn-success">activar</button></a><a (click)="AnularSolicitud(solicitud.id)" style="cursor: default;"><button type="button" class="btn btn-danger">Anular</button></a></td>
+                                                <a *ngIf="this.solicitud.status == 'pendiente'" routerLink="/activar_solicitud/{{solicitud.id}}" style="cursor: default;margin-right: 10px"> <button type="button" class="btn btn-success">activar</button></a><a (click)="ModalEliminar(observacion,solicitud.id)" style="cursor: default;"><button type="button" class="btn btn-danger">Anular</button></a>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -75,7 +78,7 @@
                             <th class="text-center">Tipo</th>
                         </tr>
                     </thead>
-                    <tbody > 
+                    <tbody>
                         <tr *ngFor="let proyecto of solicitud.proyecto">
                             <td class="text-center" *ngIf="proyecto">{{proyecto.nombre}}</td>
                             <td class="text-center" *ngIf="proyecto">{{proyecto.descripcion}}</td>
@@ -87,18 +90,48 @@
             </div>
         </div>
     </ng-template>
+
+    <ng-template #observacion>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Anular Solicitud</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
+                <div class=" form-group col-xs-12 ">
+                    <div class="col-md-12 form-group">
+                        <label>Observación/Razón de Anulación</label>
+                        <textarea class="form-control" formControlName="observacion" id="" cols="30" rows="10" required></textarea>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="clearfix"></div>
+                <div class="clearfix"></div>
+                <div class="col-xs-12">
+                    <div class="form-group text-center">
+                        <button type="submit " class="btn btn-danger" [disabled]="!myForm.valid " style="margin-right:50px">Anular</button>
+                    </div>
+                </div>
+                <div class="clearfix "></div>
+            </form>
+        </div>
+    </ng-template>
+
+
     <ng-template #otro>
-            <div class="modal-header">
-                <h4 class="modal-title pull-left">{{solicitud.nombre}}</h4>
-                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{solicitud.nombre}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
               <span aria-hidden="true">&times;</span>
             </button>
+        </div>
+        <div class="modal-body">
+            <div class="table-responsive text-center">
+                <span>La solicitud <strong>{{solicitud.nombre}}</strong>, No se encuentra activada por ende, no posee ningun Proyecto o SubProyecto asociado.</span>
             </div>
-            <div class="modal-body">
-                <div class="table-responsive text-center">
-                    <span>La solicitud <strong>{{solicitud.nombre}}</strong>, No se encuentra activada por ende, no posee ningun Proyecto o SubProyecto asociado.</span>
-                </div>
-            </div>
-        </ng-template>
+        </div>
+    </ng-template>
 </main>
 <!--========== END app main -->

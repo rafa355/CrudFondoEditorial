@@ -17,6 +17,7 @@ import { ProyeccionesComponent } from './../../components/planificacion_control/
 import { RegistroTipoProyectoComponent } from './../../components/planificacion_control/parametros/tipo-proyecto/registro-tipo-proyecto/registro-tipo-proyecto.component';
 import { ProyeccionesProyectoComponent } from './../../components/planificacion_control/proyecciones/proyecciones-proyecto/proyecciones-proyecto.component';
 import { ReportesComponent } from './../../components/planificacion_control/reportes/reportes.component';
+import { EdicionComponent } from './../../components/planificacion_control/administracion/solicitudes/edicion/edicion.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'solicitudes', component: SolicitudesComponent },
   { path: 'registro_solicitud', component: RegistroComponent },
   { path: 'activar_solicitud/:id', component: ActivacionComponent },
+  { path: 'editar_solicitud/:id', component: EdicionComponent },
   { path: 'seguimiento/:id', component: SeguimientoComponent },
   { path: 'estadisticas', component: EstadisticasComponent },
   { path: 'proyecciones', component: ProyeccionesComponent },

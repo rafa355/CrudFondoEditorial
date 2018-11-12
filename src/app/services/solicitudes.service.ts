@@ -17,8 +17,11 @@ export class SolicitudesService {
   constructor(private http:HttpClient,private global: GlobalComponent) { }
 
   crear_solicitud(solicitud) {
-           return this.http.post(this.global.url+'CrearSolicitud', solicitud, httpOptions);
-        }
+    return this.http.post(this.global.url+'CrearSolicitud', solicitud, httpOptions);
+ }
+ editar_solicitud(solicitud,id) {
+  return this.http.post(this.global.url+'EditarSolicitud/'+id, solicitud, httpOptions);
+}
 
   obtener_solicitudes():Observable<any> {
     return this.http.get(this.global.url+'ObtenerSolicitudes')
@@ -29,7 +32,7 @@ export class SolicitudesService {
   activar_solicitud(formulario,id: string):Observable<any> {
     return this.http.post(this.global.url+'ActivarSolicitud/'+ id, formulario, httpOptions);
 }
-anular_solicitud(id: string):Observable<any> {
-  return this.http.get(this.global.url+'EliminarSolicitud/' + id)
+anular_solicitud(solicitud,id: string):Observable<any> {
+  return this.http.post(this.global.url+'EliminarSolicitud/'+id, solicitud, httpOptions);
 }
 }
