@@ -1,5 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { EncargadoService } from '../../../../services/encargado.service'
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-disenadores',
   templateUrl: './disenadores.component.html',
@@ -13,14 +18,44 @@ export class DisenadoresComponent implements OnInit {
     previousLabel: 'Anterior',
     nextLabel: 'Siguiente',
 };
-  constructor(private encargadoservice:EncargadoService) { }
+modalRef: BsModalRef;
+public encargado ;
+public notificacion ;
+public id ;
+public myForm: FormGroup;
+
+  constructor(private _fb: FormBuilder,private toastr:ToastrService,private encargadoservice:EncargadoService,private modalService: BsModalService) { }
   ngOnInit() {
     this.ObtenerEncargados();
+    this.myForm = this._fb.group({
+      observacion: [''],
+    });
   }
- 
+  onSubmit(form:NgForm){
+    this.EliminarEncargado(form.value,this.id);
+
+    }
+      save(model) {
+        this.EliminarEncargado(model,this.id);
+      }
   ObtenerEncargados() {
    this.encargadoservice.obtener_encargados().subscribe(
      data => { this.encargados = data},
      err => console.error(err),      () => console.log(this.encargados)
     );  }
+
+    EliminarEncargado(encargado,id: string) {
+      this.encargadoservice.eliminar_encargado(encargado,id).subscribe(
+         data => { this.notificacion = data,this.toastr.success('Encargado Eliminado'),this.ngOnInit(),this.modalRef.hide()},
+         err => console.error(err)
+        );}
+               //modal para eliminar enacargado
+               ModalEliminar(template: TemplateRef<any>,id:string) {
+                this.encargadoservice.obtener_encargado(id).subscribe(
+                  data => {
+                    this.encargado = data;
+                    this.id = data.id;
+                    this.modalRef = this.modalService.show(template);
+                  }
+                 );}
 }

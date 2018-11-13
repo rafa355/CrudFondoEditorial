@@ -38,6 +38,9 @@ import { AdjuntoService } from './services/adjunto.service';
 import { CargararchivoService } from './services/cargararchivo.service';
 import { ContadorService } from './services/contador.service';
 import { ProyeccionesService } from './services/proyecciones.service';
+import { ObservacionesService } from './services/observaciones.service';
+import { ReportesService } from './services/reportes.service';
+
 //http
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -66,6 +69,7 @@ import { RegistroTipoProyectoComponent } from './components/planificacion_contro
 import { ProyeccionesProyectoComponent } from './components/planificacion_control/proyecciones/proyecciones-proyecto/proyecciones-proyecto.component';
 import { ReportesComponent } from './components/planificacion_control/reportes/reportes.component';
 import { EdicionComponent } from './components/planificacion_control/administracion/solicitudes/edicion/edicion.component';
+import { HistorialComponent } from './components/planificacion_control/reportes/historial/historial.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +96,7 @@ import { EdicionComponent } from './components/planificacion_control/administrac
     ProyeccionesProyectoComponent,
     ReportesComponent,
     EdicionComponent,
+    HistorialComponent,
   ],
   imports: [
     BrowserModule,
@@ -118,7 +123,7 @@ import { EdicionComponent } from './components/planificacion_control/administrac
     FilterPipeModule,
 
   ],
-  providers: [ProyeccionesService,ContadorService,CargararchivoService,GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
+  providers: [ReportesService,ObservacionesService,ProyeccionesService,ContadorService,CargararchivoService,GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

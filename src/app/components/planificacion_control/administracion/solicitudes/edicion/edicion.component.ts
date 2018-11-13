@@ -8,6 +8,8 @@ import { ProyectoService } from '../../../../../services/proyecto.service'
 
 import { Observable } from 'rxjs';
 import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 @Component({
   selector: 'app-edicion',
   templateUrl: './edicion.component.html',
@@ -15,7 +17,7 @@ import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/
 })
 export class EdicionComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private _fb: FormBuilder, private router:Router,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { }
+  constructor(private spinner: NgxSpinnerService,private route: ActivatedRoute,private _fb: FormBuilder, private router:Router,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { }
   public solicitud;
   id: any;
   public solicitantes;
@@ -41,8 +43,10 @@ export class EdicionComponent implements OnInit {
        );  }
 
   editar_solicitud(solicitud) {
+    this.spinner.show();
         this.solicitudesservice.editar_solicitud(solicitud,this.id).subscribe(
            data => {
+            this.spinner.hide();
             this.router.navigate(['/solicitudes']);
           },
            error => {

@@ -7,6 +7,7 @@ import { ProyectoService } from '../../../../../services/proyecto.service'
 
 import { Observable } from 'rxjs';
 import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-registro',
@@ -15,7 +16,7 @@ import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/
 })
 export class RegistroComponent implements OnInit {
 
-  constructor(private _fb: FormBuilder, private router:Router,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { }
+  constructor(private spinner: NgxSpinnerService,private _fb: FormBuilder, private router:Router,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { }
   public solicitudes;
   public solicitantes;
   public myForm: FormGroup;
@@ -23,7 +24,6 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit() {
     this.ObtenerSolicitantes();
-
     this.myForm = this._fb.group({
       nombre: [''],
       publicacion: [''],
@@ -46,8 +46,10 @@ export class RegistroComponent implements OnInit {
        );  }  
 
   crear_solicitud(solicitud) {
+    this.spinner.show();
         this.solicitudesservice.crear_solicitud(solicitud).subscribe(
            data => {
+            this.spinner.hide();
             this.router.navigate(['/solicitudes']);
           },
            error => {

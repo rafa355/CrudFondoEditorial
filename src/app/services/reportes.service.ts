@@ -11,14 +11,12 @@ const httpOptions = {
 };
 
 @Injectable()
-export class ObservacionesService {
+
+export class ReportesService {
 
   constructor(private http:HttpClient,private global: GlobalComponent) { }
 
-  crear_observacion(observacion) {
-    return this.http.post(this.global.url+'CrearObservacion', observacion, httpOptions);
+  generar_reporte(rango,tipo) {
+    return this.http.post(this.global.url+'GenerarReporte/'+ tipo, rango, httpOptions);
  }
- obtener_observaciones():Observable<any> {
-  return this.http.get(this.global.url+'ObtenerObservaciones')
-}
 }

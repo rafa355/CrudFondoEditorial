@@ -25,6 +25,12 @@ export class EncargadoService {
   obtener_encargados():Observable<any> {
     return this.http.get(this.global.url+'ObtenerEncargados')
 }
+obtener_encargado(id):Observable<any> {
+  return this.http.get(this.global.url+'ObtenerEncargado/'+ id)
+}
+eliminar_encargado(encargado,id) {
+ return this.http.post(this.global.url+'EliminarEncargado/'+ id, encargado, httpOptions);
+}
 obtener_encargado_principal(id_proyecto: string):Observable<any> {
   return this.http.get(this.global.url+'ObtenerPrincipal/' + id_proyecto)
 }

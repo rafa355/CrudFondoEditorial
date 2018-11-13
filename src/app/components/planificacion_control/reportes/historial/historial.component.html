@@ -2,38 +2,30 @@
 <main id="app-main" class="col-md-12">
     <div class="wrap">
         <section class="app-content">
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="widget">
                         <header class="widget-header">
                             <div class="col-lg-6 col-md-6">
-                                <h1 class="h3 title-form">Listado de Tipos de Proyectos</h1>
+                                <h1 class="h3 title-form">Historial de actividades</h1>
                             </div>
-                            <a routerLink="/registro_tipo_proyecto">
-                                <button type="button" class="btn btn-primary btn-circle pull-right add" data-toggle="tooltip" data-placement="top" title="Agregar Tipo de Proyecto">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </button>
-                            </a>
                         </header>
                         <hr class="widget-separator" />
                         <div class="widget-body">
-                            <div class="table-responsive" style="width:300px">
-                                <input type="text" class="form-control " placeholder="Filtrar por Nombre" [(ngModel)]="userFilter.nombre">
-                            </div>
-                            <br>
                             <div class="table-responsive">
-                                <table class="table no-cellborder text-center">
+                                <table class="table no-cellborder">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">Nombre</th>
-                                            <th class="text-center">Acción</th>
+                                            <th class="text-center">Actividad</th>
+                                            <th class="text-center">Observación</th>
+                                            <th class="text-center">Fecha</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let tipo of tipos| filterBy: userFilter | paginate: { itemsPerPage: 10, currentPage: page }">
-                                            <td class="text-default">{{tipo.nombre}}</td>
-                                            <td><a (click)="EliminarTipoProyecto(tipo.id)" style="cursor: default;"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+                                        <tr *ngFor="let actividad of actividades | paginate: { itemsPerPage: 10, currentPage: page }">
+                                            <td class="text-default text-center">{{actividad.titulo}}</td>
+                                            <td class="text-center">{{actividad.observacion}}</td>
+                                            <td class="text-center">{{actividad.created_at}}</td>
                                         </tr>
                                     </tbody>
                                 </table>

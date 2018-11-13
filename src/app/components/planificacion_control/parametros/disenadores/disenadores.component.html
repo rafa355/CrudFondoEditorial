@@ -27,20 +27,14 @@
                                         <tr>
                                             <th>Cargo</th>
                                             <th>Nombre</th>
-                                            <th>Views</th>
-                                            <th>Favorites</th>
-                                            <th>Last Visit</th>
-                                            <th>Last Action</th>
+                                            <th>Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let encargado of encargados| filterBy: userFilter | paginate: { itemsPerPage: 10, currentPage: page }">
                                             <td class="text-default">{{encargado.tipo.nombre}}</td>
                                             <td>{{encargado.nombre}}</td>
-                                            <td>150</td>
-                                            <td>3201</td>
-                                            <td>9:23 AM</td>
-                                            <td><button type="button" class="btn btn-danger">Eliminar</button></td>
+                                            <td><button type="button" class="btn btn-danger" (click)="ModalEliminar(observacion,encargado.id)">Eliminar</button></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -67,3 +61,31 @@
 
 </main>
 <!--========== END app main -->
+
+<ng-template #observacion>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Eliminar Encargado</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
+            <div class=" form-group col-xs-12 ">
+                <div class="col-md-12 form-group">
+                    <label>Observación/Razón de Eliminación</label>
+                    <textarea class="form-control" formControlName="observacion" id="" cols="30" rows="10" required></textarea>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="clearfix"></div>
+            <div class="clearfix"></div>
+            <div class="col-xs-12">
+                <div class="form-group text-center">
+                    <button type="submit " class="btn btn-danger" [disabled]="!myForm.valid " style="margin-right:50px">Anular</button>
+                </div>
+            </div>
+            <div class="clearfix "></div>
+        </form>
+    </div>
+</ng-template>

@@ -8,8 +8,19 @@
                         <div class="widget">
                             <div class="widget-body text-center">
                                 <h2>Reporte General</h2><br>
-                                <span>klasjdklas sadkljsadkljsadklsa sakljdaskldsa d</span><br><br>
-                                <button class="btn btn-primary" style="font-size:15px;cursor: pointer;">GENERAR</button>
+                                <span>Listado de solicitudes recibidas en el siguiente rango de fechas:</span><br><br>
+                                <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value,'general')">
+                                    <div class="col-xs-12 col-12 col-sm-12 col-md-12 form-group">
+                                        <input type="text" class="form-control" placeholder="Rango de Fechas" bsDaterangepicker formControlName="rango" placement="right" [bsConfig]="bsConfig" required />
+                                    </div>
+                                    <br><br>
+                                    <button type="submit " class="btn btn-primary" [disabled]="!myForm.valid " style="margin-right:50px">GENERAR</button>
+                                    <div class="clearfix "></div>
+                                    <div class="margin-20">
+                                        <div>myForm details:-</div>
+                                        <pre>form value: <br>{{myForm.value | json}}</pre>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <!-- .widget -->
