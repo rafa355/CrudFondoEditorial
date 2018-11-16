@@ -29,6 +29,17 @@ export class EdicionProyectoComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params["id"];
+    this.myForm = this._fb.group({
+      nombre: [''],
+      autor: [''],
+      correo: [''],
+      telefono: [''],
+      periodico: [''],
+      proyecto_type_id: [''],
+      descripcion: [''],
+      tiempo_planificado_total : [''],
+      observacion : ['']
+      });
     this.ObtenerProyecto();
     this.ObtenerTipos();
     //Aplicar idioma español

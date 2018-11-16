@@ -26,6 +26,14 @@ export class EdicionComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params["id"];
+    this.myForm = this._fb.group({
+      nombre: [''],
+      publicacion: [''],
+      solicitante_id: [''],
+      descripcion: [''],
+      status: [''],
+      observacion: ['']
+    });
     this.ObtenerSolicitantes();
     this.ObtenerSolicitud();
   }
