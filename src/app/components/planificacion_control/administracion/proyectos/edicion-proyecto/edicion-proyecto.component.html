@@ -23,7 +23,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group col-xs-6">
                                                                 <label>Periodicidad</label>
-                                                                <select [(ngModel)]='this.myForm.periodico' formControlName="periodico" class="form-control" required>
+                                                                <select [(ngModel)]='this.proyecto.periodico' formControlName="periodico" class="form-control" required>
                                                                   <option  value="" selected disabled hidden>Seleccionar</option>
                                                                   <option value="SI">SI</option>
                                                                   <option value="NO">NO</option>
@@ -34,7 +34,7 @@
                                                                 <ng-template #no_publicacion>
                                                                     <label> Tipo de Subproyecto</label>
                                                                 </ng-template>
-                                                                <select formControlName="proyecto_type_id" [(ngModel)]='this.myForm.proyecto_type_id' class="form-control" required>
+                                                                <select formControlName="proyecto_type_id" [(ngModel)]='this.proyecto.proyecto_type_id' class="form-control" required>
                                                                       <option  value="" selected disabled hidden>Seleccionar</option>
                                                                   <option  *ngFor="let tipo of tipos" value="{{tipo.id}}">{{tipo.nombre}}</option>
                                                               </select>

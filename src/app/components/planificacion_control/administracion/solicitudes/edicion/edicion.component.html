@@ -19,18 +19,18 @@
                                         <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
                                             <div class="form-group col-xs-3 col-xs-offset-1">
                                                 <label>Nombre</label>
-                                                <input type="text" [(ngModel)]='this.myForm.nombre' class="form-control" formControlName="nombre" value="{{this.solicitud.nombre}}" required>
+                                                <input type="text" [(ngModel)]='this.solicitud.nombre' class="form-control" formControlName="nombre" value="{{this.solicitud.nombre}}" required>
                                             </div>
                                             <div class="form-group col-xs-3">
                                                 <label>Solicitante</label>
-                                                <select formControlName="solicitante_id" [(ngModel)]='this.myForm.solicitante_id' class="form-control" required>
+                                                <select formControlName="solicitante_id" [(ngModel)]='this.solicitud.solicitante_id' class="form-control" required>
                                                   <option  value="" selected disabled hidden>Seleccionar</option>
                                                   <option  *ngFor="let solicitante of solicitantes" value="{{solicitante.id}}">{{solicitante.nombre}}</option>
                                               </select>
                                             </div>
                                             <div class="form-group col-xs-3">
                                                 <label>Publicación</label>
-                                                <select formControlName="publicacion" [(ngModel)]='this.myForm.publicacion' class="form-control" required>
+                                                <select formControlName="publicacion" [(ngModel)]='this.solicitud.publicacion' class="form-control" required>
                                                   <option  value="" selected disabled hidden>Seleccionar</option>
                                                   <option  value="si">SI</option>
                                                   <option  value="no">NO</option>
@@ -39,7 +39,7 @@
                                             <div class=" form-group col-xs-9 col-xs-offset-1">
                                                 <div class="col-md-12 form-group">
                                                     <label>Descripcion</label>
-                                                    <textarea class="form-control" [(ngModel)]='this.myForm.descripcion' formControlName="descripcion" id="" cols="30" rows="10" required></textarea>
+                                                    <textarea class="form-control" [(ngModel)]='this.solicitud.descripcion' formControlName="descripcion" id="" cols="30" rows="10" required></textarea>
                                                 </div>
                                             </div>
                                             <div class=" form-group col-xs-12">

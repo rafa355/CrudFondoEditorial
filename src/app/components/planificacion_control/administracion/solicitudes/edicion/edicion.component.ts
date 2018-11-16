@@ -17,16 +17,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class EdicionComponent implements OnInit {
 
-  constructor(private spinner: NgxSpinnerService,private route: ActivatedRoute,private _fb: FormBuilder, private router:Router,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) {
-    this.myForm = this._fb.group({
-      nombre: [''],
-      publicacion: [''],
-      solicitante_id: [''],
-      descripcion: [''],
-      status: [''],
-      observacion: ['']
-    });
-   }
+  constructor(private spinner: NgxSpinnerService,private route: ActivatedRoute,private _fb: FormBuilder, private router:Router,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { }
   public solicitud;
   id: any;
   public solicitantes;
@@ -35,7 +26,6 @@ export class EdicionComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params["id"];
-
     this.ObtenerSolicitantes();
     this.ObtenerSolicitud();
   }
