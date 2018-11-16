@@ -19,11 +19,13 @@ import { ProyeccionesProyectoComponent } from './../../components/planificacion_
 import { ReportesComponent } from './../../components/planificacion_control/reportes/reportes.component';
 import { EdicionComponent } from './../../components/planificacion_control/administracion/solicitudes/edicion/edicion.component';
 import { HistorialComponent } from './../../components/planificacion_control/reportes/historial/historial.component';
+import { EdicionProyectoComponent } from './../../components/planificacion_control/administracion/proyectos/edicion-proyecto/edicion-proyecto.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: MainpanelComponent },
   { path: 'proyectos', component: ProyectosComponent },
+  { path: 'editar_proyecto/:id', component: EdicionProyectoComponent },
   { path: 'diseñadores', component: DisenadoresComponent },
   { path: 'registro_disenador', component: RegistroDisenadoresComponent },
   { path: 'solicitudes', component: SolicitudesComponent },

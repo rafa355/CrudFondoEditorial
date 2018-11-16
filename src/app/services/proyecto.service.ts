@@ -33,7 +33,9 @@ obtener_proyectos_solicitud(id: string):Observable<any> {
 crear_tipo_proyecto(tipo) {
     return this.http.post(this.global.url+'CrearTipoProyecto', tipo, httpOptions);
  }
-
+ editar_proyecto(proyecto,id) {
+    return this.http.post(this.global.url+'EditarProyecto/'+id, proyecto, httpOptions);
+  }
 eliminar_tipo_proyecto(id: string):Observable<any> {
     return this.http.get(this.global.url+'EliminarTipoProyecto/' + id);
   }

@@ -21,31 +21,31 @@
                                 <table class="table no-cellborder">
                                     <thead>
                                         <tr>
-                                            <th>Tipo</th>
-                                            <th>Titulo</th>
-                                            <th>Autor</th>
-                                            <th>Telefono</th>
-                                            <th>Correo</th>
-                                            <th>Responsable</th>
-                                            <th>Etapa</th>
-                                            <th>Fecha de Registro</th>
-                                            <th>Entrega Estimada</th>
+                                            <th class="text-center">Tipo</th>
+                                            <th class="text-center">Titulo</th>
+                                            <th class="text-center">Autor</th>
+                                            <th class="text-center">Responsable</th>
+                                            <th class="text-center">Etapa</th>
+                                            <th class="text-center">Fecha de Registro</th>
+                                            <th class="text-center">Entrega Estimada</th>
+                                            <th class="text-center">Edición</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let proyecto of proyectos | filterBy: userFilter | paginate: { itemsPerPage: 10, currentPage: page }">
-                                            <td class="text-success" style="width:10px">{{proyecto.tipo}}</td>
-                                            <td>{{proyecto.nombre}}</td>
-                                            <td>{{proyecto.autor }}</td>
-                                            <td>{{proyecto.telefono }}</td>
-                                            <td>{{proyecto.correo }}</td>
-                                            <td *ngIf="proyecto.responsable;else sin_asginar">{{proyecto.responsable}}</td>
+                                            <td class="text-success text-center" style="width:10px">{{proyecto.tipo}}</td>
+                                            <td class="text-center">{{proyecto.nombre}}</td>
+                                            <td class="text-center">
+                                                <a routerLink="/editar_solicitud/{{proyecto.id}}"><i class="fa fa-user fa-2x"></i></a>
+                                            </td>
+                                            <td class="text-center" *ngIf="proyecto.responsable;else sin_asginar">{{proyecto.responsable}}</td>
                                             <ng-template #sin_asginar>
-                                                <td class="text-danger">Sin Asignar</td>
+                                                <td class="text-danger text-center">Sin Asignar</td>
                                             </ng-template>
-                                            <td>{{proyecto.etapa }}</td>
-                                            <td>{{proyecto.created_at | date:'yyyy-MM-dd'}}</td>
-                                            <td>{{proyecto.fecha_estimada | date:'yyyy-MM-dd'}}</td>
+                                            <td class="text-center">{{proyecto.etapa }}</td>
+                                            <td class="text-center">{{proyecto.created_at | date:'yyyy-MM-dd'}}</td>
+                                            <td class="text-center">{{proyecto.fecha_estimada | date:'yyyy-MM-dd'}}</td>
+                                            <td class="text-center"><a routerLink="/editar_proyecto/{{proyecto.id}}"><span class="fa fa-pencil-square-o fa-2x " style="cursor:pointer"></span></a></td>
                                         </tr>
                                     </tbody>
                                 </table>

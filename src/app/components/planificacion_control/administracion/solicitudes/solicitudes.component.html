@@ -12,6 +12,7 @@
                             <a routerLink="/registro_solicitud">
                                 <button type="button" class="btn btn-primary btn-circle pull-right add" data-toggle="tooltip" data-placement="top" title="Agregar Solicitud">
                                             <i class="fa fa-plus" aria-hidden="true"></i>
+                                            Agregar
                                         </button>
                             </a>
                         </header>
@@ -80,7 +81,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let proyecto of solicitud.proyecto">
-                            <td class="text-center" *ngIf="proyecto">{{proyecto.nombre}}</td>
+                            <td class="text-center" *ngIf="proyecto"><a routerLink="/seguimiento/ {{proyecto.id}}"><button class="btn btn-primary">{{proyecto.nombre}}</button></a></td>
                             <td class="text-center" *ngIf="proyecto">{{proyecto.descripcion}}</td>
                             <td class="text-center" *ngIf="proyecto">{{proyecto.proyectotype.nombre}}</td>
                         </tr>

@@ -12,6 +12,7 @@ import { GlobalComponent } from './../../global/global.component';
 
 import { EtapasService } from '../../../../services/etapas.service';
 import { AdjuntoService } from '../../../../services/adjunto.service';
+import { ProyectoService } from '../../../../services/proyecto.service';
 import { CargararchivoService } from '../../../../services/cargararchivo.service';
 import { Router } from '@angular/router';
 @Component({
@@ -20,8 +21,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./etapas.component.css']
 })
 export class EtapasComponent implements OnInit {
+  minDate: Date;
+  maxDate: Date;
+  constructor(private sanitizer:DomSanitizer,private proyectoservice:ProyectoService,private GlobalComponent:GlobalComponent,private localeService: BsLocaleService,private location: Location,private enviandoArchivo: CargararchivoService,private _fb: FormBuilder,private router:Router,private route: ActivatedRoute,private etapasservice: EtapasService,private adjuntosservice: AdjuntoService,private toastr:ToastrService,private modalService: BsModalService) {
+    this.minDate = new Date();
+    this.maxDate = new Date();
 
-  constructor(private sanitizer:DomSanitizer,private GlobalComponent:GlobalComponent,private localeService: BsLocaleService,private location: Location,private enviandoArchivo: CargararchivoService,private _fb: FormBuilder,private router:Router,private route: ActivatedRoute,private etapasservice: EtapasService,private adjuntosservice: AdjuntoService,private toastr:ToastrService,private modalService: BsModalService) {}
+    this.minDate.setDate(this.minDate.getDate());
+  }
   id: any;
   comentario: any;
   archivo: any;
@@ -44,6 +51,7 @@ export class EtapasComponent implements OnInit {
   public etapa_activa = '';
   url = this.GlobalComponent.url;
 
+
   //propiedades para el calendario
   locale = 'es';
   colorTheme = 'theme-dark-blue';
@@ -51,6 +59,8 @@ export class EtapasComponent implements OnInit {
     ngOnInit() {
       this.id = this.route.snapshot.params["id"];
       this.MostrarEtapas(this.id);
+      this.MostrarProyecto(this.id);
+
           //Aplicar idioma español
     this.localeService.use(this.locale);
     this.bsConfig = Object.assign({}, { containerClass: this.colorTheme },{ dateInputFormat: 'YYYY-MM-DD' });
@@ -82,9 +92,12 @@ export class EtapasComponent implements OnInit {
                 this.adjuntos_preliminar = data[3]
                 this.adjuntos_diagramacion = data[4]
                 this.adjuntos_publicacion = data[5]
+
+                //Definir la etapa activa
                 if(this.etapa_preliminar.estado == 1){this.etapa_activa = '1' }
                 else if(this.etapa_diagramacion.estado == 1 || this.etapa_diagramacion.estado == 3 ){this.etapa_activa = '2' }
                 else if(this.etapa_publicacion.estado == 1){this.etapa_activa = '3' }
+                
                 this.estimado_demas = this._fb.group({
                   etapa: [this.etapa_activa],
                   proyecto: [this.id],
@@ -149,5 +162,13 @@ export class EtapasComponent implements OnInit {
           sanitize(url:string){
             return this.sanitizer.bypassSecurityTrustUrl(url);
         }
+
+        MostrarProyecto(id: string) {
+          this.proyectoservice.obtener_proyecto(id).subscribe(
+             data => {  this.maxDate.setDate(data.tiempo_planificado_total);
+             },
+             err => console.error(err)
+            ); 
+          }
 
 }

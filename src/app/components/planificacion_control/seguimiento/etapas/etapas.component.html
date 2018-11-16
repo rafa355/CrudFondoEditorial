@@ -269,7 +269,7 @@
         <form [formGroup]="estimado_demas" novalidate (ngSubmit)="FinalizarEtapa(estimado_demas.value)">
             <div class="col-xs-12 col-12 col-md-12 form-group text-center">
                 <label>Fecha de Entrega Estimada</label>
-                <input formControlName="estimado" type="text" placeholder="Datepicker" class="form-control" bsDatepicker [bsConfig]="bsConfig">
+                <input formControlName="estimado" type="text" placeholder="Datepicker" class="form-control" bsDatepicker [bsConfig]="bsConfig" [minDate]="minDate" [maxDate]="maxDate">
             </div>
 
             <div class="col-xs-12">
@@ -296,7 +296,7 @@
         <form [formGroup]="estimado_preliminar" novalidate (ngSubmit)="ActivarEtapa(estimado_preliminar.value)">
             <div class="col-xs-12 col-12 col-md-12 form-group text-center">
                 <label>Fecha de Entrega Estimada</label>
-                <input formControlName="estimado" type="text" placeholder="Fecha Estimada" class="form-control" bsDatepicker [bsConfig]="bsConfig" required>
+                <input formControlName="estimado" type="text" placeholder="Fecha Estimada" class="form-control" bsDatepicker [bsConfig]="bsConfig" [minDate]="minDate" [maxDate]="maxDate" required>
             </div>
 
             <div class="col-xs-12">
