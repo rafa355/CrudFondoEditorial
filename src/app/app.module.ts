@@ -40,6 +40,9 @@ import { ContadorService } from './services/contador.service';
 import { ProyeccionesService } from './services/proyecciones.service';
 import { ObservacionesService } from './services/observaciones.service';
 import { ReportesService } from './services/reportes.service';
+import { AutenticacionService } from './services/autenticacion.service';
+import { NologueadoService } from './services/nologueado.service';
+import { LogueadoService } from './services/logueado.service';
 
 //http
 import { HttpModule } from '@angular/http';
@@ -71,6 +74,8 @@ import { ReportesComponent } from './components/planificacion_control/reportes/r
 import { EdicionComponent } from './components/planificacion_control/administracion/solicitudes/edicion/edicion.component';
 import { HistorialComponent } from './components/planificacion_control/reportes/historial/historial.component';
 import { EdicionProyectoComponent } from './components/planificacion_control/administracion/proyectos/edicion-proyecto/edicion-proyecto.component';
+import { IncioSesionComponent } from './components/planificacion_control/incio-sesion/incio-sesion.component';
+
 
 @NgModule({
   declarations: [
@@ -99,6 +104,7 @@ import { EdicionProyectoComponent } from './components/planificacion_control/adm
     EdicionComponent,
     HistorialComponent,
     EdicionProyectoComponent,
+    IncioSesionComponent,
   ],
   imports: [
     BrowserModule,
@@ -125,7 +131,7 @@ import { EdicionProyectoComponent } from './components/planificacion_control/adm
     FilterPipeModule,
 
   ],
-  providers: [ReportesService,ObservacionesService,ProyeccionesService,ContadorService,CargararchivoService,GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
+  providers: [LogueadoService,NologueadoService,AutenticacionService,ReportesService,ObservacionesService,ProyeccionesService,ContadorService,CargararchivoService,GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

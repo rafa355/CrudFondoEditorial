@@ -1,6 +1,7 @@
 <!-- APP ASIDE ==========-->
-<aside id="menubar" class="menubar light">
-    <div class="menubar-scroll">
+<aside id="menubar" [ngClass]="{'menubar light': LogueoValido,'none': !LogueoValido}">
+
+    <div class="menubar-scroll" *ngIf=LogueoValido>
         <div class="menubar-scroll-inner">
             <ul class="app-menu">
                 <li class="has-submenu">

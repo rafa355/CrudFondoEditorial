@@ -1,3 +1,4 @@
+import { AutenticacionService } from './../../../services/autenticacion.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidepanelComponent implements OnInit {
 
-  constructor() { }
+  public LogueoValido: boolean; 
+
+  constructor(private autenticacion:AutenticacionService) { }
 
   ngOnInit() {
+    this.autenticacion.StatusLogueo.subscribe( value => this.LogueoValido = value);
+    console.log(this.LogueoValido);
   }
 
 }

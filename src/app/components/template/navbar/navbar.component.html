@@ -1,14 +1,22 @@
 <!-- APP NAVBAR ==========-->
-<nav id="app-navbar" class="navbar navbar-inverse navbar-fixed-top primary">
+<nav id="app-navbar" [ngClass]="{'navbar navbar-inverse navbar-fixed-top primary': LogueoValido,'': !LogueoValido}">
 
     <!-- navbar header -->
-    <div class="navbar-header">
+    <div class="navbar-header" *ngIf=LogueoValido>
 
         <a routerLink="/inicio" class="navbar-brand" style="color:white">
             <span class="brand-icon"><img class="img-responsive" src="assets/images/logofe.png" style="height:35px"> </span>
             <span class="brand-name">Fondo Editorial UNEG</span>
         </a>
-    </div>
 
+    </div>
+    <div class="navbar-header pull-right" *ngIf=LogueoValido>
+
+        <a (click)="cerrar_sesion($event)" href="#" class="navbar-brand" style="color:white">
+            <span class="brand-icon fa fa-sign-out"></span>
+            <span class="brand-name">SALIR</span>
+        </a>
+
+    </div>
 </nav>
 <!--========== END app navbar -->

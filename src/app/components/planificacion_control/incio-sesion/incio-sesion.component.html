@@ -1,0 +1,21 @@
+<div class="simple-page-wrap ">
+    <div class="simple-page-form animated flipInY " id="login-form">
+        <h4 class="form-title m-b-xl text-center">
+            <span class="brand-icon"><img class="img-responsive" src="assets/images/logofe.png" style="height:35px"> </span>
+            <span class="brand-name">Fondo Editorial UNEG</span>
+        </h4>
+        <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
+            <div class="form-group">
+                <input formControlName="email" type="email" class="form-control" placeholder="Correo">
+            </div>
+
+            <div class="form-group">
+                <input formControlName="password" id="sign-in-password" type="password" class="form-control" placeholder="Contraseña">
+            </div>
+            <input type="submit" class="btn btn-primary" value="ENTRAR">
+        </form>
+    </div>
+</div>
+<ngx-spinner></ngx-spinner>
+
+<!-- .simple-page-wrap -->

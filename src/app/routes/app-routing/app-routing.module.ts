@@ -20,28 +20,32 @@ import { ReportesComponent } from './../../components/planificacion_control/repo
 import { EdicionComponent } from './../../components/planificacion_control/administracion/solicitudes/edicion/edicion.component';
 import { HistorialComponent } from './../../components/planificacion_control/reportes/historial/historial.component';
 import { EdicionProyectoComponent } from './../../components/planificacion_control/administracion/proyectos/edicion-proyecto/edicion-proyecto.component';
+import { IncioSesionComponent } from 'src/app/components/planificacion_control/incio-sesion/incio-sesion.component';
+import { LogueadoService } from 'src/app/services/logueado.service';
+import { NologueadoService } from 'src/app/services/nologueado.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/inicio', pathMatch: 'full' },
-  { path: 'inicio', component: MainpanelComponent },
-  { path: 'proyectos', component: ProyectosComponent },
-  { path: 'editar_proyecto/:id', component: EdicionProyectoComponent },
-  { path: 'diseñadores', component: DisenadoresComponent },
-  { path: 'registro_disenador', component: RegistroDisenadoresComponent },
-  { path: 'solicitudes', component: SolicitudesComponent },
-  { path: 'registro_solicitud', component: RegistroComponent },
-  { path: 'activar_solicitud/:id', component: ActivacionComponent },
-  { path: 'editar_solicitud/:id', component: EdicionComponent },
-  { path: 'seguimiento/:id', component: SeguimientoComponent },
-  { path: 'estadisticas', component: EstadisticasComponent },
-  { path: 'proyecciones', component: ProyeccionesComponent },
-  { path: 'proyecciones_proyecto', component: ProyeccionesProyectoComponent },
-  { path: 'solicitantes', component: SolicitantesComponent },
-  { path: 'tipo_proyecto', component: TipoProyectoComponent },
-  { path: 'registro_solicitante', component: RegistroSolicitanteComponent },
-  { path: 'registro_tipo_proyecto', component: RegistroTipoProyectoComponent },
-  { path: 'reportes', component: ReportesComponent },
-  { path: 'historial', component: HistorialComponent },
+  { path: '', redirectTo: '/inicio_sesion', pathMatch: 'full' },
+  { path: 'inicio_sesion', component: IncioSesionComponent, canActivate: [NologueadoService] },
+  { path: 'inicio', component: MainpanelComponent,canActivate: [LogueadoService]  },
+  { path: 'proyectos', component: ProyectosComponent,canActivate: [LogueadoService] },
+  { path: 'editar_proyecto/:id', component: EdicionProyectoComponent,canActivate: [LogueadoService] },
+  { path: 'diseñadores', component: DisenadoresComponent,canActivate: [LogueadoService] },
+  { path: 'registro_disenador', component: RegistroDisenadoresComponent,canActivate: [LogueadoService] },
+  { path: 'solicitudes', component: SolicitudesComponent,canActivate: [LogueadoService] },
+  { path: 'registro_solicitud', component: RegistroComponent,canActivate: [LogueadoService] },
+  { path: 'activar_solicitud/:id', component: ActivacionComponent,canActivate: [LogueadoService] },
+  { path: 'editar_solicitud/:id', component: EdicionComponent,canActivate: [LogueadoService] },
+  { path: 'seguimiento/:id', component: SeguimientoComponent ,canActivate: [LogueadoService]},
+  { path: 'estadisticas', component: EstadisticasComponent ,canActivate: [LogueadoService]},
+  { path: 'proyecciones', component: ProyeccionesComponent,canActivate: [LogueadoService] },
+  { path: 'proyecciones_proyecto', component: ProyeccionesProyectoComponent,canActivate: [LogueadoService] },
+  { path: 'solicitantes', component: SolicitantesComponent ,canActivate: [LogueadoService]},
+  { path: 'tipo_proyecto', component: TipoProyectoComponent,canActivate: [LogueadoService] },
+  { path: 'registro_solicitante', component: RegistroSolicitanteComponent,canActivate: [LogueadoService] },
+  { path: 'registro_tipo_proyecto', component: RegistroTipoProyectoComponent ,canActivate: [LogueadoService]},
+  { path: 'reportes', component: ReportesComponent ,canActivate: [LogueadoService]},
+  { path: 'historial', component: HistorialComponent ,canActivate: [LogueadoService]},
 ];
 
 @NgModule({
