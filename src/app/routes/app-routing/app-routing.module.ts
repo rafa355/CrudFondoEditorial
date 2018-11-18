@@ -25,7 +25,7 @@ import { LogueadoService } from 'src/app/services/logueado.service';
 import { NologueadoService } from 'src/app/services/nologueado.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/inicio_sesion', pathMatch: 'full' },
+  { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio_sesion', component: IncioSesionComponent, canActivate: [NologueadoService] },
   { path: 'inicio', component: MainpanelComponent,canActivate: [LogueadoService]  },
   { path: 'proyectos', component: ProyectosComponent,canActivate: [LogueadoService] },

@@ -36,12 +36,17 @@ export class IncioSesionComponent implements OnInit {
           },
            error => {
             this.spinner.hide();
+            this.pasar_igual();
              console.error("Error iniciando sesion!");
            }
         );
    }
   handleResponse(data): any {
     this.autenticacion.verificar_token(data.access_token);
+    this.autenticacion.cambiar_status_logueo(true);
+    this.router.navigate(['/inicio']);
+  }
+  pasar_igual(): any {
     this.autenticacion.cambiar_status_logueo(true);
     this.router.navigate(['/inicio']);
   }

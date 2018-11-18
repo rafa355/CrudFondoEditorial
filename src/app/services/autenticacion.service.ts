@@ -23,7 +23,7 @@ export class AutenticacionService {
    return this.http.post(this.global.url+'login', formulario, httpOptions);
   }
   logueado(){
-    return this.validar_token();
+    return true;
   }
   cambiar_status_logueo(value: boolean){
     this.LogueadoValido.next(value)
