@@ -74,7 +74,7 @@
                 <div *ngIf="this.etapa_diagramacion.estado == 1" class="pull-left" (click)="Modal(finalizar)" style="cursor: pointer;"><span class="fa fa-power-off  "></span> Finalizar Etapa</div><br><br>
                 <div *ngIf="this.etapa_diagramacion.estado == 1" class="pull-left" (click)="Modal(preliminar)" style="cursor: pointer;"><span class="fa fa-plus"></span> Añadir adjunto</div>
             </div>
-            <div *ngIf="this.etapa_diagramacion.estado == '' ">
+            <div>
                 <div class="col-md-5 text-center text-warning">
                     <h3>Diagramado</h3>
                 </div>
@@ -194,7 +194,6 @@
         </footer>
         <div class="widget-body clearfix" style="min-height: 160px;">
             <div *ngIf="this.etapa_publicacion.estado == 1" class="pull-left" (click)="Modal(finalizar)" style="cursor: pointer;"><span class="fa fa-power-off  "></span> Finalizar Etapa</div><br><br>
-            <div *ngIf="this.etapa_publicacion.estado == 1" class="pull-left" (click)="Modal(preliminar)" style="cursor: pointer;"><span class="fa fa-plus"></span> Añadir adjunto</div>
             <div *ngFor="let adjunto of adjuntos_publicacion">
                 <br>
                 <div class="widget">
@@ -269,7 +268,7 @@
         <form [formGroup]="estimado_demas" novalidate (ngSubmit)="FinalizarEtapa(estimado_demas.value)">
             <div class="col-xs-12 col-12 col-md-12 form-group text-center">
                 <label>Fecha de Entrega Estimada</label>
-                <input formControlName="estimado" type="text" placeholder="Datepicker" class="form-control" bsDatepicker [bsConfig]="bsConfig" [minDate]="minDate" [maxDate]="maxDate">
+                <input formControlName="estimado" type="text" placeholder="Fecha Estimada" class="form-control" bsDatepicker [bsConfig]="bsConfig" [minDate]="minDate" [maxDate]="maxDate">
             </div>
 
             <div class="col-xs-12">
@@ -311,3 +310,4 @@
         </div>
     </div>
 </ng-template>
+<ngx-spinner></ngx-spinner>

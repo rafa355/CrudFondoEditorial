@@ -15,6 +15,7 @@ import { AdjuntoService } from '../../../../services/adjunto.service';
 import { ProyectoService } from '../../../../services/proyecto.service';
 import { CargararchivoService } from '../../../../services/cargararchivo.service';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-etapas',
   templateUrl: './etapas.component.html',
@@ -23,7 +24,7 @@ import { Router } from '@angular/router';
 export class EtapasComponent implements OnInit {
   minDate: Date;
   maxDate: Date;
-  constructor(private sanitizer:DomSanitizer,private proyectoservice:ProyectoService,private GlobalComponent:GlobalComponent,private localeService: BsLocaleService,private location: Location,private enviandoArchivo: CargararchivoService,private _fb: FormBuilder,private router:Router,private route: ActivatedRoute,private etapasservice: EtapasService,private adjuntosservice: AdjuntoService,private toastr:ToastrService,private modalService: BsModalService) {
+  constructor(private spinner: NgxSpinnerService,private sanitizer:DomSanitizer,private proyectoservice:ProyectoService,private GlobalComponent:GlobalComponent,private localeService: BsLocaleService,private location: Location,private enviandoArchivo: CargararchivoService,private _fb: FormBuilder,private router:Router,private route: ActivatedRoute,private etapasservice: EtapasService,private adjuntosservice: AdjuntoService,private toastr:ToastrService,private modalService: BsModalService) {
     this.minDate = new Date();
     this.maxDate = new Date();
 
@@ -97,7 +98,7 @@ export class EtapasComponent implements OnInit {
                 if(this.etapa_preliminar.estado == 1){this.etapa_activa = '1' }
                 else if(this.etapa_diagramacion.estado == 1 || this.etapa_diagramacion.estado == 3 ){this.etapa_activa = '2' }
                 else if(this.etapa_publicacion.estado == 1){this.etapa_activa = '3' }
-                
+
                 this.estimado_demas = this._fb.group({
                   etapa: [this.etapa_activa],
                   proyecto: [this.id],
@@ -109,21 +110,23 @@ export class EtapasComponent implements OnInit {
           }
         //Metodo para activar etapa
         ActivarEtapa(model) {
-          console.log(model);
+          this.spinner.show();
           this.etapasservice.activar_etapa(model).subscribe(
             data => {
+              this.spinner.hide();
               this.notificacion = data,this.toastr.success('Etapa Activada'),this.ngOnInit(),this.modalRef.hide();
            },
-           err =>{ console.error(err),      () => console.log(this.notificacion)}
+           err =>{ console.error(err),      this.spinner.show(),
+            () => console.log(this.notificacion)}
          );
        }
-        
+
         //Metodo para finalizar etapa
         FinalizarEtapa(model) {
-          console.log(model);
+          this.spinner.show();
           this.etapasservice.finalizar_etapa(model).subscribe(
-             data => { this.notificacion = data,this.toastr.error('Etapa Finalizada'),this.ngOnInit(),this.modalRef.hide();},
-             err => console.error(err),      () => console.log(this.notificacion)
+             data => {     this.spinner.hide(),this.notificacion = data,this.toastr.error('Etapa Finalizada'),this.ngOnInit(),this.modalRef.hide();},
+             err =>this.spinner.hide(),
             );
           }
         //Metodo para mostrar modal
@@ -132,11 +135,14 @@ export class EtapasComponent implements OnInit {
         }
         //Metodo para cargar comentario
         crear_comentario(adjunto) {
+          this.spinner.show()
             this.adjuntosservice.crear_adjunto(adjunto,this.adjunto_id).subscribe(
                data => {
+                this.spinner.hide();
                 this.toastr.success('Adjunto Creado'),this.ngOnInit(),this.modalRef.hide()
               },
                error => {
+                this.spinner.hide();
                  console.error("Error saving food!");
                  return Observable.throw(error);
                }
@@ -168,7 +174,7 @@ export class EtapasComponent implements OnInit {
              data => {  this.maxDate.setDate(data.tiempo_planificado_total);
              },
              err => console.error(err)
-            ); 
+            );
           }
 
 }

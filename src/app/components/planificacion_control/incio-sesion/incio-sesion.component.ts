@@ -36,7 +36,6 @@ export class IncioSesionComponent implements OnInit {
           },
            error => {
             this.spinner.hide();
-            this.pasar_igual();
              console.error("Error iniciando sesion!");
            }
         );

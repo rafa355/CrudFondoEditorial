@@ -75,6 +75,10 @@ import { EdicionComponent } from './components/planificacion_control/administrac
 import { HistorialComponent } from './components/planificacion_control/reportes/historial/historial.component';
 import { EdicionProyectoComponent } from './components/planificacion_control/administracion/proyectos/edicion-proyecto/edicion-proyecto.component';
 import { IncioSesionComponent } from './components/planificacion_control/incio-sesion/incio-sesion.component';
+import { UsuariosComponent } from './components/planificacion_control/parametros/usuarios/usuarios.component';
+import { RegistroUsuarioComponent } from './components/planificacion_control/parametros/usuarios/registro-usuario/registro-usuario.component';
+import { UsuariosService } from './services/usuarios.service';
+import { EdicionDisenadoresComponent } from './components/planificacion_control/parametros/disenadores/edicion-disenadores/edicion-disenadores.component';
 
 
 @NgModule({
@@ -105,6 +109,9 @@ import { IncioSesionComponent } from './components/planificacion_control/incio-s
     HistorialComponent,
     EdicionProyectoComponent,
     IncioSesionComponent,
+    UsuariosComponent,
+    RegistroUsuarioComponent,
+    EdicionDisenadoresComponent,
   ],
   imports: [
     BrowserModule,
@@ -131,7 +138,7 @@ import { IncioSesionComponent } from './components/planificacion_control/incio-s
     FilterPipeModule,
 
   ],
-  providers: [LogueadoService,NologueadoService,AutenticacionService,ReportesService,ObservacionesService,ProyeccionesService,ContadorService,CargararchivoService,GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
+  providers: [UsuariosService,LogueadoService,NologueadoService,AutenticacionService,ReportesService,ObservacionesService,ProyeccionesService,ContadorService,CargararchivoService,GlobalComponent,ProyectoService,EncargadoService,EtapasService,SolicitudesService,SolicitantesService,AdjuntoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -23,14 +23,18 @@ import { EdicionProyectoComponent } from './../../components/planificacion_contr
 import { IncioSesionComponent } from 'src/app/components/planificacion_control/incio-sesion/incio-sesion.component';
 import { LogueadoService } from 'src/app/services/logueado.service';
 import { NologueadoService } from 'src/app/services/nologueado.service';
+import { UsuariosComponent } from 'src/app/components/planificacion_control/parametros/usuarios/usuarios.component';
+import { RegistroUsuarioComponent } from 'src/app/components/planificacion_control/parametros/usuarios/registro-usuario/registro-usuario.component';
+import { EdicionDisenadoresComponent } from 'src/app/components/planificacion_control/parametros/disenadores/edicion-disenadores/edicion-disenadores.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/inicio', pathMatch: 'full' },
+  { path: '', redirectTo: '/inicio_sesion', pathMatch: 'full' },
   { path: 'inicio_sesion', component: IncioSesionComponent, canActivate: [NologueadoService] },
   { path: 'inicio', component: MainpanelComponent,canActivate: [LogueadoService]  },
   { path: 'proyectos', component: ProyectosComponent,canActivate: [LogueadoService] },
   { path: 'editar_proyecto/:id', component: EdicionProyectoComponent,canActivate: [LogueadoService] },
   { path: 'diseñadores', component: DisenadoresComponent,canActivate: [LogueadoService] },
+  { path: 'editar_encargado/:id', component: EdicionDisenadoresComponent,canActivate: [LogueadoService] },
   { path: 'registro_disenador', component: RegistroDisenadoresComponent,canActivate: [LogueadoService] },
   { path: 'solicitudes', component: SolicitudesComponent,canActivate: [LogueadoService] },
   { path: 'registro_solicitud', component: RegistroComponent,canActivate: [LogueadoService] },
@@ -46,6 +50,8 @@ const routes: Routes = [
   { path: 'registro_tipo_proyecto', component: RegistroTipoProyectoComponent ,canActivate: [LogueadoService]},
   { path: 'reportes', component: ReportesComponent ,canActivate: [LogueadoService]},
   { path: 'historial', component: HistorialComponent ,canActivate: [LogueadoService]},
+  { path: 'usuarios', component: UsuariosComponent ,canActivate: [LogueadoService]},
+  { path: 'agregar_usuarios', component: RegistroUsuarioComponent ,canActivate: [LogueadoService]},
 ];
 
 @NgModule({

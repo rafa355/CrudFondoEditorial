@@ -7,38 +7,34 @@
                     <div class="widget">
                         <header class="widget-header">
                             <div class="col-lg-6 col-md-6">
-                                <h1 class="h3 title-form">Listado de Encargados</h1>
+                                <h1 class="h3 title-form">Listado de Usuarios Autorizados</h1>
                             </div>
-                            <a routerLink="/registro_disenador">
-                                <button type="button" class="btn btn-primary btn-circle pull-right add" data-toggle="tooltip" data-placement="top" title="Agregar Encargado">
-                                            <i class="fa fa-plus" aria-hidden="true"> </i> Agregar
-                                        </button>
+                            <a routerLink="/agregar_usuarios">
+                                <button type="button" class="btn btn-primary btn-circle pull-right add" data-toggle="tooltip" data-placement="top" title="Agregar Usuario">
+                                          <i class="fa fa-plus" aria-hidden="true"> </i> Agregar
+                                      </button>
                             </a>
                         </header>
                         <hr class="widget-separator" />
                         <div class="widget-body">
                             <div class="table-responsive" style="width:300px">
-                                <input type="text" class="form-control " placeholder="Filtrar por Nombre" [(ngModel)]="userFilter.nombre">
+                                <input type="text" class="form-control " placeholder="Filtrar por Nombre" [(ngModel)]="userFilter.name">
                             </div>
                             <br>
                             <div class="table-responsive">
                                 <table class="table no-cellborder">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">Cargo</th>
                                             <th class="text-center">Nombre</th>
-                                            <th class="text-center">Correo</th>
-                                            <th class="text-center">Edicion</th>
+                                            <th class="text-center"> Correo</th>
                                             <th class="text-center">Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let encargado of encargados| filterBy: userFilter | paginate: { itemsPerPage: 10, currentPage: page }">
-                                            <td class="text-default text-center">{{encargado.tipo.nombre}}</td>
-                                            <td class="text-center">{{encargado.nombre}}</td>
-                                            <td class="text-center">{{encargado.correo}}</td>
-                                            <td class="text-center"><a routerLink="/editar_encargado/{{encargado.id}}"><span class="fa fa-pencil-square-o fa-2x " style="cursor:pointer"></span></a></td>
-                                            <td class="text-center"><button type="button" class="btn btn-danger" (click)="ModalEliminar(observacion,encargado.id)">Eliminar</button></td>
+                                        <tr *ngFor="let usuario of usuarios| filterBy: userFilter | paginate: { itemsPerPage: 10, currentPage: page }">
+                                            <td class="text-default text-center">{{usuario.name}}</td>
+                                            <td class="text-center">{{usuario.email}}</td>
+                                            <td class="text-center"><button type="button" class="btn btn-danger" (click)="ModalEliminar(observacion,usuario.id)">Eliminar</button></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -68,10 +64,10 @@
 
 <ng-template #observacion>
     <div class="modal-header">
-        <h4 class="modal-title pull-left">Eliminar Encargado</h4>
+        <h4 class="modal-title pull-left">Eliminar Usuario</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-            <span aria-hidden="true">&times;</span>
-        </button>
+          <span aria-hidden="true">&times;</span>
+      </button>
     </div>
     <div class="modal-body">
         <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
@@ -86,7 +82,7 @@
             <div class="clearfix"></div>
             <div class="col-xs-12">
                 <div class="form-group text-center">
-                    <button type="submit " class="btn btn-danger" [disabled]="!myForm.valid " style="margin-right:50px">Anular</button>
+                    <button type="submit " class="btn btn-danger" [disabled]="!myForm.valid " style="margin-right:50px">Eliminar</button>
                 </div>
             </div>
             <div class="clearfix "></div>

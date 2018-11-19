@@ -36,7 +36,7 @@
                                             <td class="text-success text-center" style="width:10px">{{proyecto.tipo}}</td>
                                             <td class="text-center">{{proyecto.nombre}}</td>
                                             <td class="text-center">
-                                                <a routerLink="/editar_solicitud/{{proyecto.id}}"><i class="fa fa-user fa-2x"></i></a>
+                                                <a (click)="ModalEliminar(autor,proyecto.id)" style="cursor: pointer;"><i class="fa fa-user fa-2x"></i></a>
                                             </td>
                                             <td class="text-center" *ngIf="proyecto.responsable;else sin_asginar">{{proyecto.responsable}}</td>
                                             <ng-template #sin_asginar>
@@ -69,6 +69,34 @@
         <!-- #dash-content -->
     </div>
     <!-- .wrap -->
+    <ng-template #autor>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Datos de Autor - {{proyecto.nombre}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        <div class="modal-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Nombre</th>
+                            <th class="text-center">Correo</th>
+                            <th class="text-center">Telefono</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">{{this.proyecto.autor}}</td>
+                            <td class="text-center">{{this.proyecto.correo}}</td>
+                            <td class="text-center">{{this.proyecto.telefono}}</td>
+                        </tr>
 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ng-template>
 </main>
 <!--========== END app main -->
