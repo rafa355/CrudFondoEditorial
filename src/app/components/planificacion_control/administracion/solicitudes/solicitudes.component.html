@@ -11,37 +11,98 @@
                             </div>
                             <a routerLink="/registro_solicitud">
                                 <button type="button" class="btn btn-primary btn-circle pull-right add" data-toggle="tooltip" data-placement="top" title="Agregar Solicitud">
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                            Agregar
-                                        </button>
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    Agregar
+                                </button>
                             </a>
                         </header>
                         <hr class="widget-separator" />
                         <div class="widget-body">
+                            <h1 class="text-success"> Activas</h1>
                             <div class="table-responsive">
                                 <table class="table no-cellborder">
                                     <thead>
                                         <tr>
                                             <th class="text-center">Nombre</th>
-                                            <th class="text-center">Solicitante</th>
-                                            <th class="text-center">Estado</th>
+                                            <th class="text-center">Usuario/cliente</th>
+                                            <th class="text-center">Persona Contacto</th>
                                             <th class="text-center">Fecha de Solicitud</th>
                                             <th class="text-center">Proyectos</th>
+                                            <th class="text-center">Estado</th>
                                             <th class="text-center">Edición</th>
                                             <th class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let solicitud of solicitudes">
+                                        <tr *ngFor="let solicitud of solicitudes.activas">
                                             <td class="text-center">{{solicitud.nombre}}</td>
                                             <td class="text-center">{{solicitud.solicitante.nombre}}</td>
-                                            <td class="text-center">{{solicitud.status}}</td>
+                                            <td class="text-center">
+                                                <a (click)="ModalContacto(contacto,solicitud.id)" style="cursor: pointer;"><i class="fa fa-user fa-2x"></i></a>
+                                            </td>
                                             <td class="text-center">{{solicitud.created_at | date:'yyyy-MM-dd'}}</td>
                                             <td class="text-center"><span class="fa fa-th-list fa-2x " (click)="openModal(template,otro,solicitud.id)" style="cursor:pointer"></span></td>
+                                            <td class="text-center">{{solicitud.status}}</td>
                                             <td class="text-center"><a routerLink="/editar_solicitud/{{solicitud.id}}"><span class="fa fa-pencil-square-o fa-2x " style="cursor:pointer"></span></a></td>
                                             <td class="text-center">
                                                 <a *ngIf="this.solicitud.status == 'pendiente'" routerLink="/activar_solicitud/{{solicitud.id}}" style="cursor: default;margin-right: 10px"> <button type="button" class="btn btn-success">activar</button></a><a (click)="ModalEliminar(observacion,solicitud.id)" style="cursor: default;"><button type="button" class="btn btn-danger">Anular</button></a>
                                             </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <h1 class=" text-primary"> Pendientes</h1>
+                            <div class="table-responsive">
+                                <table class="table no-cellborder">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Nombre</th>
+                                            <th class="text-center">Usuario/cliente</th>
+                                            <th class="text-center">Persona Contacto</th>
+                                            <th class="text-center">Fecha de Solicitud</th>
+                                            <th class="text-center">Estado</th>
+                                            <th class="text-center">Edición</th>
+                                            <th class="text-center">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let solicitud of solicitudes.pendientes">
+                                            <td class="text-center">{{solicitud.nombre}}</td>
+                                            <td class="text-center">{{solicitud.solicitante.nombre}}</td>
+                                            <td class="text-center">
+                                                <a (click)="ModalContacto(contacto,solicitud.id)" style="cursor: pointer;"><i class="fa fa-user fa-2x"></i></a>
+                                            </td>
+                                            <td class="text-center">{{solicitud.created_at | date:'yyyy-MM-dd'}}</td>
+                                            <td class="text-center">{{solicitud.status}}</td>
+                                            <td class="text-center"><a routerLink="/editar_solicitud/{{solicitud.id}}"><span class="fa fa-pencil-square-o fa-2x " style="cursor:pointer"></span></a></td>
+                                            <td class="text-center">
+                                                <a *ngIf="this.solicitud.status == 'pendiente'" routerLink="/activar_solicitud/{{solicitud.id}}" style="cursor: default;margin-right: 10px"> <button type="button" class="btn btn-success">activar</button></a><a (click)="ModalEliminar(observacion,solicitud.id)" style="cursor: default;"><button type="button" class="btn btn-danger">Anular</button></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <h1 class="text-danger">Anuladas</h1>
+                            <div class="table-responsive">
+                                <table class="table no-cellborder">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Nombre</th>
+                                            <th class="text-center">Usuario/cliente</th>
+                                            <th class="text-center">Persona Contacto</th>
+                                            <th class="text-center">Fecha de Solicitud</th>
+                                            <th class="text-center">Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let solicitud of solicitudes.anuladas">
+                                            <td class="text-center">{{solicitud.nombre}}</td>
+                                            <td class="text-center">{{solicitud.solicitante.nombre}}</td>
+                                            <td class="text-center">
+                                                <a (click)="ModalContacto(contacto,solicitud.id)" style="cursor: pointer;"><i class="fa fa-user fa-2x"></i></a>
+                                            </td>
+                                            <td class="text-center">{{solicitud.created_at | date:'yyyy-MM-dd'}}</td>
+                                            <td class="text-center">{{solicitud.status}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -60,7 +121,35 @@
         <!-- #dash-content -->
     </div>
     <!-- .wrap -->
+    <ng-template #contacto>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Datos de Contacto - {{solicitud.nombre}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        <div class="modal-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Nombre</th>
+                            <th class="text-center">Correo</th>
+                            <th class="text-center">Telefono</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">{{this.solicitud.contacto}}</td>
+                            <td class="text-center">{{this.solicitud.correo}}</td>
+                            <td class="text-center">{{this.solicitud.telefono}}</td>
+                        </tr>
 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ng-template>
     <ng-template #template>
         <div class="modal-header">
             <h4 class="modal-title pull-left">{{solicitud.nombre}}</h4>

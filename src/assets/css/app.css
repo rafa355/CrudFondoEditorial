@@ -4205,3 +4205,15 @@ td.mail-right {
     border: 1px solid #ccc!important;
     border-radius: 4px;
 }
+
+.datos {
+    margin: 5px;
+}
+
+.no-margin {
+    margin: 0px;
+}
+
+.white-color {
+    color: white !important;
+}

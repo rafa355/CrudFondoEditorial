@@ -43,12 +43,12 @@
                         <div class="widget-body clearfix">
                             <div class="pull-left">
                                 <h3 class="widget-title text-danger"><span class="counter" data-plugin="counterUp">{{this.preliminar}}</span></h3>
-                                <small class="text-color">Pendientes por Revisar</small>
+                                <small class="text-color">Proyectos</small>
                             </div>
                             <span class="pull-right big-icon watermark"><i class="fa fa-ban"></i></span>
                         </div>
                         <footer class="widget-footer bg-danger">
-                            <small>Pendientes</small>
+                            <small>Etapa Preliminar</small>
                             <span class="small-chart pull-right" data-plugin="sparkline" data-options="[1,2,3,5,4], { type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }"></span>
                         </footer>
                     </div>
@@ -60,12 +60,12 @@
                         <div class="widget-body clearfix">
                             <div class="pull-left">
                                 <h3 class="widget-title text-warning"><span class="counter" data-plugin="counterUp">{{this.diagramacion}}</span></h3>
-                                <small class="text-color">Producciones en Proceso</small>
+                                <small class="text-color">Proyectos</small>
                             </div>
                             <span class="pull-right big-icon watermark"><i class="fa fa-file-text-o"></i></span>
                         </div>
                         <footer class="widget-footer bg-warning">
-                            <small>En Proceso</small>
+                            <small>Etapa Diseño/Diagramación y Revisión</small>
                             <span class="small-chart pull-right" data-plugin="sparkline" data-options="[5,4,3,5,2],{ type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }"></span>
                         </footer>
                     </div>
@@ -76,12 +76,12 @@
                         <div class="widget-body clearfix">
                             <div class="pull-left">
                                 <h3 class="widget-title text-success"><span class="counter" data-plugin="counterUp">{{this.publicacion}}</span></h3>
-                                <small class="text-color">Producciones Completadas</small>
+                                <small class="text-color">Proyectos</small>
                             </div>
                             <span class="pull-right big-icon watermark"><i class="fa fa-unlock-alt"></i></span>
                         </div>
                         <footer class="widget-footer bg-success">
-                            <small>Completados</small>
+                            <small>Etapa Publicación</small>
                             <span class="small-chart pull-right" data-plugin="sparkline" data-options="[2,4,3,4,3], { type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }"></span>
                         </footer>
                     </div>
@@ -96,12 +96,33 @@
                 <div class="col-md-12">
                     <div class="widget widget-pie-chart" style="min-height:450px">
                         <header class="widget-header">
-                            <h4 class="widget-title">PROYECTOS</h4>
+                            <h4 class="widget-title">LISTADO GENERAL DE PROYECTOS</h4>
                         </header>
                         <hr class="widget-separator" />
                         <div class="widget-body clearfix">
-
+                            <div class="col-md-5 " style="width:100%">
+                                <h3>En Espera</h3>
+                            </div>
                             <app-etapas-proyecto *ngFor="let food of proyectos" [food]="food"></app-etapas-proyecto>
+                            <br><br><br>
+                            <div class="wrap"></div>
+
+                            <div class="col-md-5 text-default" style="width:100%">
+                                <h3>Preliminar</h3>
+                            </div>
+                            <app-preliminar *ngFor="let food of proyectos" [food]="food"></app-preliminar>
+                            <br><br><br>
+                            <div class="wrap"></div>
+                            <div class="col-md-5 text-warning" style="width:100%">
+                                <h3>Diseño/Diagramación y Revisión</h3>
+                            </div>
+                            <app-diagramacion *ngFor="let food of proyectos" [food]="food"></app-diagramacion>
+                            <br><br><br>
+                            <div class="wrap"></div>
+                            <div class="col-md-5 text-success" style="width:100%">
+                                <h3>Publicación</h3>
+                            </div>
+                            <app-publicacion *ngFor="let food of proyectos" [food]="food"></app-publicacion>
 
                         </div>
                     </div>

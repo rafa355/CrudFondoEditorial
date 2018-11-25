@@ -5,10 +5,10 @@
                 <div class="col-md-12">
                     <div class="widget">
                         <header class="widget-header">
-                            <div class=" col-md-4">
-                                <h1 class="h3 title-form">Proyecciones {{ viewDate | calendarDate:(view + 'ViewTitle'):'es' }}</h1>
+                            <div class=" col-md-6">
+                                <h1 class="h3 title-form">Proyección de Solicitudes {{ viewDate | calendarDate:(view + 'ViewTitle'):'es' }}</h1>
                             </div>
-                            <div class="col-md-8 ">
+                            <div class="col-md-6 ">
                                 <div class="btn-group pull-right">
                                     <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
                                         Mes Anterior
@@ -24,27 +24,6 @@
                         </header>
                         <hr class="widget-separator" />
                         <div class="widget-body">
-                            <ng-template #modalContent let-close="close">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Event action occurred</h5>
-                                    <button type="button" class="close" (click)="close()"><span aria-hidden="true">&times;</span></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div>
-                                        Action:
-                                        <pre>{{ modalData?.action }}</pre>
-                                    </div>
-                                    <div>
-                                        Event:
-                                        <pre>{{ modalData?.event | json }}</pre>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
-                                </div>
-                            </ng-template>
-
-
                             <br>
                             <div [ngSwitch]="view">
                                 <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [locale]="locale" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)"
@@ -81,6 +60,10 @@
                     <div class="form-group col-xs-12 col-md-12">
                         <label>Correo</label>
                         <input type="email" class="form-control" formControlName="correo" required>
+                    </div>
+                    <div class="form-group col-xs-12 col-md-12">
+                        <label>Asunto</label>
+                        <input type="text" class="form-control" formControlName="asunto" required>
                     </div>
                     <div class="form-group col-xs-12 col-md-12">
                         <label>Mensaje</label>

@@ -16,66 +16,67 @@
                             <div class="container">
                                 <div class="row">
                                     <div>
-                                        <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
+                                        <form [formGroup]="myForm" novalidate>
                                             <div>
                                                 <div class="panel panel-default">
                                                     <div class="panel-body">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group col-xs-6">
-                                                                <label>Periodicidad</label>
-                                                                <select [(ngModel)]='this.proyecto.periodico' formControlName="periodico" class="form-control" required>
-                                                                  <option  value="" selected disabled hidden>Seleccionar</option>
-                                                                  <option value="SI">SI</option>
-                                                                  <option value="NO">NO</option>
-                                                              </select>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group col-xs-12">
+                                                                <label>Nombre de Proyecto</label>
+                                                                <input type="text" class="form-control" [(ngModel)]='this.proyecto.nombre' formControlName="nombre" required>
                                                             </div>
-                                                            <div class="form-group col-xs-6">
+                                                            <div class="form-group col-xs-12">
+                                                                <label>Autor</label>
+                                                                <input type="text" class="form-control" [(ngModel)]='this.proyecto.autor' formControlName="autor" required></div>
+                                                            <div class="form-group col-xs-12">
+                                                                <label>Correo</label>
+                                                                <input type="email" class="form-control" [(ngModel)]='this.proyecto.correo' formControlName="correo" required></div>
+                                                            <div class="form-group col-xs-12">
+                                                                <label>Telefono</label>
+                                                                <input type="text" class="form-control" [(ngModel)]='this.proyecto.telefono' formControlName="telefono" required></div>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <div class="form-group col-md-4">
+                                                                <label>Fecha de Inicio</label>
+                                                                <input type="text" class="form-control" [(ngModel)]='this.proyecto.telefono' formControlName="telefono" disabled required>
+                                                            </div>
+                                                            <div class="col-md-4 form-group">
+                                                                <label>Fecha de Entrega Estimada</label>
+                                                                <input type="text" [(ngModel)]='this.proyecto.tiempo_planificado_total' formControlName="tiempo_planificado_total" placeholder="Fecha estimada" class="form-control" bsDatepicker [bsConfig]="bsConfig" required>
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label>Fecha de Entrega Real</label>
+                                                                <input type="text" class="form-control" [(ngModel)]='this.proyecto.telefono' formControlName="telefono" disabled required>
+                                                            </div>
+                                                            <div class="form-group col-md-6">
                                                                 <label>Tipo</label>
                                                                 <ng-template #no_publicacion>
                                                                     <label> Tipo de Subproyecto</label>
                                                                 </ng-template>
                                                                 <select formControlName="proyecto_type_id" [(ngModel)]='this.proyecto.proyecto_type_id' class="form-control" required>
-                                                                      <option  value="" selected disabled hidden>Seleccionar</option>
-                                                                  <option  *ngFor="let tipo of tipos" value="{{tipo.id}}">{{tipo.nombre}}</option>
-                                                              </select>
+                                                                              <option  value="" selected disabled hidden>Seleccionar</option>
+                                                                          <option  *ngFor="let tipo of tipos" value="{{tipo.id}}">{{tipo.nombre}}</option>
+                                                                      </select>
                                                             </div>
-                                                            <div class="form-group col-xs-6">
-                                                                <label>Nombre de Proyecto</label>
-                                                                <input type="text" class="form-control" formControlName="nombre" required></div>
-
-                                                            <div class="col-xs-6 form-group">
-                                                                <label>Fecha de Entrega Estimada</label>
-                                                                <input type="text" formControlName="tiempo_planificado_total" placeholder="Fecha estimada" class="form-control" bsDatepicker [bsConfig]="bsConfig" required>
+                                                            <div class="form-group col-md-6">
+                                                                <label>Periodicidad</label>
+                                                                <select [(ngModel)]='this.proyecto.periodico' formControlName="periodico" class="form-control" required>
+                                                                          <option  value="" selected disabled hidden>Seleccionar</option>
+                                                                          <option value="SI">SI</option>
+                                                                          <option value="NO">NO</option>
+                                                                      </select>
                                                             </div>
-                                                            <div class="form-group col-xs-6">
-                                                                <label>Autor</label>
-                                                                <input type="text" class="form-control" formControlName="autor" required></div>
-                                                            <div class="form-group col-xs-6">
-                                                                <label>Correo</label>
-                                                                <input type="email" class="form-control" formControlName="correo" required></div>
-                                                            <div class="form-group col-xs-6">
-                                                                <label>Telefono</label>
-                                                                <input type="text" class="form-control" formControlName="telefono" required></div>
-                                                        </div>
-                                                        <div class="col-md-6">
                                                             <div class="col-md-12 form-group">
-                                                                <label>Descripcion</label>
+                                                                <label>Descripción del Proyecto</label>
                                                                 <textarea class="form-control" formControlName="descripcion" id="" cols="30" rows="10" required></textarea>
                                                             </div>
                                                         </div>
-                                                        <div class=" form-group col-xs-9 col-xs-offset-1">
-                                                            <div class="col-md-12 form-group">
-                                                                <label>Observación/Razón de Edición</label>
-                                                                <textarea class="form-control" formControlName="observacion" id="" cols="30" rows="10" required></textarea>
-                                                            </div>
-                                                        </div>
-
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-xs-12">
                                                 <div class="form-group text-center">
-                                                    <button type="submit " class="btn btn-primary" [disabled]="!myForm.valid " style="margin-right:50px">Guardar</button>
+                                                    <a (click)="ModalObservacion(observacion,myForm.value)" style="cursor: default;"><button type="submit " class="btn btn-primary" [disabled]="!myForm.valid " style="margin-right:50px">Modificar</button></a>
                                                     <a routerLink="/proyectos">
                                                         <input type="button" value="Cancelar" class="btn btn-danger cancel">
                                                     </a>
@@ -91,5 +92,32 @@
             </div>
         </section>
     </div>
+    <ng-template #observacion>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Modificación de Proyecto</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="ObservaconForm" novalidate (ngSubmit)="save(ObservaconForm.value)">
+                <div class=" form-group col-xs-12 ">
+                    <div class="col-md-12 form-group">
+                        <label>Observación/Razón de la Modificación</label>
+                        <textarea class="form-control" formControlName="observacion" id="" cols="30" rows="10" required></textarea>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="clearfix"></div>
+                <div class="clearfix"></div>
+                <div class="col-xs-12">
+                    <div class="form-group text-center">
+                        <button type="submit " class="btn btn-primary" [disabled]="!ObservaconForm.valid " style="margin-right:50px">Guardar</button>
+                    </div>
+                </div>
+                <div class="clearfix "></div>
+            </form>
+        </div>
+    </ng-template>
     <ngx-spinner></ngx-spinner>
 </main>

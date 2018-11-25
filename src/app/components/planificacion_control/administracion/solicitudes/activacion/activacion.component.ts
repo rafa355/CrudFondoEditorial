@@ -8,6 +8,7 @@ import { SolicitudesService } from '../../../../../services/solicitudes.service'
 import { ProyectoService } from '../../../../../services/proyecto.service'
 import { Router } from '@angular/router';
 import { SolicitantesService } from '../../../../../services/solicitantes.service'
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { SolicitantesService } from '../../../../../services/solicitantes.servic
 })
 export class ActivacionComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private localeService: BsLocaleService,private _fb: FormBuilder, private router:Router,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { }
+  constructor(private spinner: NgxSpinnerService,private route: ActivatedRoute,private localeService: BsLocaleService,private _fb: FormBuilder, private router:Router,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { }
   public solicitud;
   public solicitantes;
   public tipos;
@@ -88,8 +89,10 @@ export class ActivacionComponent implements OnInit {
   
 
   activar_solicitud(solicitud) {
+    this.spinner.show();
         this.solicitudesservice.activar_solicitud(solicitud,this.id).subscribe(
            data => {
+            this.spinner.hide();
             this.router.navigate(['/solicitudes']);
           },
            error => {

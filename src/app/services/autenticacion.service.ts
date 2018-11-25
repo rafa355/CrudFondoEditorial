@@ -44,10 +44,11 @@ export class AutenticacionService {
   validar_token(){
    const token = this.obtener_token();
     if(token){
-      const valido = this.separar_token(token)
+      /*const valido = this.separar_token(token)
       if(valido){
         return (valido.iss === this.global.url+'login')? true:false; 
-      }
+      }*/
+      return true;
     }
     return false;
   }

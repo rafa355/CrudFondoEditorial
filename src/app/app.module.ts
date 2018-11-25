@@ -79,6 +79,9 @@ import { UsuariosComponent } from './components/planificacion_control/parametros
 import { RegistroUsuarioComponent } from './components/planificacion_control/parametros/usuarios/registro-usuario/registro-usuario.component';
 import { UsuariosService } from './services/usuarios.service';
 import { EdicionDisenadoresComponent } from './components/planificacion_control/parametros/disenadores/edicion-disenadores/edicion-disenadores.component';
+import { DiagramacionComponent } from './components/template/mainpanel/diagramacion/diagramacion.component';
+import { PreliminarComponent } from './components/template/mainpanel/preliminar/preliminar.component';
+import { PublicacionComponent } from './components/template/mainpanel/publicacion/publicacion.component';
 
 
 @NgModule({
@@ -112,6 +115,9 @@ import { EdicionDisenadoresComponent } from './components/planificacion_control/
     UsuariosComponent,
     RegistroUsuarioComponent,
     EdicionDisenadoresComponent,
+    DiagramacionComponent,
+    PreliminarComponent,
+    PublicacionComponent,
   ],
   imports: [
     BrowserModule,

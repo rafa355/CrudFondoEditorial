@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Proyecto } from '../../../../models/proyecto';
 
 @Component({
   selector: 'app-etapas-proyecto',

@@ -17,7 +17,7 @@
             <a (click)="Modal(iniciar)" style="cursor: pointer;margin-right: 10px">
                 <div *ngIf="!this.etapa_preliminar.estado" class="text-center" style="margin-top:15px"><span class="fa fa-power-off fa-2x m-t-md-10"></span> <span style="font-size:20px"> Iniciar Etapa</span> </div>
             </a>
-            <div *ngIf="this.etapa_preliminar.estado == 1" class="pull-left" (click)="Modal(finalizar)" style="cursor: pointer;"><span class="fa fa-power-off  "></span> Finalizar Etapa</div><br><br>
+            <div *ngIf="this.etapa_preliminar.estado == 1 && adjuntos_preliminar.length > 0" class="pull-left" (click)="Modal(finalizar)" style="cursor: pointer;"><span class="fa fa-power-off  "></span> Finalizar Etapa</div><br><br>
             <div *ngIf="this.etapa_preliminar.estado == 1" class="pull-left" (click)="Modal(preliminar)" style="cursor: pointer;"><span class="fa fa-plus"></span> Añadir adjunto</div>
             <div *ngFor="let adjunto of adjuntos_preliminar">
                 <br>
@@ -58,7 +58,7 @@
 <div class="col-md-6 col-sm-6">
     <div class="widget stats-widget">
         <footer class="widget-footer bg-warning" [ngSwitch]="this.etapa_diagramacion.estado">
-            <span style="font-size:20px">Diagramacion y Revision</span>
+            <span style="font-size:20px">Diseño/Diagramación y Revisión</span>
             <span *ngSwitchCase="1" class="label label-warning pull-right" style="font-size:20px">En Diagramado</span>
             <span *ngSwitchCase="2" class="label label-danger pull-right" style="font-size:20px">Finalizada</span>
             <span *ngSwitchCase="3" class="label label-success pull-right" style="font-size:20px">En Revision</span>
@@ -71,7 +71,7 @@
         </footer>
         <div class="widget-body clearfix" style="min-height: 160px;">
             <div class="col-md-12">
-                <div *ngIf="this.etapa_diagramacion.estado == 1" class="pull-left" (click)="Modal(finalizar)" style="cursor: pointer;"><span class="fa fa-power-off  "></span> Finalizar Etapa</div><br><br>
+                <div *ngIf="this.etapa_diagramacion.estado == 1 && adjuntos_diagramacion.length > 2" class="pull-left" (click)="Modal(finalizar)" style="cursor: pointer;"><span class="fa fa-power-off  "></span> Finalizar Etapa</div><br><br>
                 <div *ngIf="this.etapa_diagramacion.estado == 1" class="pull-left" (click)="Modal(preliminar)" style="cursor: pointer;"><span class="fa fa-plus"></span> Añadir adjunto</div>
             </div>
             <div>
@@ -83,7 +83,7 @@
                     <h3>Revisado</h3>
                 </div>
             </div>
-            <div *ngFor="let adjunto of adjuntos_diagramacion ;let i = index;let ultimo = first;let par=even; let impar=odd;">
+            <div *ngFor="let adjunto of adjuntos_diagramacion ;let i = index; let ultimo = first;let par=even; let impar=odd;">
                 <br>
                 <div *ngIf="adjunto.status == 1" class="col-md-12">
                     <div class="widget-body text-center">
@@ -112,7 +112,12 @@
                         </div>
                     </div>
                 </div>
-                <div *ngIf="adjunto.status == 2" class="widget col-md-5" style="height: 170px">
+                <div *ngIf="adjunto.status == 2" class="widget col-md-5" style="height: 170px;overflow:auto">
+                    <h1 *ngIf="(adjuntos_diagramacion.length)%2 == 0;else contadora" style="position:absolute;z-index:10;top:60px">{{((adjuntos_diagramacion.length)/2) - ((i)/2) }}</h1>
+                    <ng-template #contadora>
+                        <h1 style="position:absolute;z-index:10;top:60px">{{((adjuntos_diagramacion.length + 1)/2) - ((i+ 1)/2) }}</h1>
+                    </ng-template>
+
                     <div class="widget-body text-center">
                         <div>
                             <a href="{{this.url}}descargar/{{adjunto.id}}" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
@@ -139,8 +144,9 @@
                         </div>
                     </div>
                 </div>
-                <div *ngIf="adjunto.status == 2" class="col-md-2 text-center" style="height: 170px"><span class="fa fa-arrow-right fa-2x" style="margin-top: 80px"></span></div>
-                <div *ngIf="adjunto.status == 3" class="widget col-md-5 pull-right" style="height: 170px">
+                <div *ngIf="adjunto.status == 2" class="col-md-2 text-center" style="height: 170px;overflow:auto"><span class="fa fa-arrow-right fa-2x" style="margin-top: 80px"></span></div>
+                <div *ngIf="adjunto.status == 3" class="widget col-md-5 pull-right" style="height: 170px;overflow:auto">
+
                     <div class="widget-body text-center">
                         <div>
                             <a href="{{this.url}}descargar/{{adjunto.id}}" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
@@ -238,11 +244,11 @@
         <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
             <div class="form-group col-md-10 col-md-offset-1">
                 <label>Ubicacion</label>
-                <input type="file" (change)="onSelected($event.target.files)" multiple>
+                <input type="file" formControlName="ubicacion" (change)="onSelected($event.target.files)" multiple required>
             </div>
             <div class="form-group col-md-10 col-md-offset-1">
                 <label>Comentario</label>
-                <textarea class="form-control" formControlName="comentario" id="" cols="30" rows="10"></textarea>
+                <textarea class="form-control" formControlName="comentario" id="" cols="30" rows="10" required></textarea>
             </div>
             <div class="col-xs-12">
                 <div class="form-group text-center">

@@ -34,6 +34,7 @@ export class EtapasComponent implements OnInit {
   comentario: any;
   archivo: any;
   adjunto_id: any;
+  public contador = 0;
   public notificacion;
   public fecha;
   public etapa_preliminar:any={estado:'',transcurrido:'',estimado:''};

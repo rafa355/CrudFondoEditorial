@@ -41,7 +41,7 @@
                                                     <div class="col-lg-6 col-md-6">
                                                         <h1 *ngIf="this.solicitud.publicacion == 'si';else no_publicacion">Proyecto</h1>
                                                         <ng-template #no_publicacion>
-                                                            <h1 class="h3 title-form">Subproyectos</h1>
+                                                            <h1 class="h3 title-form">Proyectos</h1>
                                                         </ng-template>
                                                     </div>
                                                 </div>
@@ -49,48 +49,57 @@
                                             <div formArrayName="proyectos">
                                                 <div *ngFor="let Proyecto of formData.controls; let i=index" class="panel panel-default">
                                                     <div *ngIf="this.solicitud.publicacion != 'si'" class="panel-heading">
-                                                        <span>SubProyecto {{i + 1}} de {{this.solicitud.nombre}}</span>
+                                                        <span>Proyecto {{i + 1}} de {{this.solicitud.nombre}}</span>
                                                         <span class="fa fa-close pull-right" *ngIf="myForm.controls.proyectos.controls.length > 1" (click)="removeLanguage(i)"></span>
                                                     </div>
                                                     <div class="panel-body" [formGroupName]="i">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group col-xs-6">
-                                                                <label>Periodicidad</label>
-                                                                <select formControlName="periodico" class="form-control" required>
-                                                                                <option  value="" selected disabled hidden>Seleccionar</option>
-                                                                                <option value="SI">SI</option>
-                                                                                <option value="NO">NO</option>
-                                                                            </select>
-                                                            </div>
-                                                            <div class="form-group col-xs-6">
-                                                                <label *ngIf="this.solicitud.publicacion == 'si';else no_publicacion">Tipo de Proyecto</label>
-                                                                <ng-template #no_publicacion>
-                                                                    <label> Tipo de Subproyecto</label>
-                                                                </ng-template>
-                                                                <select formControlName="proyecto_type_id" class="form-control" required>
-                                                                        <option  value="" selected disabled hidden>Seleccionar</option>
-                                                                    <option  *ngFor="let tipo of tipos" value="{{tipo.id}}">{{tipo.nombre}}</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group col-xs-6">
+                                                        <div class="col-md-4">
+
+                                                            <div class="form-group col-xs-12">
                                                                 <label>Nombre de Proyecto</label>
                                                                 <input type="text" class="form-control" formControlName="nombre" required></div>
 
-                                                            <div class="col-xs-6 form-group">
-                                                                <label>Fecha de Entrega Estimada</label>
-                                                                <input type="text" formControlName="tiempo_planificado_total" placeholder="Fecha estimada" class="form-control" bsDatepicker [bsConfig]="bsConfig" required>
-                                                            </div>
-                                                            <div class="form-group col-xs-6">
-                                                                <label>Autor</label>
+                                                            <div class="form-group col-xs-12">
+                                                                <label *ngIf="this.solicitud.publicacion == 'si'; else cliente_proyecto">Autor</label>
+                                                                <ng-template #cliente_proyecto>
+                                                                    <label>Usuario/Cliente</label>
+                                                                </ng-template>
                                                                 <input type="text" class="form-control" formControlName="autor" required></div>
-                                                            <div class="form-group col-xs-6">
+                                                            <div class="form-group col-xs-12">
                                                                 <label>Correo</label>
                                                                 <input type="email" class="form-control" formControlName="correo" required></div>
-                                                            <div class="form-group col-xs-6">
+                                                            <div class="form-group col-xs-12">
                                                                 <label>Telefono</label>
                                                                 <input type="text" class="form-control" formControlName="telefono" required></div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-8">
+                                                            <div class="col-xs-4 form-group">
+                                                                <label>Fecha de inicio</label>
+                                                                <input type="text" disabled class="form-control" required>
+                                                            </div>
+                                                            <div class="col-xs-4 form-group">
+                                                                <label>Fecha de Entrega Estimada</label>
+                                                                <input type="text" formControlName="tiempo_planificado_total" placeholder="Fecha estimada" class="form-control" bsDatepicker [bsConfig]="bsConfig" required>
+                                                            </div>
+                                                            <div class="col-xs-4 form-group">
+                                                                <label>Fecha de Entrega Real</label>
+                                                                <input type="text" class="form-control" disabled required>
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label>Periodicidad</label>
+                                                                <select formControlName="periodico" class="form-control" required>
+                                                                                        <option  value="" selected disabled hidden>Seleccionar</option>
+                                                                                        <option value="SI">SI</option>
+                                                                                        <option value="NO">NO</option>
+                                                                                    </select>
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label>Tipo de Proyecto</label>
+                                                                <select formControlName="proyecto_type_id" class="form-control" required>
+                                                                                <option  value="" selected disabled hidden>Seleccionar</option>
+                                                                            <option  *ngFor="let tipo of tipos" value="{{tipo.id}}">{{tipo.nombre}}</option>
+                                                                        </select>
+                                                            </div>
                                                             <div class="col-md-12 form-group">
                                                                 <label>Descripcion</label>
                                                                 <textarea class="form-control" formControlName="descripcion" id="" cols="30" rows="10" required></textarea>

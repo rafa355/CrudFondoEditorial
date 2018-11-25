@@ -17,28 +17,45 @@
                                 <div class="row">
                                     <div>
                                         <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
-                                            <div class="form-group col-xs-3 col-xs-offset-1">
-                                                <label>Nombre</label>
-                                                <input type="text" class="form-control" formControlName="nombre" required>
+                                            <div class="col-xs-6">
+                                                <div class="form-group col-xs-6">
+                                                    <label>Nombre de la Solicitud</label>
+                                                    <input type="text" class="form-control" formControlName="nombre" required>
+                                                </div>
+
+                                                <div class="form-group col-xs-6">
+                                                    <label>Persona Contacto</label>
+                                                    <input type="text" class="form-control" formControlName="contacto" required>
+                                                </div>
+
+
+                                                <div class="form-group col-xs-6">
+                                                    <label>Usuario/Cliente</label>
+                                                    <select formControlName="solicitante_id" class="form-control" required>
+                                                        <option  value="" selected disabled hidden>Seleccionar</option>
+                                                        <option  *ngFor="let solicitante of solicitantes" value="{{solicitante.id}}">{{solicitante.nombre}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-xs-6">
+                                                    <label>Telefono</label>
+                                                    <input type="text" class="form-control" formControlName="telefono" required>
+                                                </div>
+                                                <div class="form-group col-xs-6">
+                                                    <label>Publicación</label>
+                                                    <select formControlName="publicacion" class="form-control" required>
+                                                            <option  value="" selected disabled hidden>Seleccionar</option>
+                                                            <option  value="si">SI</option>
+                                                            <option  value="no">NO</option>
+                                                        </select>
+                                                </div>
+                                                <div class="form-group col-xs-6">
+                                                    <label>Correo</label>
+                                                    <input type="text" class="form-control" formControlName="correo" required>
+                                                </div>
                                             </div>
-                                            <div class="form-group col-xs-3">
-                                                <label>Solicitante</label>
-                                                <select formControlName="solicitante_id" class="form-control" required>
-                                                    <option  value="" selected disabled hidden>Seleccionar</option>
-                                                    <option  *ngFor="let solicitante of solicitantes" value="{{solicitante.id}}">{{solicitante.nombre}}</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-xs-3">
-                                                <label>Publicación</label>
-                                                <select formControlName="publicacion" class="form-control" required>
-                                                    <option  value="" selected disabled hidden>Seleccionar</option>
-                                                    <option  value="si">SI</option>
-                                                    <option  value="no">NO</option>
-                                                </select>
-                                            </div>
-                                            <div class=" form-group col-xs-9 col-xs-offset-1">
+                                            <div class=" form-group col-xs-6">
                                                 <div class="col-md-12 form-group">
-                                                    <label>Descripcion</label>
+                                                    <label>Descripción de la Solicitud</label>
                                                     <textarea class="form-control" formControlName="descripcion" id="" cols="30" rows="10" required></textarea>
                                                 </div>
                                             </div>

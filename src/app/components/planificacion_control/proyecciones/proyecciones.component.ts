@@ -68,16 +68,15 @@ export class ProyeccionesComponent implements OnInit {
 
   actions: CalendarEventAction[] = [
     {
-      label: '<i class="fa fa-fw fa-envelope" (click)="showChildModal()" style="color:white"></i>',
+      label: '<i class="fa fa-fw fa-envelope white-color" (click)="showChildModal()"></i>',
       onClick: (): void => {
         this.showChildModal();
       }
     },
     {
-      label: '<i class="fa fa-fw fa-times" style="color:white"></i>',
+      label: '<i class="fa fa-fw fa-times white-color" ></i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter(iEvent => iEvent !== event);
-        this.handleEvent('Deleted', event);
       }
     }
   ];
@@ -94,6 +93,7 @@ export class ProyeccionesComponent implements OnInit {
   ngOnInit() {
     this.myForm = this._fb.group({
       correo: [''],
+      asunto: [''],
       mensaje: [''],
       });
     this.ObtenerSolicitudes();
@@ -120,14 +120,10 @@ export class ProyeccionesComponent implements OnInit {
   }: CalendarEventTimesChangedEvent): void {
     event.start = newStart;
     event.end = newEnd;
-    this.handleEvent('Dropped or resized', event);
     this.refresh.next();
   }
 
-  handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
-  }
+
 
    ObtenerProyecciones() {
     this.ProyeccionesService.obtener_proyecciones().subscribe(
@@ -142,24 +138,24 @@ export class ProyeccionesComponent implements OnInit {
           );}
 
   addEvent(fechas): void {
-    for (var solicitud of fechas) {
+    for (var solicitud of fechas.todas) {
       if(solicitud.status == "pendiente"){
           this.events.push({
-            title: solicitud.nombre+' (Pendiente)',
+            title: solicitud.nombre+' (Pendiente) - Persona de Contacto: '+solicitud.contacto+' - correo: '+solicitud.correo,
             start: startOfDay(new Date()),
             color: colors.red,
           });
           this.refresh.next();
       }else if(solicitud.status == "activa"){
         this.events.push({
-          title: solicitud.nombre,
+          title: solicitud.nombre+' - Persona de Contacto: '+solicitud.contacto+' - correo: '+solicitud.correo,
           start: startOfDay(solicitud.created_at),
           color: colors.green,
         });
         this.refresh.next();
       }else {
         this.events.push({
-          title: 'Proyeccion de solicitud '+solicitud.solicitudes.nombre,
+          title: 'Proyeccion de solicitud '+solicitud.solicitudes.nombre+' - Persona de Contacto: '+solicitud.contacto+' - correo: '+solicitud.correo,
           start: startOfDay(solicitud.fecha_entrega),
           color: colors.blue,
           actions: this.actions

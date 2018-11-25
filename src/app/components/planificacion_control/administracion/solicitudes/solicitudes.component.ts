@@ -70,4 +70,13 @@ export class SolicitudesComponent implements OnInit {
                 this.modalRef = this.modalService.show(template);
               }
              );}
+           //modal para eliminar solicitud
+           ModalContacto(template: TemplateRef<any>,id:string) {
+            this.solicitudesservice.datos_solicitud(id).subscribe(
+              data => {
+                this.solicitud = data;
+                this.id = data.id;
+                this.modalRef = this.modalService.show(template);
+              }
+             );}
 }
