@@ -4,6 +4,7 @@ import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/
 import { ReportesService } from '../../../services/reportes.service';
 import { Http, ResponseContentType } from '@angular/http';
 import { GlobalComponent } from '../global/global.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-reportes',
@@ -13,10 +14,12 @@ import { GlobalComponent } from '../global/global.component';
 
 export class ReportesComponent implements OnInit {
 
-  constructor(private GlobalComponent:GlobalComponent,private http: Http,private reportesservices:ReportesService,private localeService: BsLocaleService,private _fb: FormBuilder) { }
+  constructor(private spinner: NgxSpinnerService,private GlobalComponent:GlobalComponent,private http: Http,private reportesservices:ReportesService,private localeService: BsLocaleService,private _fb: FormBuilder) { }
 
-  public myForm: FormGroup;
-  public solicitudes_2: FormGroup;
+  public solicitudes_gen: FormGroup;
+  public solicitudes_est: FormGroup;
+  public solicitudes_proyectos_gen: FormGroup;
+  public solicitudes_proyectos_est: FormGroup;
 
   //propiedades para el calendario
   locale = 'es';
@@ -27,21 +30,21 @@ export class ReportesComponent implements OnInit {
         //Aplicar idioma español
         this.localeService.use(this.locale);
         this.bsConfig = Object.assign({}, { containerClass: this.colorTheme },{ dateInputFormat: 'YYYY-MM-DD' });
-
-        this.myForm = this._fb.group({
-          rango: [''],
-          });
-          this.solicitudes_2 = this._fb.group({
-            rango: [''],
-            });
-        }
+        //para reportes de solicitudes
+        this.solicitudes_gen = this._fb.group({rango: [''],});
+        this.solicitudes_est = this._fb.group({rango: [''],});
+        this.solicitudes_proyectos_gen = this._fb.group({rango: [''],});
+        this.solicitudes_proyectos_est = this._fb.group({rango: [''],});
+      }
           save(model,tipo) {
             this.generar_reporte(model,tipo);
           }
 
           generar_reporte(rango,tipo) {
+            this.spinner.show();
             this.reportesservices.generar_reporte(rango,tipo).subscribe(
                data => {
+                this.spinner.hide();
                  console.log('generado');
                  this.downloadFile(data,tipo)
               },
@@ -65,12 +68,10 @@ export class ReportesComponent implements OnInit {
 
                 var link = document.createElement('a');
                 link.href = data;
-                if(tipo == 'general'){
-                  link.download = "reporte_general_solicitudes.pdf";
-                }
-                if(tipo == 'solicitudes'){
-                  link.download = "reporte_general_solicitudes_proyectos.pdf";
-                }
+                if(tipo == 'solicitudes_gen'){link.download = "reporte_solicitudes.pdf";}
+                if(tipo == 'solicitudes_est'){link.download = "reporte_solicitudes_estado.pdf";}
+                if(tipo == 'solicitudes_proyectos_gen'){link.download = "reporte_solicitudes_proyectos.pdf";}
+                if(tipo == 'solicitudes_proyectos_est'){link.download = "reporte_solicitudes_proyectos_estado.pdf";}
                 link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
 
                 setTimeout(function () {
