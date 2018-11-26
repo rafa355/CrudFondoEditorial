@@ -127,7 +127,7 @@ export class ProyeccionesProyectoComponent implements OnInit {
           );}
 
   addEvent(fechas): void {
-    for (var proyecto of fechas) {
+    for (var proyecto of fechas.todas) {
         this.events.push({
           title: 'Creación - '+proyecto.nombre,
           start: startOfDay(proyecto.created_at),

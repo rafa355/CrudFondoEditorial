@@ -16,6 +16,8 @@ export class ReportesComponent implements OnInit {
   constructor(private GlobalComponent:GlobalComponent,private http: Http,private reportesservices:ReportesService,private localeService: BsLocaleService,private _fb: FormBuilder) { }
 
   public myForm: FormGroup;
+  public solicitudes_2: FormGroup;
+
   //propiedades para el calendario
   locale = 'es';
   colorTheme = 'theme-dark-blue';
@@ -25,11 +27,13 @@ export class ReportesComponent implements OnInit {
         //Aplicar idioma español
         this.localeService.use(this.locale);
         this.bsConfig = Object.assign({}, { containerClass: this.colorTheme },{ dateInputFormat: 'YYYY-MM-DD' });
-    
+
         this.myForm = this._fb.group({
           rango: [''],
           });
-
+          this.solicitudes_2 = this._fb.group({
+            rango: [''],
+            });
         }
           save(model,tipo) {
             this.generar_reporte(model,tipo);
@@ -39,7 +43,7 @@ export class ReportesComponent implements OnInit {
             this.reportesservices.generar_reporte(rango,tipo).subscribe(
                data => {
                  console.log('generado');
-                 this.downloadFile(data)
+                 this.downloadFile(data,tipo)
               },
                error => {
                  console.error("Error saving food!");
@@ -47,35 +51,36 @@ export class ReportesComponent implements OnInit {
             );
           }
 
-          downloadFile(url) {
-            return this.http
-              .get(this.GlobalComponent.url+'ImprimReporte/'+url, {
-                responseType: ResponseContentType.Blob,
-              })
-              .map(res => {
-                return {
-                  filename: 'reporte_general.pdf',
-                  data: res.blob()
-                };
-              })
-              .subscribe(res => {
-                  console.log('start download:',res);
-                  var url = window.URL.createObjectURL(res.data);
-                  var a = document.createElement('a');
-                  document.body.appendChild(a);
-                  a.setAttribute('style', 'display: none');
-                  a.href = url;
-                  a.download = res.filename;
-                  a.click();
-                  window.URL.revokeObjectURL(url);
-                  a.remove(); // remove the element
-                }, error => {
-                  console.log('download error:', JSON.stringify(error));
-                }, () => {
-                  console.log('Completed file download.')
-                });
+          downloadFile(url,tipo) {
+            this.reportesservices.getPDF(url)
+            .subscribe(x => {
+
+                var newBlob = new Blob([x], { type: "application/pdf" });
+                if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                    window.navigator.msSaveOrOpenBlob(newBlob);
+                    return;
+                }
+
+                const data = window.URL.createObjectURL(newBlob);
+
+                var link = document.createElement('a');
+                link.href = data;
+                if(tipo == 'general'){
+                  link.download = "reporte_general_solicitudes.pdf";
+                }
+                if(tipo == 'solicitudes'){
+                  link.download = "reporte_general_solicitudes_proyectos.pdf";
+                }
+                link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+
+                setTimeout(function () {
+
+                  window.URL.revokeObjectURL(data);
+                }, 100);
+            });
+
           }
-          
+
   }
 
 

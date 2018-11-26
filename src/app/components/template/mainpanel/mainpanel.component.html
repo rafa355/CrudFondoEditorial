@@ -103,26 +103,26 @@
                             <div class="col-md-5 " style="width:100%">
                                 <h3>En Espera</h3>
                             </div>
-                            <app-etapas-proyecto *ngFor="let food of proyectos" [food]="food"></app-etapas-proyecto>
+                            <app-etapas-proyecto *ngFor="let food of proyectos.ninguna" [food]="food"></app-etapas-proyecto>
                             <br><br><br>
                             <div class="wrap"></div>
 
                             <div class="col-md-5 text-default" style="width:100%">
                                 <h3>Preliminar</h3>
                             </div>
-                            <app-preliminar *ngFor="let food of proyectos" [food]="food"></app-preliminar>
+                            <app-preliminar *ngFor="let food of proyectos.preliminar" [food]="food"></app-preliminar>
                             <br><br><br>
                             <div class="wrap"></div>
                             <div class="col-md-5 text-warning" style="width:100%">
                                 <h3>Diseño/Diagramación y Revisión</h3>
                             </div>
-                            <app-diagramacion *ngFor="let food of proyectos" [food]="food"></app-diagramacion>
+                            <app-diagramacion *ngFor="let food of proyectos.diagramacion" [food]="food"></app-diagramacion>
                             <br><br><br>
                             <div class="wrap"></div>
                             <div class="col-md-5 text-success" style="width:100%">
                                 <h3>Publicación</h3>
                             </div>
-                            <app-publicacion *ngFor="let food of proyectos" [food]="food"></app-publicacion>
+                            <app-publicacion *ngFor="let food of proyectos.publicacion" [food]="food"></app-publicacion>
 
                         </div>
                     </div>

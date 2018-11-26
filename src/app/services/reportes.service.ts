@@ -19,4 +19,8 @@ export class ReportesService {
   generar_reporte(rango,tipo) {
     return this.http.post(this.global.url+'GenerarReporte/'+ tipo, rango, httpOptions);
  }
+ public getPDF(url): Observable<Blob> {   
+      return this.http.get(this.global.url+'ImprimReporte/'+url, { responseType: 'blob' });
+  }
+  
 }
