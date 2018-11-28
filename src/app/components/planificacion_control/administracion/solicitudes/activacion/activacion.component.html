@@ -16,22 +16,43 @@
                             <div class="container">
                                 <div class="row">
                                     <div>
-                                        <div class="form-group col-xs-3 col-xs-offset-1">
-                                            <label>Nombre</label>
-                                            <input type="text" class="form-control" value="{{this.solicitud.nombre}}" readonly="readonly">
+                                        <div class="col-xs-6">
+                                            <div class="form-group col-xs-6">
+                                                <label>Nombre de Solicitud</label>
+                                                <input type="text" [(ngModel)]='this.solicitud.nombre' class="form-control" value="{{this.solicitud.nombre}}" disabled>
+                                            </div>
+                                            <div class="form-group col-xs-6">
+                                                <label>Persona Contacto</label>
+                                                <input type="text" [(ngModel)]='this.solicitud.contacto' class="form-control" disabled>
+                                            </div>
+                                            <div class="form-group col-xs-6">
+                                                <label>Usuario/Cliente</label>
+                                                <select [(ngModel)]='this.solicitud.solicitante_id' class="form-control" disabled>
+                                              <option  value="" selected disabled hidden>Seleccionar</option>
+                                              <option  *ngFor="let solicitante of solicitantes" value="{{solicitante.id}}">{{solicitante.nombre}}</option>
+                                          </select>
+                                            </div>
+                                            <div class="form-group col-xs-6">
+                                                <label>Telefono</label>
+                                                <input type="text" [(ngModel)]='this.solicitud.telefono' class="form-control" disabled>
+                                            </div>
+                                            <div class="form-group col-xs-6">
+                                                <label>Publicación</label>
+                                                <select [(ngModel)]='this.solicitud.publicacion' class="form-control" disabled>
+                                              <option  value="" selected disabled hidden>Seleccionar</option>
+                                              <option  value="si">SI</option>
+                                              <option  value="no">NO</option>
+                                          </select>
+                                            </div>
+                                            <div class="form-group col-xs-6">
+                                                <label>Correo</label>
+                                                <input type="text" [(ngModel)]='this.solicitud.correo' class="form-control" disabled>
+                                            </div>
                                         </div>
-                                        <div class="form-group col-xs-4">
-                                            <label>Solicitante</label>
-                                            <input type="text" class="form-control" value="{{this.solicitud.solicitante.nombre}}" readonly="readonly">
-                                        </div>
-                                        <div class="form-group col-xs-3">
-                                            <label>Publicación</label>
-                                            <input type="text" class="form-control" value="{{this.solicitud.publicacion}}" readonly="readonly">
-                                        </div>
-                                        <div class=" form-group col-xs-10 col-xs-offset-1">
+                                        <div class=" form-group col-xs-6">
                                             <div class="col-md-12 form-group">
-                                                <label>Descripcion</label>
-                                                <textarea class="form-control" formControlName="descripcion" id="" cols="30" rows="10" readonly="readonly">{{this.solicitud.descripcion}}</textarea>
+                                                <label>Descripción de la Solicitud</label>
+                                                <textarea class="form-control" [(ngModel)]='this.solicitud.descripcion' id="" cols="30" rows="10" disabled></textarea>
                                             </div>
                                         </div>
                                         <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">

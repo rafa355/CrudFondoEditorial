@@ -46,14 +46,16 @@ export class EtapasComponent implements OnInit {
   public adjuntos_publicacion;
   modalRef: BsModalRef;
   public myForm: FormGroup;
+  public adjunto_revisado: FormGroup;
   public estimado_preliminar: FormGroup;
   public estimado_demas: FormGroup;
+  public publicacion_proyecto: FormGroup;
   public respuestaImagenEnviada;
   public resultadoCarga;
+  public proyecto;
   public etapa_activa = '';
   url = this.GlobalComponent.url;
-
-
+  link = this.url+'descargar/'; 
   //propiedades para el calendario
   locale = 'es';
   colorTheme = 'theme-dark-blue';
@@ -63,7 +65,7 @@ export class EtapasComponent implements OnInit {
       this.MostrarEtapas(this.id);
       this.MostrarProyecto(this.id);
 
-          //Aplicar idioma español
+  //Aplicar idioma español
     this.localeService.use(this.locale);
     this.bsConfig = Object.assign({}, { containerClass: this.colorTheme },{ dateInputFormat: 'YYYY-MM-DD' });
 
@@ -78,12 +80,33 @@ export class EtapasComponent implements OnInit {
           estimado: [''],
           });
 
+          this.adjunto_revisado = this._fb.group({
+            comentario: ['']
+            });
+            this.publicacion_proyecto = this._fb.group({
+              correo: [''],
+              asunto: [''],
+              mensaje: [''],
+              link: [''],
+              adjunto: [''],
+              deposito: [''],
+              isbn: [''],
+              });
+
     }
-    //Metodo para guardar archivo y comentario
-    save(model) {
-      this.comentario = model;
-      this.CargarArchivo(this.archivo)
-    }
+        //Metodo para guardar archivo y comentario
+        save(model) {
+          this.comentario = model;
+          this.CargarArchivo(this.archivo)
+        }
+        //Metodo para guardar archivo y comentario
+        revisar(model) {
+          this.RevisarAdjunto(model)
+        }
+        //Metodo para guardar archivo y comentario
+        publicacion(model) {
+          this.PublicarProyecto(model)
+        }
         //Metodo para activar etapa
         MostrarEtapas(id: string) {
           this.etapasservice.obtener_etapas_y_adjuntos(id).subscribe(
@@ -172,10 +195,34 @@ export class EtapasComponent implements OnInit {
 
         MostrarProyecto(id: string) {
           this.proyectoservice.obtener_proyecto(id).subscribe(
-             data => {  this.maxDate.setDate(data.tiempo_planificado_total);
+             data => {  
+               this.proyecto = data;
+              this.maxDate.setDate(data.tiempo_planificado_total);
              },
              err => console.error(err)
             );
           }
-
+        RevisarAdjunto(modelo){
+          this.spinner.show()
+          this.adjuntosservice.revisar_adjunto(modelo,this.id,this.etapa_activa).subscribe(
+            data => {
+              this.spinner.hide();
+              this.toastr.success('Adjunto Revisado'),this.ngOnInit(),this.modalRef.hide()
+            },
+            err => console.error(err)
+           );
+        }
+        PublicarProyecto(modelo){
+          this.spinner.show()
+          this.proyectoservice.publicar_proyecto(modelo,this.id,this.etapa_activa).subscribe(
+            data => {
+              this.spinner.hide();
+              this.toastr.success('Proyecto Finalizado'),this.ngOnInit(),this.modalRef.hide(),console.log(data)
+            },
+            err => {
+              this.spinner.hide();
+              this.toastr.error('Ha ocurrido un error');
+            }
+           );
+        }
 }

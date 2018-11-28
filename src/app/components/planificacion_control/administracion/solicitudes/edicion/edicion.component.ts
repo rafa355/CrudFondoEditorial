@@ -36,6 +36,7 @@ export class EdicionComponent implements OnInit {
     this.ObtenerSolicitud();
     this.ObservaconForm = this._fb.group({
       observacion: [''],
+      actualizacion: [''],
     });
   }
 

@@ -4217,3 +4217,19 @@ td.mail-right {
 .white-color {
     color: white !important;
 }
+
+.actualizacion {
+    text-align: center;
+    color: black;
+    background: #e2ff06c4;
+}
+
+.con-revision {
+    height: 210px;
+    overflow: auto
+}
+
+.recuadro {
+    height: 170px;
+    overflow: auto
+}

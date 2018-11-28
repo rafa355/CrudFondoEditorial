@@ -1,3 +1,4 @@
+<!-- Preliminar -->
 <div class="col-md-3 col-sm-6">
     <div class="widget stats-widget">
         <footer class="widget-footer bg-primary" [ngSwitch]="this.etapa_preliminar.estado">
@@ -55,6 +56,7 @@
     <!-- .widget -->
 </div>
 
+<!-- Diagramación -->
 <div class="col-md-6 col-sm-6">
     <div class="widget stats-widget">
         <footer class="widget-footer bg-warning" [ngSwitch]="this.etapa_diagramacion.estado">
@@ -73,6 +75,7 @@
             <div class="col-md-12">
                 <div *ngIf="this.etapa_diagramacion.estado == 1 && adjuntos_diagramacion.length > 2" class="pull-left" (click)="Modal(finalizar)" style="cursor: pointer;"><span class="fa fa-power-off  "></span> Finalizar Etapa</div><br><br>
                 <div *ngIf="this.etapa_diagramacion.estado == 1" class="pull-left" (click)="Modal(preliminar)" style="cursor: pointer;"><span class="fa fa-plus"></span> Añadir adjunto</div>
+                <div *ngIf="this.etapa_diagramacion.estado == 3 && adjuntos_diagramacion.length > 1" class="pull-left fa-2x" (click)="Modal(revisado)" style="cursor: pointer;"><span class="fa fa-check-square-o text-success"></span> Revisado</div>
             </div>
             <div>
                 <div class="col-md-5 text-center text-warning">
@@ -112,7 +115,7 @@
                         </div>
                     </div>
                 </div>
-                <div *ngIf="adjunto.status == 2" class="widget col-md-5" style="height: 170px;overflow:auto">
+                <div *ngIf="adjunto.status == 2" class="widget col-md-5 recuadro">
                     <h1 *ngIf="(adjuntos_diagramacion.length)%2 == 0;else contadora" style="position:absolute;z-index:10;top:60px">{{((adjuntos_diagramacion.length)/2) - ((i)/2) }}</h1>
                     <ng-template #contadora>
                         <h1 style="position:absolute;z-index:10;top:60px">{{((adjuntos_diagramacion.length + 1)/2) - ((i+ 1)/2) }}</h1>
@@ -195,11 +198,13 @@
                 <ng-template #c_fecha> <span>Sin definir</span> </ng-template>
                 </span>
             </div>
-
-
         </footer>
         <div class="widget-body clearfix" style="min-height: 160px;">
-            <div *ngIf="this.etapa_publicacion.estado == 1" class="pull-left" (click)="Modal(finalizar)" style="cursor: pointer;"><span class="fa fa-power-off  "></span> Finalizar Etapa</div><br><br>
+            <div *ngIf="this.etapa_publicacion.estado == 1 && this.proyecto.solicitudes.publicacion == 'si';else no_publicacion" class="pull-left" (click)="Modal(publicar_proyecto)" style="cursor: pointer;"><span class="fa fa-power-off  "></span> Finalizar Etapa</div>
+            <ng-template #no_publicacion>
+                <div class="pull-left" (click)="Modal(publicar_otros)" style="cursor: pointer;"><span class="fa fa-power-off  "></span> Finalizar Etapa</div>
+            </ng-template>
+            <br><br>
             <div *ngFor="let adjunto of adjuntos_publicacion">
                 <br>
                 <div class="widget">
@@ -243,7 +248,7 @@
     <div class="modal-body">
         <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
             <div class="form-group col-md-10 col-md-offset-1">
-                <label>Ubicacion</label>
+                <label>Ubicación</label>
                 <input type="file" formControlName="ubicacion" (change)="onSelected($event.target.files)" multiple required>
             </div>
             <div class="form-group col-md-10 col-md-offset-1">
@@ -263,30 +268,26 @@
     </div>
 </ng-template>
 
-<ng-template #finalizar>
+<ng-template #revisado>
     <div class="modal-header">
-        <h4 class="modal-title text-center">Finalizacion de Etapa</h4>
+        <h4 class="modal-title text-center">Revisión de Adjunto</h4>
     </div>
     <div class="modal-body">
-        <div class="form-group col-md-12 ">
-            <span class="text-center">Una vez finalizada la etapa comenzará la siguiente, no se podra volver a reactivar la etapa. <br><br> Desea finalizar esta etapa?</span>
-        </div>
-        <form [formGroup]="estimado_demas" novalidate (ngSubmit)="FinalizarEtapa(estimado_demas.value)">
-            <div class="col-xs-12 col-12 col-md-12 form-group text-center">
-                <label>Fecha de Entrega Estimada</label>
-                <input formControlName="estimado" type="text" placeholder="Fecha Estimada" class="form-control" bsDatepicker [bsConfig]="bsConfig" [minDate]="minDate" [maxDate]="maxDate">
+        <form [formGroup]="adjunto_revisado" novalidate (ngSubmit)="revisar(adjunto_revisado.value)">
+            <div class="form-group col-md-10 col-md-offset-1">
+                <label>Comentario</label>
+                <textarea class="form-control" formControlName="comentario" id="" cols="30" rows="10" required></textarea>
             </div>
-
             <div class="col-xs-12">
                 <div class="form-group text-center">
-                    <button type="submit " class="btn btn-primary" style="margin-right:50px">Inciar</button>
+                    <button type="submit " class="btn btn-primary" [disabled]="!adjunto_revisado.valid " style="margin-right:50px">Guardar</button>
                     <input type="button" value="Cancelar" class="btn btn-danger cancel" (click)="modalRef.hide()">
                 </div>
             </div>
+            <div class="clearfix "></div>
+            <div class="margin-20">
+            </div>
         </form>
-        <div class="clearfix "></div>
-        <div class="margin-20">
-        </div>
     </div>
 </ng-template>
 
@@ -307,6 +308,116 @@
             <div class="col-xs-12">
                 <div class="form-group text-center">
                     <button type="submit " [disabled]="!estimado_preliminar.valid " class="btn btn-primary" style="margin-right:50px">Inciar</button>
+                    <input type="button" value="Cancelar" class="btn btn-danger cancel" (click)="modalRef.hide()">
+                </div>
+            </div>
+        </form>
+        <div class="clearfix "></div>
+        <div class="margin-20">
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #finalizar>
+    <div class="modal-header">
+        <h4 class="modal-title text-center">Finalizacion de Etapa</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group col-md-12 ">
+            <span class="text-center">Una vez finalizada la etapa comenzará la siguiente, no se podra volver a reactivar la etapa. <br><br> Desea finalizar esta etapa?</span>
+        </div>
+        <form [formGroup]="estimado_demas" novalidate (ngSubmit)="FinalizarEtapa(estimado_demas.value)">
+            <div class="col-xs-12 col-12 col-md-12 form-group text-center">
+                <label>Fecha de Entrega Estimada</label>
+                <input formControlName="estimado" type="text" required placeholder="Fecha Estimada" class="form-control" bsDatepicker [bsConfig]="bsConfig" [minDate]="minDate" [maxDate]="maxDate">
+            </div>
+
+            <div class="col-xs-12">
+                <div class="form-group text-center">
+                    <button type="submit " [disabled]="!estimado_demas.valid " class="btn btn-primary" style="margin-right:50px">Inciar</button>
+                    <input type="button" value="Cancelar" class="btn btn-danger cancel" (click)="modalRef.hide()">
+                </div>
+            </div>
+        </form>
+        <div class="clearfix "></div>
+        <div class="margin-20">
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #publicar_proyecto>
+    <div class="modal-header">
+        <h4 class="modal-title text-center">Publicación de Proyecto</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group col-md-12 ">
+            <span class="text-center">Una vez finalizada la etapa el proyecto finalizará, no se podra volver a manipular el proyecto. <br><br> Desea finalizar esta etapa?</span>
+        </div>
+        <form [formGroup]="publicacion_proyecto" novalidate (ngSubmit)="publicacion(publicacion_proyecto.value)">
+            <div class="col-xs-12 col-12 col-md-12 form-group text-center">
+                <label>Correo</label>
+                <input formControlName="correo" type="text" class="form-control" required>
+            </div>
+            <div class="col-xs-12 col-12 col-md-12 form-group text-center">
+                <label>Asunto</label>
+                <input formControlName="asunto" type="text" class="form-control" required>
+            </div>
+            <div class="form-group col-md-12">
+                <label>Mensaje</label>
+                <textarea class="form-control" formControlName="mensaje" id="" cols="30" rows="10" required></textarea>
+            </div>
+            <div class="col-xs-12 col-12 col-md-12 form-group text-center">
+                <label>Link</label>
+                <input formControlName="adjunto" type="text" class="form-control" required>
+            </div>
+            <div class="col-xs-12 col-12 col-md-12 form-group">
+                <div class="col-md-6 form-group text-center">
+                    <label>Deposito Legal</label>
+                    <input formControlName="deposito" type="text" class="form-control" required>
+                </div>
+                <div class="col-md-6 form-group text-center">
+                    <label>ISBN/ISSN</label>
+                    <input formControlName="isbn" type="text" class="form-control" required>
+                </div>
+            </div>
+            <input formControlName="link" type="hidden" [(ngModel)]='this.link' class="form-control" required>
+            <div class="col-xs-12">
+                <div class="form-group text-center">
+                    <button type="submit " class="btn btn-primary" [disabled]="!publicacion_proyecto.valid " style="margin-right:50px">Finalizar</button>
+                    <input type="button" value="Cancelar" class="btn btn-danger cancel" (click)="modalRef.hide()">
+                </div>
+            </div>
+        </form>
+        <div class="clearfix "></div>
+        <div class="margin-20">
+        </div>
+    </div>
+</ng-template>
+<ng-template #publicar_otros>
+    <div class="modal-header">
+        <h4 class="modal-title text-center">Publicación de Proyecto</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group col-md-12 ">
+            <span class="text-center">Una vez finalizada la etapa el proyecto finalizará, no se podra volver a manipular el proyecto. <br><br> Desea finalizar esta etapa?</span>
+        </div>
+        <form [formGroup]="publicacion_proyecto" novalidate (ngSubmit)="publicacion(publicacion_proyecto.value)">
+            <div class="col-xs-12 col-12 col-md-12 form-group text-center">
+                <label>Correo</label>
+                <input formControlName="correo" type="text" class="form-control" required>
+            </div>
+            <div class="col-xs-12 col-12 col-md-12 form-group text-center">
+                <label>Asunto</label>
+                <input formControlName="asunto" type="text" class="form-control" required>
+            </div>
+            <div class="form-group col-md-12">
+                <label>Mensaje</label>
+                <textarea class="form-control" formControlName="mensaje" id="" cols="30" rows="10" required></textarea>
+            </div>
+            <input formControlName="link" type="hidden" [(ngModel)]='this.link' class="form-control" required>
+            <div class="col-xs-12">
+                <div class="form-group text-center">
+                    <button type="submit " class="btn btn-primary" [disabled]="!publicacion_proyecto.valid " style="margin-right:50px">Finalizar</button>
                     <input type="button" value="Cancelar" class="btn btn-danger cancel" (click)="modalRef.hide()">
                 </div>
             </div>

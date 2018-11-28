@@ -29,6 +29,7 @@ public myForm: FormGroup;
     this.ObtenerEncargados();
     this.myForm = this._fb.group({
       observacion: [''],
+      actualizacion: [''],
     });
   }
   onSubmit(form:NgForm){

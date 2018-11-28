@@ -80,6 +80,76 @@
                 <div class="col-md-12">
                     <h1>Reporte de Proyectos</h1><br>
                 </div>
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <div class="widget">
+                            <div class="widget-body text-center">
+                                <h4>Reporte General de Proyectos</h4><br>
+                                <span>Listado general de proyectos, recibidos en el siguiente rango de fechas:</span><br><br>
+                                <form [formGroup]="proyectos_gen" novalidate (ngSubmit)="save(proyectos_gen.value,'proyectos_gen')">
+                                    <div class="col-xs-12 col-12 col-sm-12 col-md-12 form-group">
+                                        <input type="text" class="form-control" placeholder="Rango de Fechas" bsDaterangepicker formControlName="rango" placement="right" [bsConfig]="bsConfig" required />
+                                    </div>
+                                    <br><br>
+                                    <button type="submit " class="btn btn-primary" [disabled]="!proyectos_gen.valid " style="margin-right:50px">GENERAR</button>
+                                    <div class="clearfix "></div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- .widget -->
+                    </div>
+                    <div class="col-md-3">
+                        <div class="widget">
+                            <div class="widget-body text-center">
+                                <h4>Reporte General de Proyectos</h4><br>
+                                <span>Listado general de proyectos, recibidos en el siguiente rango de fechas:</span><br><br>
+                                <form [formGroup]="proyectos_est" novalidate (ngSubmit)="save(proyectos_est.value,'proyectos_est')">
+                                    <div class="col-xs-12 col-12 col-sm-12 col-md-12 form-group">
+                                        <input type="text" class="form-control" placeholder="Rango de Fechas" bsDaterangepicker formControlName="rango" placement="right" [bsConfig]="bsConfig" required />
+                                    </div>
+                                    <br><br>
+                                    <button type="submit " class="btn btn-primary" [disabled]="!proyectos_est.valid " style="margin-right:50px">GENERAR</button>
+                                    <div class="clearfix "></div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- .widget -->
+                    </div>
+                    <div class="col-md-3">
+                        <div class="widget">
+                            <div class="widget-body text-center">
+                                <h4>Reporte General de Proyectos</h4><br>
+                                <span>Listado general de proyectos, recibidos en el siguiente rango de fechas:</span><br><br>
+                                <form [formGroup]="proyectos2_gen" novalidate (ngSubmit)="save(proyectos2_gen.value,'proyectos2_gen')">
+                                    <div class="col-xs-12 col-12 col-sm-12 col-md-12 form-group">
+                                        <input type="text" class="form-control" placeholder="Rango de Fechas" bsDaterangepicker formControlName="rango" placement="left" [bsConfig]="bsConfig" required />
+                                    </div>
+                                    <br><br>
+                                    <button type="submit " class="btn btn-primary" [disabled]="!proyectos2_gen.valid " style="margin-right:50px">GENERAR</button>
+                                    <div class="clearfix "></div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- .widget -->
+                    </div>
+                    <div class="col-md-3">
+                        <div class="widget">
+                            <div class="widget-body text-center">
+                                <h4>Reporte General de Proyectos</h4><br>
+                                <span>Listado general de proyectos, recibidos en el siguiente rango de fechas:</span><br><br>
+                                <form [formGroup]="proyectos3_gen" novalidate (ngSubmit)="save(proyectos3_gen.value,'proyectos3_gen')">
+                                    <div class="col-xs-12 col-12 col-sm-12 col-md-12 form-group">
+                                        <input type="text" class="form-control" placeholder="Rango de Fechas" bsDaterangepicker formControlName="rango" placement="left" [bsConfig]="bsConfig" required />
+                                    </div>
+                                    <br><br>
+                                    <button type="submit " class="btn btn-primary" [disabled]="!proyectos3_gen.valid " style="margin-right:50px">GENERAR</button>
+                                    <div class="clearfix "></div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- .widget -->
+                    </div>
+                </div>
 
             </div>
 

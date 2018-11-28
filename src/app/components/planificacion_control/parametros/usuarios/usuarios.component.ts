@@ -31,6 +31,7 @@ public myForm: FormGroup;
     this.ObtenerUsuarios();
     this.myForm = this._fb.group({
       observacion: [''],
+      actualizacion: [''],
     });
   }
  

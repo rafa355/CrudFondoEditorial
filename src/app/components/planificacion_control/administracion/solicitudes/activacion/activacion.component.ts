@@ -38,21 +38,15 @@ export class ActivacionComponent implements OnInit {
     //Aplicar idioma español
     this.localeService.use(this.locale);
     this.bsConfig = Object.assign({}, { containerClass: this.colorTheme },{ dateInputFormat: 'YYYY-MM-DD' });
-
-    this.myForm = this._fb.group({
-      proyectos: this._fb.array([
-      this.initlanguage(),
-      ])
-      });
   }
   get formData():  FormGroup {return this.myForm.get('proyectos') as FormGroup; }
 
     initlanguage() {
       return this._fb.group({
         nombre: [''],
-        autor: [''],
-        correo: [''],
-        telefono: [''],
+        autor: [this.solicitud.contacto],
+        correo: [this.solicitud.correo],
+        telefono: [this.solicitud.telefono],
         periodico: [''],
         proyecto_type_id: [''],
         descripcion: [''],
@@ -104,7 +98,13 @@ export class ActivacionComponent implements OnInit {
 
       ObtenerSolicitud() {
         this.solicitudesservice.datos_solicitud(this.id).subscribe(
-          data => { this.solicitud = data},
+          data => { this.solicitud = data;
+            this.myForm = this._fb.group({
+              proyectos: this._fb.array([
+              this.initlanguage(),
+              ])
+              });
+          },
           err => console.error(err),      () => console.log(this.solicitud)
          );  }
 

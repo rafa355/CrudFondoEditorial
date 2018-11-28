@@ -28,6 +28,7 @@ export class SolicitudesComponent implements OnInit {
 
     this.myForm = this._fb.group({
       observacion: [''],
+      actualizacion: [''],
     });
   }
 

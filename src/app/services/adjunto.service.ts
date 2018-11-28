@@ -17,11 +17,11 @@ export class AdjuntoService {
   constructor(private http:HttpClient,private global: GlobalComponent) { }
 
   crear_adjunto(adjunto,id: string) {
-    let body = JSON.stringify(adjunto);
-    console.log(adjunto);
    return this.http.post(this.global.url+'CrearAdjunto/'+ id, adjunto, httpOptions);
 }
-
+revisar_adjunto(adjunto,proyecto,etapa) {
+  return this.http.post(this.global.url+'RevisarAdjunto/'+proyecto+'/'+etapa, adjunto, httpOptions);
+}
   obtener_encargados():Observable<any> {
     return this.http.get(this.global.url+'ObtenerEncargados')
 }

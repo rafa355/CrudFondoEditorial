@@ -41,6 +41,7 @@ export class EdicionProyectoComponent implements OnInit {
     this.ObtenerTipos();
     this.ObservaconForm = this._fb.group({
       observacion: [''],
+      actualizacion: [''],
     });
     //Aplicar idioma español
     this.localeService.use(this.locale);

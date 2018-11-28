@@ -42,4 +42,7 @@ eliminar_tipo_proyecto(id: string):Observable<any> {
   generar_reporte():Observable<any> {
     return this.http.get(this.global.url+'ImprimirReporte');
 }
+publicar_proyecto(formulario,proyecto,etapa) {
+  return this.http.post(this.global.url+'PublicarProyecto/'+proyecto+'/'+etapa, formulario, httpOptions);
+}
 }

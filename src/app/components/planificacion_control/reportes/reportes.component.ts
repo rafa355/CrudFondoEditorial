@@ -5,6 +5,7 @@ import { ReportesService } from '../../../services/reportes.service';
 import { Http, ResponseContentType } from '@angular/http';
 import { GlobalComponent } from '../global/global.component';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reportes',
@@ -14,13 +15,18 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 export class ReportesComponent implements OnInit {
 
-  constructor(private spinner: NgxSpinnerService,private GlobalComponent:GlobalComponent,private http: Http,private reportesservices:ReportesService,private localeService: BsLocaleService,private _fb: FormBuilder) { }
+  constructor(private toastr:ToastrService,private spinner: NgxSpinnerService,private GlobalComponent:GlobalComponent,private http: Http,private reportesservices:ReportesService,private localeService: BsLocaleService,private _fb: FormBuilder) { }
 
   public solicitudes_gen: FormGroup;
   public solicitudes_est: FormGroup;
   public solicitudes_proyectos_gen: FormGroup;
   public solicitudes_proyectos_est: FormGroup;
-
+  public proyectos_gen: FormGroup;
+  public proyectos_est: FormGroup;
+  public proyectos2_gen: FormGroup;
+  public proyectos2_est: FormGroup;
+  public proyectos3_gen: FormGroup;
+  public proyectos3_est: FormGroup;
   //propiedades para el calendario
   locale = 'es';
   colorTheme = 'theme-dark-blue';
@@ -35,6 +41,13 @@ export class ReportesComponent implements OnInit {
         this.solicitudes_est = this._fb.group({rango: [''],});
         this.solicitudes_proyectos_gen = this._fb.group({rango: [''],});
         this.solicitudes_proyectos_est = this._fb.group({rango: [''],});
+        //para reporte de proyectos
+        this.proyectos_gen = this._fb.group({rango: [''],});
+        this.proyectos_est = this._fb.group({rango: [''],});
+        this.proyectos2_gen = this._fb.group({rango: [''],});
+        this.proyectos2_est = this._fb.group({rango: [''],});
+        this.proyectos3_gen = this._fb.group({rango: [''],});
+        this.proyectos3_est = this._fb.group({rango: [''],});
       }
           save(model,tipo) {
             this.generar_reporte(model,tipo);
@@ -49,8 +62,8 @@ export class ReportesComponent implements OnInit {
                  this.downloadFile(data,tipo)
               },
                error => {
-                 console.error("Error saving food!");
-               }
+                this.spinner.hide();
+                this.toastr.error('Ha ocurrido un error');               }
             );
           }
 
@@ -72,6 +85,12 @@ export class ReportesComponent implements OnInit {
                 if(tipo == 'solicitudes_est'){link.download = "reporte_solicitudes_estado.pdf";}
                 if(tipo == 'solicitudes_proyectos_gen'){link.download = "reporte_solicitudes_proyectos.pdf";}
                 if(tipo == 'solicitudes_proyectos_est'){link.download = "reporte_solicitudes_proyectos_estado.pdf";}
+                if(tipo == 'proyectos_gen'){link.download = "reporte_general_proyectos.pdf";}
+                if(tipo == 'proyectos_est'){link.download = "reporte_proyectos_estado.pdf";}
+                if(tipo == 'proyectos2_gen'){link.download = "reporte_general_proyectos_2.pdf";}
+                if(tipo == 'proyectos2_est'){link.download = "reporte_proyectos_estado_2.pdf";}
+                if(tipo == 'proyectos3_gen'){link.download = "reporte_general_proyectos_3.pdf";}
+                if(tipo == 'proyectos3_est'){link.download = "reporte_proyectos_estado_3.pdf";}
                 link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
 
                 setTimeout(function () {
