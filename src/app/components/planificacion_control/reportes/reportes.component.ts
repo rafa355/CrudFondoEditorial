@@ -27,6 +27,9 @@ export class ReportesComponent implements OnInit {
   public proyectos2_est: FormGroup;
   public proyectos3_gen: FormGroup;
   public proyectos3_est: FormGroup;
+  public proyectos_listos: FormGroup;
+  public actividades: FormGroup;
+  public mejoras: FormGroup;
   //propiedades para el calendario
   locale = 'es';
   colorTheme = 'theme-dark-blue';
@@ -48,6 +51,9 @@ export class ReportesComponent implements OnInit {
         this.proyectos2_est = this._fb.group({rango: [''],});
         this.proyectos3_gen = this._fb.group({rango: [''],});
         this.proyectos3_est = this._fb.group({rango: [''],});
+        this.proyectos_listos = this._fb.group({rango: [''],});
+        this.actividades = this._fb.group({rango: [''],});
+        this.mejoras = this._fb.group({rango: [''],});
       }
           save(model,tipo) {
             this.generar_reporte(model,tipo);
@@ -91,6 +97,9 @@ export class ReportesComponent implements OnInit {
                 if(tipo == 'proyectos2_est'){link.download = "reporte_proyectos_estado_2.pdf";}
                 if(tipo == 'proyectos3_gen'){link.download = "reporte_general_proyectos_3.pdf";}
                 if(tipo == 'proyectos3_est'){link.download = "reporte_proyectos_estado_3.pdf";}
+                if(tipo == 'proyectos_listos'){link.download = "reporte_proyectos_listos.pdf";}
+                if(tipo == 'actividades'){link.download = "reporte_actividades.pdf";}
+                if(tipo == 'mejoras'){link.download = "reporte_mejoras.pdf";}
                 link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
 
                 setTimeout(function () {

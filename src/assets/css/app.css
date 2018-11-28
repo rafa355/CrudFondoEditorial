@@ -4233,3 +4233,8 @@ td.mail-right {
     height: 170px;
     overflow: auto
 }
+
+.panel-reporte {
+    height: 350px;
+    overflow: auto
+}
