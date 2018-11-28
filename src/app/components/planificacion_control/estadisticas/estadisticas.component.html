@@ -1,15 +1,204 @@
 <div class="wrap">
     <section class="app-content">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="widget">
-                    <header class="widget-header">
-                        <h4 class="widget-title">Categorical Chart</h4>
+            <div class="col-md-12">
+                <div class="col-md-3 pull-right">
+                    <div class="widget">
+                        <div class="widget-body text-center">
+                            <h4>Periodo de Gráficas</h4><br>
+                            <form [formGroup]="periodo_graficas" novalidate (ngSubmit)="save(periodo_graficas.value)">
+                                <div class="col-xs-12 col-12 col-sm-12 col-md-12 form-group">
+                                    <input type="text" class="form-control" placeholder="Rango de Fechas" bsDaterangepicker formControlName="rango" placement="left" [bsConfig]="bsConfig" required />
+                                </div>
+                                <br><br>
+                                <button type="submit " class="btn btn-primary" [disabled]="!periodo_graficas.valid " style="margin-right:50px">GENERAR</button>
+                                <div class="clearfix "></div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- .widget -->
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h1>Gráficas de Solicitudes</h1>
+            </div>
+            <div class="col-md-4">
+                <div class="widget ">
+                    <header class="widget-header ">
+                        <h4 class="widget-title ">Solicitudes por Usuario/Cliente</h4>
                     </header>
                     <!-- .widget-header -->
-                    <hr class="widget-separator">
-                    <div class="widget-body" style="display: flex; overflow: hidden;">
-                        <ngx-charts-pie-chart [scheme]="colorScheme" [view]="view" [results]="single" [legend]="showLegend" [explodeSlices]="explodeSlices" [labels]="showLabels" [doughnut]="doughnut" [gradient]="gradient">
+                    <hr class="widget-separator ">
+                    <div class="widget-body " style="display: flex; overflow: hidden; ">
+                        <ngx-charts-pie-chart [view]="view " [results]="grafica_solicitudes_usuario_cliente " [legend]="showLegend " [explodeSlices]="explodeSlices " [labels]="showLabels " [doughnut]="doughnut " [gradient]="gradient ">
+                        </ngx-charts-pie-chart>
+                    </div>
+                    <!-- .widget-body -->
+                </div>
+                <!-- .widget -->
+            </div>
+            <div class="col-md-4">
+                <div class="widget ">
+                    <header class="widget-header ">
+                        <h4 class="widget-title ">Solicitudes por Usuario</h4>
+                    </header>
+                    <!-- .widget-header -->
+                    <hr class="widget-separator ">
+                    <div class="widget-body " style="display: flex; overflow: hidden; ">
+                        <ngx-charts-pie-chart [view]="view " [results]="grafica_solicitudes_usuario" [legend]="showLegend " [explodeSlices]="explodeSlices " [labels]="showLabels " [doughnut]="doughnut " [gradient]="gradient ">
+                        </ngx-charts-pie-chart>
+                    </div>
+                    <!-- .widget-body -->
+                </div>
+                <!-- .widget -->
+            </div>
+            <div class="col-md-4">
+                <div class="widget ">
+                    <header class="widget-header ">
+                        <h4 class="widget-title ">Solicitudes por Cliente</h4>
+                    </header>
+                    <!-- .widget-header -->
+                    <hr class="widget-separator ">
+                    <div class="widget-body " style="display: flex; overflow: hidden; ">
+                        <ngx-charts-pie-chart [view]="view " [results]="grafica_solicitudes_cliente " [legend]="showLegend " [explodeSlices]="explodeSlices " [labels]="showLabels " [doughnut]="doughnut " [gradient]="gradient ">
+                        </ngx-charts-pie-chart>
+                    </div>
+                    <!-- .widget-body -->
+                </div>
+                <!-- .widget -->
+            </div>
+            <div class="col-md-4">
+                <div class="widget ">
+                    <header class="widget-header ">
+                        <h4 class="widget-title ">Solicitudes por Estado</h4>
+                    </header>
+                    <!-- .widget-header -->
+                    <hr class="widget-separator ">
+                    <div class="widget-body " style="display: flex; overflow: hidden; ">
+                        <ngx-charts-pie-chart [view]="view " [results]="grafica_solicitudes_estado" [legend]="showLegend " [explodeSlices]="explodeSlices " [labels]="showLabels " [doughnut]="doughnut " [gradient]="gradient ">
+                        </ngx-charts-pie-chart>
+                    </div>
+                    <!-- .widget-body -->
+                </div>
+                <!-- .widget -->
+            </div>
+            <div class="col-md-4">
+                <div class="widget ">
+                    <header class="widget-header ">
+                        <h4 class="widget-title ">Solicitudes por Tipo de Solicitud</h4>
+                    </header>
+                    <!-- .widget-header -->
+                    <hr class="widget-separator ">
+                    <div class="widget-body " style="display: flex; overflow: hidden; ">
+                        <ngx-charts-pie-chart [view]="view " [results]="grafica_solicitudes_tipo" [legend]="showLegend " [explodeSlices]="explodeSlices " [labels]="showLabels " [doughnut]="doughnut " [gradient]="gradient ">
+                        </ngx-charts-pie-chart>
+                    </div>
+                    <!-- .widget-body -->
+                </div>
+                <!-- .widget -->
+            </div>
+            <div class="col-md-12">
+                <h1>Gráficas de Proyectos</h1>
+            </div>
+            <div class="col-md-4">
+                <div class="widget ">
+                    <header class="widget-header ">
+                        <h4 class="widget-title ">Proyectos por Usuario/Cliente</h4>
+                    </header>
+                    <!-- .widget-header -->
+                    <hr class="widget-separator ">
+                    <div class="widget-body " style="display: flex; overflow: hidden; ">
+                        <ngx-charts-pie-chart [view]="view " [results]="grafica_proyectos_usuario_cliente" [legend]="showLegend " [explodeSlices]="explodeSlices " [labels]="showLabels " [doughnut]="doughnut " [gradient]="gradient ">
+                        </ngx-charts-pie-chart>
+                    </div>
+                    <!-- .widget-body -->
+                </div>
+                <!-- .widget -->
+            </div>
+            <div class="col-md-4">
+                <div class="widget ">
+                    <header class="widget-header ">
+                        <h4 class="widget-title ">Proyectos por Usuario</h4>
+                    </header>
+                    <!-- .widget-header -->
+                    <hr class="widget-separator ">
+                    <div class="widget-body " style="display: flex; overflow: hidden; ">
+                        <ngx-charts-pie-chart [view]="view " [results]="grafica_proyectos_usuario" [legend]="showLegend " [explodeSlices]="explodeSlices " [labels]="showLabels " [doughnut]="doughnut " [gradient]="gradient ">
+                        </ngx-charts-pie-chart>
+                    </div>
+                    <!-- .widget-body -->
+                </div>
+                <!-- .widget -->
+            </div>
+            <div class="col-md-4">
+                <div class="widget ">
+                    <header class="widget-header ">
+                        <h4 class="widget-title ">Proyectos por Cliente</h4>
+                    </header>
+                    <!-- .widget-header -->
+                    <hr class="widget-separator ">
+                    <div class="widget-body " style="display: flex; overflow: hidden; ">
+                        <ngx-charts-pie-chart [view]="view " [results]="grafica_proyectos_cliente" [legend]="showLegend " [explodeSlices]="explodeSlices " [labels]="showLabels " [doughnut]="doughnut " [gradient]="gradient ">
+                        </ngx-charts-pie-chart>
+                    </div>
+                    <!-- .widget-body -->
+                </div>
+                <!-- .widget -->
+            </div>
+            <div class="col-md-4">
+                <div class="widget ">
+                    <header class="widget-header ">
+                        <h4 class="widget-title ">Proyectos por Estado</h4>
+                    </header>
+                    <!-- .widget-header -->
+                    <hr class="widget-separator ">
+                    <div class="widget-body " style="display: flex; overflow: hidden; ">
+                        <ngx-charts-pie-chart [view]="view " [results]="grafica_proyectos_estado" [legend]="showLegend " [explodeSlices]="explodeSlices " [labels]="showLabels " [doughnut]="doughnut " [gradient]="gradient ">
+                        </ngx-charts-pie-chart>
+                    </div>
+                    <!-- .widget-body -->
+                </div>
+                <!-- .widget -->
+            </div>
+            <div class="col-md-4">
+                <div class="widget ">
+                    <header class="widget-header ">
+                        <h4 class="widget-title ">Proyectos por Tipos de Proyecto</h4>
+                    </header>
+                    <!-- .widget-header -->
+                    <hr class="widget-separator ">
+                    <div class="widget-body " style="display: flex; overflow: hidden; ">
+                        <ngx-charts-pie-chart [view]="view " [results]="grafica_proyectos_tipo" [legend]="showLegend " [explodeSlices]="explodeSlices " [labels]="showLabels " [doughnut]="doughnut " [gradient]="gradient ">
+                        </ngx-charts-pie-chart>
+                    </div>
+                    <!-- .widget-body -->
+                </div>
+                <!-- .widget -->
+            </div>
+            <div class="col-md-4">
+                <div class="widget ">
+                    <header class="widget-header ">
+                        <h4 class="widget-title ">Proyectos por Diseñador</h4>
+                    </header>
+                    <!-- .widget-header -->
+                    <hr class="widget-separator ">
+                    <div class="widget-body " style="display: flex; overflow: hidden; ">
+                        <ngx-charts-pie-chart [view]="view " [results]="grafica_proyectos_disenador" [legend]="showLegend " [explodeSlices]="explodeSlices " [labels]="showLabels " [doughnut]="doughnut " [gradient]="gradient ">
+                        </ngx-charts-pie-chart>
+                    </div>
+                    <!-- .widget-body -->
+                </div>
+                <!-- .widget -->
+            </div>
+            <div class="col-md-4">
+                <div class="widget ">
+                    <header class="widget-header ">
+                        <h4 class="widget-title ">Proyectos por Autor</h4>
+                    </header>
+                    <!-- .widget-header -->
+                    <hr class="widget-separator ">
+                    <div class="widget-body " style="display: flex; overflow: hidden; ">
+                        <ngx-charts-pie-chart [view]="view " [results]="grafica_proyectos_autor" [legend]="showLegend " [explodeSlices]="explodeSlices " [labels]="showLabels " [doughnut]="doughnut " [gradient]="gradient ">
                         </ngx-charts-pie-chart>
                     </div>
                     <!-- .widget-body -->
@@ -17,8 +206,6 @@
                 <!-- .widget -->
             </div>
             <!-- END column -->
-
-
         </div>
         <!-- END row -->
     </section>

@@ -13,12 +13,13 @@ const httpOptions = {
 export class ContadorService {
 
   constructor(private http:HttpClient,private global: GlobalComponent) { }
-  obtener_contadores() {
+  obtener_contadores(formulario) {
     return Observable.forkJoin(
-      this.http.get(this.global.url+'ProduccionTotal'),
-      this.http.get(this.global.url+'EnPreliminar'),
-      this.http.get(this.global.url+'EnDiagramacion'),
-      this.http.get(this.global.url+'EnPublicacion'),
+      this.http.post(this.global.url+'SolicitudesEstado', formulario, httpOptions),
+      this.http.post(this.global.url+'SolicitudesUsuarioCliente', formulario, httpOptions),
+      this.http.post(this.global.url+'SolicitudesTipo', formulario, httpOptions),
+      this.http.post(this.global.url+'ProyectosUsuarioCliente', formulario, httpOptions),
+      this.http.post(this.global.url+'ProyectosGenerales', formulario, httpOptions),
     );
 }
 }
