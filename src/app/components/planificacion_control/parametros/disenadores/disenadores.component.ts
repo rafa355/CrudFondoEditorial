@@ -4,6 +4,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-disenadores',
@@ -24,7 +25,7 @@ public notificacion ;
 public id ;
 public myForm: FormGroup;
 
-  constructor(private _fb: FormBuilder,private toastr:ToastrService,private encargadoservice:EncargadoService,private modalService: BsModalService) { }
+  constructor(private _fb: FormBuilder,private spinner: NgxSpinnerService,private toastr:ToastrService,private encargadoservice:EncargadoService,private modalService: BsModalService) { }
   ngOnInit() {
     this.ObtenerEncargados();
     this.myForm = this._fb.group({
@@ -46,10 +47,15 @@ public myForm: FormGroup;
     );  }
 
     EliminarEncargado(encargado,id: string) {
+      this.spinner.show();
       this.encargadoservice.eliminar_encargado(encargado,id).subscribe(
          data => { this.notificacion = data,this.toastr.success('Encargado Eliminado'),this.ngOnInit(),this.modalRef.hide()},
-         err => console.error(err)
-        );}
+         err => {
+          this.spinner.hide();
+          this.toastr.error('Ha ocurrido un error'); 
+         }
+        );
+    }
                //modal para eliminar enacargado
                ModalEliminar(template: TemplateRef<any>,id:string) {
                 this.encargadoservice.obtener_encargado(id).subscribe(

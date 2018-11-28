@@ -141,8 +141,11 @@ agregar_datos_proyectos_autor(datos) {
   return this.grafica_proyectos_autor;
 }
 Contadores(formulario) {
+  this.spinner.show();
     this.contador.obtener_contadores(formulario).subscribe(
         data => {
+          this.spinner.hide();
+          this.toastr.success('Gráficas Generadas'); 
           this.solicitudes_estado = data[0]
           this.solicitudes_usuario_cliente = data[1]
           this.solicitudes_tipo = data[2]
@@ -161,9 +164,11 @@ Contadores(formulario) {
           this.grafica_proyectos_tipo = [...this.agregar_datos_proyectos_tipo(this.proyectos_generales.tipo)];
           this.grafica_proyectos_autor = [...this.agregar_datos_proyectos_autor(this.proyectos_generales.autor)];
           this.grafica_proyectos_disenador = [...this.agregar_datos_proyectos_diseñador(this.proyectos_generales.diseñador)];
-
         },
-        err =>{ console.error(err)}
+        err =>{ 
+          this.spinner.hide();
+          this.toastr.error('Ha ocurrido un error'); 
+        }
       );
     }
     mostrar_graficas(model){

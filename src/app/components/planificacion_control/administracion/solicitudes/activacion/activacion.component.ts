@@ -9,6 +9,7 @@ import { ProyectoService } from '../../../../../services/proyecto.service'
 import { Router } from '@angular/router';
 import { SolicitantesService } from '../../../../../services/solicitantes.service'
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -18,7 +19,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class ActivacionComponent implements OnInit {
 
-  constructor(private spinner: NgxSpinnerService,private route: ActivatedRoute,private localeService: BsLocaleService,private _fb: FormBuilder, private router:Router,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { }
+  constructor(private toastr:ToastrService,private spinner: NgxSpinnerService,private route: ActivatedRoute,private localeService: BsLocaleService,private _fb: FormBuilder, private router:Router,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { }
   public solicitud;
   public solicitantes;
   public tipos;
@@ -87,11 +88,12 @@ export class ActivacionComponent implements OnInit {
         this.solicitudesservice.activar_solicitud(solicitud,this.id).subscribe(
            data => {
             this.spinner.hide();
+            this.toastr.success('Activación Realizada'); 
             this.router.navigate(['/solicitudes']);
           },
            error => {
-             console.error("Error saving food!");
-             return Observable.throw(error);
+            this.spinner.hide();
+            this.toastr.error('Ha ocurrido un error'); 
            }
         );
       }

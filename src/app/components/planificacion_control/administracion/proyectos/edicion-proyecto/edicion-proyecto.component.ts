@@ -1,4 +1,5 @@
 import { Component, OnInit,TemplateRef } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 import { BsDatepickerConfig, BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { Observable } from 'rxjs';
@@ -19,7 +20,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 })
 export class EdicionProyectoComponent implements OnInit {
 
-  constructor(private modalService: BsModalService,private observacionesservice:ObservacionesService,private spinner: NgxSpinnerService,private route: ActivatedRoute,private localeService: BsLocaleService,private _fb: FormBuilder, private router:Router,private proyectoservice:ProyectoService) { }
+  constructor(private modalService: BsModalService,private observacionesservice:ObservacionesService,private toastr:ToastrService,private spinner: NgxSpinnerService,private route: ActivatedRoute,private localeService: BsLocaleService,private _fb: FormBuilder, private router:Router,private proyectoservice:ProyectoService) { }
   public proyecto;
   public tipos;
   id: any;
@@ -57,13 +58,14 @@ export class EdicionProyectoComponent implements OnInit {
       this.spinner.show();
           this.proyectoservice.editar_proyecto(proyecto,this.id).subscribe(
              data => {
-              this.crear_observacion(observacion),
+              this.toastr.success('Edición Realizada');
               this.spinner.hide();
+              this.crear_observacion(observacion),
               this.router.navigate(['/proyectos']);
             },
              error => {
-               console.error("Error saving food!");
-               return Observable.throw(error);
+              this.spinner.hide();
+              this.toastr.error('Ha ocurrido un error'); 
              }
           );
      }
@@ -97,11 +99,9 @@ export class EdicionProyectoComponent implements OnInit {
                      this.observacionesservice.crear_observacion_proyecto(observacion,this.id).subscribe(
                        data => {
                          this.modalRef.hide();
-                         console.log('comentario creado');
-                      },
+                        },
                        error => {
-                         console.error("Error saving food!");
-                         return Observable.throw(error);
+                        this.toastr.error('Ha ocurrido un error'); 
                        }
                     );
                    }

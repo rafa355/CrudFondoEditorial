@@ -167,8 +167,7 @@ export class EtapasComponent implements OnInit {
               },
                error => {
                 this.spinner.hide();
-                 console.error("Error saving food!");
-                 return Observable.throw(error);
+                this.toastr.error('Ha ocurrido un error'); 
                }
             );
           }
@@ -185,7 +184,8 @@ export class EtapasComponent implements OnInit {
               () => console.log(data)
               },
               error => {
-                console.log(<any>error);
+                this.spinner.hide();
+                this.toastr.error('Ha ocurrido un error'); 
               }
             );//FIN DE METODO SUBSCRIBE
           }

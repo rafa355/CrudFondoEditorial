@@ -6,12 +6,12 @@ import { SolicitudesService } from '../../../../../services/solicitudes.service'
 import { SolicitantesService } from '../../../../../services/solicitantes.service'
 import { ProyectoService } from '../../../../../services/proyecto.service'
 import { ObservacionesService } from '../../../../../services/observaciones.service'
-
-import { Observable } from 'rxjs';
 import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+
 @Component({
   selector: 'app-edicion',
   templateUrl: './edicion.component.html',
@@ -19,7 +19,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 })
 export class EdicionComponent implements OnInit {
 
-  constructor(private modalService: BsModalService,private spinner: NgxSpinnerService,private route: ActivatedRoute,private _fb: FormBuilder, private router:Router,private observacionesservice:ObservacionesService,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { }
+  constructor(private modalService: BsModalService,private toastr:ToastrService,private spinner: NgxSpinnerService,private route: ActivatedRoute,private _fb: FormBuilder, private router:Router,private observacionesservice:ObservacionesService,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { }
   public solicitud;
   public formulario;
   id: any;
@@ -28,8 +28,6 @@ export class EdicionComponent implements OnInit {
   public ObservaconForm: FormGroup;
 
   modalRef: BsModalRef;
-
-
   ngOnInit() {
     this.id = this.route.snapshot.params["id"];
     this.ObtenerSolicitantes();
@@ -39,8 +37,7 @@ export class EdicionComponent implements OnInit {
       actualizacion: [''],
     });
   }
-
-      save(model) {
+  save(model) {
         this.editar_solicitud(this.formulario,model);
       }
     ObtenerSolicitantes() {
@@ -54,12 +51,13 @@ export class EdicionComponent implements OnInit {
         this.solicitudesservice.editar_solicitud(solicitud,this.id).subscribe(
            data => {
             this.crear_observacion(observacion),
+            this.toastr.success('Edición Realizada'); 
             this.spinner.hide();
             this.router.navigate(['/solicitudes']);
           },
            error => {
-             console.error("Error saving food!");
-             return Observable.throw(error);
+            this.spinner.hide();
+            this.toastr.error('Ha ocurrido un error'); 
            }
         );
       }
@@ -91,8 +89,7 @@ export class EdicionComponent implements OnInit {
                       console.log('comentario creado');
                    },
                     error => {
-                      console.error("Error saving food!");
-                      return Observable.throw(error);
+                      this.toastr.error('Ha ocurrido un error'); 
                     }
                  );
                 }

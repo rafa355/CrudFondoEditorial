@@ -19,5 +19,10 @@ export class CargararchivoService {
 		const formData = new FormData();
 		formData.append('imagenPropia', Archivo, Archivo.name); 
 		return this.http.post(this.global.url+'CargarImagen/'+ etapa +'/'+ id, formData);
+	}
+	public CargarImagen(Archivo: File,id: string){
+		const formData = new FormData();
+		formData.append('imagenPropia', Archivo, Archivo.name); 
+		return this.http.post(this.global.url+'AsignarImagen/'+ id, formData);
   }
 }

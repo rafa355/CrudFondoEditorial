@@ -2,6 +2,8 @@ import { Component, OnInit,ViewChild,TemplateRef } from '@angular/core';
 import { SolicitudesService } from '../../../services/solicitudes.service'
 import { ProyeccionesService } from '../../../services/proyecciones.service'
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 import {
   startOfDay,
@@ -22,7 +24,6 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView
 } from 'angular-calendar';
-import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 const colors: any = {
@@ -87,7 +88,7 @@ export class ProyeccionesComponent implements OnInit {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private toastr:ToastrService,private _fb: FormBuilder,private solicitudesservice:SolicitudesService,private ProyeccionesService:ProyeccionesService,private modal: NgbModal) {}
+  constructor(private toastr:ToastrService,private spinner: NgxSpinnerService,private _fb: FormBuilder,private solicitudesservice:SolicitudesService,private ProyeccionesService:ProyeccionesService,private modal: NgbModal) {}
   public myForm: FormGroup;
 
   ngOnInit() {
@@ -183,7 +184,8 @@ export class ProyeccionesComponent implements OnInit {
         this.toastr.success('Mensaje Enviado');
       },
        error => {
-         console.error("Error saving food!");
+        this.spinner.hide();
+        this.toastr.error('Ha ocurrido un error'); 
        }
     );
   }

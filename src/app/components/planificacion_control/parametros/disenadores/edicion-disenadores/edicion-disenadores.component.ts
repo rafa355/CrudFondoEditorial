@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-edicion-disenadores',
   templateUrl: './edicion-disenadores.component.html',
@@ -12,7 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class EdicionDisenadoresComponent implements OnInit {
 
-  constructor(private spinner: NgxSpinnerService,private route: ActivatedRoute,private _fb: FormBuilder, private router:Router,private encargadoservice:EncargadoService) { }
+  constructor(private toastr:ToastrService,private spinner: NgxSpinnerService,private route: ActivatedRoute,private _fb: FormBuilder, private router:Router,private encargadoservice:EncargadoService) { }
   public encargado;
   public tipos;
   public myForm: FormGroup;
@@ -34,11 +35,12 @@ export class EdicionDisenadoresComponent implements OnInit {
           this.encargadoservice.editar_encargado(encargado,this.id).subscribe(
              data => {
               this.spinner.hide();
+              this.toastr.success('Edición Realizada'); 
               this.router.navigate(['/diseñadores']);
             },
              error => {
-               console.error("Error saving food!");
-               return Observable.throw(error);
+              this.spinner.hide();
+              this.toastr.error('Ha ocurrido un error'); 
              }
           );
      }

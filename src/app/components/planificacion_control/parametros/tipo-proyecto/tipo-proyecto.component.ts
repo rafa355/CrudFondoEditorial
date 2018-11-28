@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProyectoService } from '../../../../services/proyecto.service'
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-tipo-proyecto',
@@ -18,7 +19,7 @@ export class TipoProyectoComponent implements OnInit {
 };
 
 
-  constructor(private toastr:ToastrService,private tipos_services:ProyectoService) { }
+  constructor(private spinner: NgxSpinnerService,private toastr:ToastrService,private tipos_services:ProyectoService) { }
   public notificacion;
   ngOnInit() {
     this.ObtenerTiposProyecto();
@@ -31,9 +32,13 @@ export class TipoProyectoComponent implements OnInit {
     );  }
 
     EliminarTipoProyecto(id: string) {
+      this.spinner.show();
       this.tipos_services.eliminar_tipo_proyecto(id).subscribe(
          data => { this.notificacion = data,this.toastr.success('Tipo de Proyecto Eliminado'),this.ngOnInit()},
-         err => console.error(err),
+         err => {
+          this.spinner.hide();
+          this.toastr.error('Ha ocurrido un error'); 
+         }
         );}
 
 }

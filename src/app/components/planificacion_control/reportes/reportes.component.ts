@@ -64,7 +64,7 @@ export class ReportesComponent implements OnInit {
             this.reportesservices.generar_reporte(rango,tipo).subscribe(
                data => {
                 this.spinner.hide();
-                 console.log('generado');
+                this.toastr.success('Reporte Generado');
                  this.downloadFile(data,tipo)
               },
                error => {

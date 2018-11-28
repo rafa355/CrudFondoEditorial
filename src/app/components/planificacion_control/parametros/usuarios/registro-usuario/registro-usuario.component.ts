@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { EncargadoService } from 'src/app/services/encargado.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
-
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-registro-usuario',
   templateUrl: './registro-usuario.component.html',
@@ -14,7 +15,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 export class RegistroUsuarioComponent implements OnInit {
 
 
-  constructor(private _fb: FormBuilder, private router:Router,private usuarioservices:UsuariosService) { }
+  constructor(private toastr:ToastrService,private spinner: NgxSpinnerService,private _fb: FormBuilder, private router:Router,private usuarioservices:UsuariosService) { }
   public encargados;
   public tipos;
   public myForm: FormGroup;
@@ -31,14 +32,16 @@ export class RegistroUsuarioComponent implements OnInit {
       this.crear_usuario(model);
     }
 
-         crear_usuario(formulario) {
+    crear_usuario(formulario) {
+          this.spinner.show();
         this.usuarioservices.crear_usuario(formulario).subscribe(
            data => {
+            this.toastr.success('Usuario Creado'); 
             this.router.navigate(['/usuarios']);
           },
            error => {
-             console.error("Error guardando usuario");
-             return Observable.throw(error);
+            this.spinner.hide();
+            this.toastr.error('Ha ocurrido un error'); 
            }
         );
       }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { SolicitantesService } from '../../../../../services/solicitantes.service'
 import { Router } from '@angular/router';
-
-import { Observable } from 'rxjs';
 import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-registro-solicitante',
   templateUrl: './registro-solicitante.component.html',
@@ -11,7 +12,7 @@ import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/
 })
 export class RegistroSolicitanteComponent implements OnInit {
 
-  constructor(private _fb: FormBuilder, private router:Router,private solicitanteServices:SolicitantesService) { }
+  constructor(private toastr:ToastrService,private spinner: NgxSpinnerService,private _fb: FormBuilder, private router:Router,private solicitanteServices:SolicitantesService) { }
   public solicitantes;
   public tipos;
   public myForm: FormGroup;
@@ -27,14 +28,16 @@ export class RegistroSolicitanteComponent implements OnInit {
       this.crear_solicitante(model);
     }
 
-         crear_solicitante(solicitud) {
+      crear_solicitante(solicitud) {
+        this.spinner.show();
         this.solicitanteServices.crear_solicitante(solicitud).subscribe(
            data => {
+            this.toastr.success('Usuario/Cliente Creado'); 
             this.router.navigate(['/solicitantes']);
           },
            error => {
-             console.error("Error saving food!");
-             return Observable.throw(error);
+            this.spinner.hide();
+            this.toastr.error('Ha ocurrido un error'); 
            }
         );
       }

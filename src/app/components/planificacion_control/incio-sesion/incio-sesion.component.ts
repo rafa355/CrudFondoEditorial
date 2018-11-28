@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { AutenticacionService } from './../../../services/autenticacion.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class IncioSesionComponent implements OnInit {
 
-  constructor(private spinner: NgxSpinnerService,private router:Router,private _fb: FormBuilder,private autenticacion:AutenticacionService) { }
+  constructor(private toastr:ToastrService,private spinner: NgxSpinnerService,private router:Router,private _fb: FormBuilder,private autenticacion:AutenticacionService) { }
   public tipos;
   id: any;
 
@@ -29,6 +30,7 @@ export class IncioSesionComponent implements OnInit {
   }
   iniciar_sesion(proyecto) {
     this.spinner.show();
+    this.toastr.success('Sesion Iniciada'); 
         this.autenticacion.iniciar_sesion(proyecto).subscribe(
            data => {
             this.spinner.hide();
@@ -36,7 +38,7 @@ export class IncioSesionComponent implements OnInit {
           },
            error => {
             this.spinner.hide();
-             console.error("Error iniciando sesion!");
+            this.toastr.error('Error Iniciando Sesión'); 
            }
         );
    }

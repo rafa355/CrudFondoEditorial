@@ -2,10 +2,15 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { ProyectoService } from '../../../services/proyecto.service';
 import { EncargadoService } from '../../../services/encargado.service';
+import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';
+import {DomSanitizer} from '@angular/platform-browser';
 
 import { ToastrService } from 'ngx-toastr';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { CargararchivoService } from 'src/app/services/cargararchivo.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { GlobalComponent } from '../global/global.component';
 
 @Component({
   selector: 'app-seguimiento',
@@ -20,12 +25,17 @@ export class SeguimientoComponent implements OnInit {
   tipo: '';
   modalRef: BsModalRef;
 
-  constructor(private route: ActivatedRoute,private proyectoservice: ProyectoService,private encargadoservice: EncargadoService,private toastr:ToastrService,private modalService: BsModalService) {}
+  constructor(private GlobalComponent:GlobalComponent,private sanitizer:DomSanitizer,private spinner: NgxSpinnerService,private enviandoArchivo: CargararchivoService,private _fb: FormBuilder,private route: ActivatedRoute,private proyectoservice: ProyectoService,private encargadoservice: EncargadoService,private toastr:ToastrService,private modalService: BsModalService) {}
+  public myForm: FormGroup;
+  url = this.GlobalComponent.urlImagen;
 
   ngOnInit() {
     this.id = this.route.snapshot.params["id"];
     this.MostrarProyecto(this.id);
     this.mostrar_principal();
+    this.myForm = this._fb.group({
+      ubicacion: [''],
+      });
   }
 
   MostrarProyecto(id: string) {
@@ -34,6 +44,22 @@ export class SeguimientoComponent implements OnInit {
       err => console.error(err)
      ); 
    }
+
+          //Metodo para cargar el archivo
+          public CargarArchivo(files: FileList){
+              this.spinner.show();
+              this.enviandoArchivo.CargarImagen(files[0],this.id).subscribe(
+                data => {
+                  this.spinner.hide();
+                  this.toastr.success('Imagen Cambiada'); 
+                  this.ngOnInit();
+                },
+                error => {
+                  this.spinner.hide();
+                  this.toastr.error('Ha ocurrido un error'); 
+                }
+              );//FIN DE METODO SUBSCRIBE
+            }
 
    Modal_Encargado(template: TemplateRef<any>) {
     this.encargadoservice.obtener_encargados().subscribe(

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-registro-disenadores',
   templateUrl: './registro-disenadores.component.html',
@@ -12,7 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class RegistroDisenadoresComponent implements OnInit {
 
-  constructor(private spinner: NgxSpinnerService,private _fb: FormBuilder, private router:Router,private encargadoservice:EncargadoService) { }
+  constructor(private toastr:ToastrService,private spinner: NgxSpinnerService,private _fb: FormBuilder, private router:Router,private encargadoservice:EncargadoService) { }
   public encargados;
   public tipos;
   public myForm: FormGroup;
@@ -48,12 +49,12 @@ export class RegistroDisenadoresComponent implements OnInit {
         this.encargadoservice.crear_encargado(solicitud).subscribe(
            data => {
             this.spinner.hide();
+            this.toastr.success('Creado con Exito'); 
             this.router.navigate(['/diseñadores']);
           },
            error => {
             this.spinner.hide();
-             console.error("Error saving food!");
-             return Observable.throw(error);
+            this.toastr.error('Ha ocurrido un error'); 
            }
         );
       }

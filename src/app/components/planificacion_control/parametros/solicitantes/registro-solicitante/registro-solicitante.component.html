@@ -7,7 +7,7 @@
                         <header class="widget-header">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
-                                    <h1 class="h3 title-form">Agregar Solicitante</h1>
+                                    <h1 class="h3 title-form">Agregar Usuario/Cliente</h1>
                                 </div>
                             </div>
                         </header>
@@ -18,11 +18,11 @@
                                     <div>
                                         <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
                                             <div class="form-group col-xs-4 col-md-4  col-xs-offset-1 col-md-offset-1">
-                                                <label>Nombre</label>
+                                                <label>Nombre de Usuario/Cliente</label>
                                                 <input type="text" class="form-control" formControlName="nombre" required>
                                             </div>
                                             <div class="form-group col-xs-4 col-md-4">
-                                                <label>Tipo de Solicitante</label>
+                                                <label>Tipo de Usuario/Cliente</label>
                                                 <select formControlName="solicitante_type_id" class="form-control" required>
                                               <option  value="" selected disabled hidden>Seleccionar</option>
                                               <option  value="1">Cliente</option>
@@ -48,5 +48,5 @@
             </div>
         </section>
     </div>
-
 </main>
+<ngx-spinner></ngx-spinner>

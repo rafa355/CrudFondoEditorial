@@ -4,10 +4,8 @@ import { SolicitudesService } from '../../../../services/solicitudes.service'
 import { ToastrService } from 'ngx-toastr';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-
-
-import { Observable } from 'rxjs';
 import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-solicitudes',
   templateUrl: './solicitudes.component.html',
@@ -16,7 +14,7 @@ import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/
 export class SolicitudesComponent implements OnInit {
   modalRef: BsModalRef;
 
-  constructor(private _fb: FormBuilder,private solicitudesservice:SolicitudesService,private toastr:ToastrService,private modalService: BsModalService) { }
+  constructor(private _fb: FormBuilder,private solicitudesservice:SolicitudesService,private spinner: NgxSpinnerService,private toastr:ToastrService,private modalService: BsModalService) { }
   public solicitudes;
   public solicitud ;
   public id ;
@@ -47,9 +45,13 @@ export class SolicitudesComponent implements OnInit {
 
 
       AnularSolicitud(solicitud,id: string) {
+        this.spinner.show();
         this.solicitudesservice.anular_solicitud(solicitud,id).subscribe(
            data => { this.notificacion = data,this.toastr.success('Solicitud Anulada'),this.ngOnInit(),this.modalRef.hide()},
-           err => console.error(err),      () => console.log(this.notificacion)
+           err => {
+            this.spinner.hide();
+            this.toastr.error('Ha ocurrido un error'); 
+           }
           );}
 
         openModal(template: TemplateRef<any>,otro: TemplateRef<any>, id:string) {

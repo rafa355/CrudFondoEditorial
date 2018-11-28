@@ -10,7 +10,21 @@
                         </header>
                         <hr class="widget-separator" />
                         <div class="widget-body clearfix">
-                            <div class="col-md-3"><img src="http://fondoeditorial.uneg.edu.ve/catalogo/portadas/copernico.jpg" alt="" style="height:100px"></div>
+                            <div class="col-md-3">
+                                <img *ngIf="proyecto.imagen;else carga_imagen" src="{{this.url}}{{proyecto.imagen}}" alt="" style="height:250px;">
+                                <ng-template #carga_imagen>
+                                    <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
+                                        <div class="form-group col-md-10 col-md-offset-1">
+                                            <label class="btn-bs-file btn  btn-primary  fa-2x">
+                                                <i class="fa fa-user"></i> Cargar Imagen
+                                                <input type="file" formControlName="ubicacion" (change)="CargarArchivo($event.target.files)" multiple required>
+                                            </label>
+                                        </div>
+                                    </form>
+                                </ng-template>
+
+
+                            </div>
                             <div class="col-md-9">
                                 <h2 class="text-center no-margin">{{proyecto.nombre}}</h2>
                                 <br>
