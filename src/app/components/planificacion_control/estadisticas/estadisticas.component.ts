@@ -119,6 +119,7 @@ agregar_datos_proyectos_estado(datos) {
   this.grafica_proyectos_estado.push({"name": 'Preliminar', "value": datos.preliminar});
   this.grafica_proyectos_estado.push({"name": 'Diagramacion', "value": datos.diagramacion});
   this.grafica_proyectos_estado.push({"name": 'Publicado', "value": datos.publicacion});
+  this.grafica_proyectos_estado.push({"name": 'Finalizados', "value": datos.listos});
   
   return this.grafica_proyectos_estado;
 }

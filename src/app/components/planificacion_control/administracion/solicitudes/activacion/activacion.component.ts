@@ -18,8 +18,14 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./activacion.component.css']
 })
 export class ActivacionComponent implements OnInit {
+  minDate: Date;
+  maxDate: Date;
+  constructor(private toastr:ToastrService,private spinner: NgxSpinnerService,private route: ActivatedRoute,private localeService: BsLocaleService,private _fb: FormBuilder, private router:Router,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { 
+    this.minDate = new Date();
+    this.maxDate = new Date();
 
-  constructor(private toastr:ToastrService,private spinner: NgxSpinnerService,private route: ActivatedRoute,private localeService: BsLocaleService,private _fb: FormBuilder, private router:Router,private solicitudesservice:SolicitudesService,private solicitantesservice:SolicitantesService,private proyectoservice:ProyectoService) { }
+    this.minDate.setDate(this.minDate.getDate());
+  }
   public solicitud;
   public solicitantes;
   public tipos;

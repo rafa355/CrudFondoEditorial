@@ -22,4 +22,7 @@ export class ContadorService {
       this.http.post(this.global.url+'ProyectosGenerales', formulario, httpOptions),
     );
 }
+obtener_contadores_principal() {
+  return this.http.get(this.global.url+'ObtenerContadoresGenerales');
+}
 }

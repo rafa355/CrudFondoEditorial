@@ -20,6 +20,7 @@ export class MainpanelComponent implements OnInit {
    constructor(private contadorservice:ContadorService,private proyectoservice:ProyectoService) {}
    ngOnInit() {
     this.obtener_proyectos();
+    this.Contadores();
   }
  
         obtener_proyectos() {
@@ -29,16 +30,13 @@ export class MainpanelComponent implements OnInit {
           );  }
 
         //Metodo para contar 
-/*Contadores() {
-          this.contadorservice.obtener_contadores().subscribe(
+Contadores() {
+          this.contadorservice.obtener_contadores_principal().subscribe(
               data => {
-                this.total = data[0]
-                this.preliminar = data[1]
-                this.diagramacion = data[2]
-                this.publicacion = data[3]
+                this.total = data
               },
-              err =>{ console.error(err),() => console.log(this.preliminar )}
+              err =>{ console.error(err)}
             );
-          }*/
+          }
 
 }

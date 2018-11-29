@@ -35,7 +35,7 @@
                                             <td>{{food.tiempo_transcurrido}}</td>
                                             <td>{{food.created_at | date:'yyyy-MM-dd'}}</td>
                                             <td>{{food.fecha_estimada}}</td>
-                                            <td *ngIf="food.etapa;else sin_entrega">{{food.etapa}}</td>
+                                            <td *ngIf="food.etapa;else sin_entrega">{{food.tiempo_real_total}}</td>
                                             <ng-template #sin_entrega>
                                                 <td class="text-danger">Sin Entregar</td>
                                             </ng-template>

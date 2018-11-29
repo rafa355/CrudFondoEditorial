@@ -73,12 +73,6 @@ export class ProyeccionesComponent implements OnInit {
       onClick: (): void => {
         this.showChildModal();
       }
-    },
-    {
-      label: '<i class="fa fa-fw fa-times white-color" ></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter(iEvent => iEvent !== event);
-      }
     }
   ];
 

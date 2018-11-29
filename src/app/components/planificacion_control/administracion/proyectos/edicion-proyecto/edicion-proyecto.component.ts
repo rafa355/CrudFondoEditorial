@@ -19,8 +19,14 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   styleUrls: ['./edicion-proyecto.component.css']
 })
 export class EdicionProyectoComponent implements OnInit {
+  minDate: Date;
+  maxDate: Date;
+  constructor(private modalService: BsModalService,private observacionesservice:ObservacionesService,private toastr:ToastrService,private spinner: NgxSpinnerService,private route: ActivatedRoute,private localeService: BsLocaleService,private _fb: FormBuilder, private router:Router,private proyectoservice:ProyectoService) {
+    this.minDate = new Date();
+    this.maxDate = new Date();
 
-  constructor(private modalService: BsModalService,private observacionesservice:ObservacionesService,private toastr:ToastrService,private spinner: NgxSpinnerService,private route: ActivatedRoute,private localeService: BsLocaleService,private _fb: FormBuilder, private router:Router,private proyectoservice:ProyectoService) { }
+    this.minDate.setDate(this.minDate.getDate());
+   }
   public proyecto;
   public tipos;
   id: any;
@@ -81,6 +87,8 @@ export class EdicionProyectoComponent implements OnInit {
                 proyecto_type_id: [this.proyecto.proyecto_type_id],
                 descripcion: [this.proyecto.descripcion],
                 tiempo_planificado_total : [this.proyecto.tiempo_planificado_total],
+                created_at : [this.proyecto.created_at],
+                tiempo_real_total : [this.proyecto.tiempo_real_total],
                 });},
             err => console.error(err),      () => console.log(this.proyecto)
            );

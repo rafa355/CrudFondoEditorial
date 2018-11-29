@@ -200,10 +200,13 @@
             </div>
         </footer>
         <div class="widget-body clearfix" style="min-height: 160px;">
-            <div *ngIf="this.etapa_publicacion.estado == 1 && this.proyecto.solicitudes.publicacion == 'si';else no_publicacion" class="pull-left" (click)="Modal(publicar_proyecto)" style="cursor: pointer;"><span class="fa fa-power-off  "></span> Finalizar Etapa</div>
-            <ng-template #no_publicacion>
-                <div class="pull-left" (click)="Modal(publicar_otros)" style="cursor: pointer;"><span class="fa fa-power-off  "></span> Finalizar Etapa</div>
-            </ng-template>
+            <div *ngIf="this.etapa_publicacion.estado == 1">
+                <div *ngIf="this.proyecto.solicitudes.publicacion == 'si';else no_publicacion" class="pull-left" (click)="Modal(publicar_proyecto)" style="cursor: pointer;"> <span class="fa fa-power-off  "></span> Finalizar Etapa</div>
+                <ng-template #no_publicacion>
+                    <div class="pull-left" (click)="Modal(publicar_otros)" style="cursor: pointer;"><span class="fa fa-power-off  "></span> Finalizar Etapa</div>
+                </ng-template>
+            </div>
+
             <br><br>
             <div *ngFor="let adjunto of adjuntos_publicacion">
                 <br>

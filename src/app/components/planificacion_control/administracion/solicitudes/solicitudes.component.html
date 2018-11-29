@@ -166,6 +166,9 @@
                             <th class="text-center">Nombre</th>
                             <th class="text-center">Descripcion</th>
                             <th class="text-center">Tipo</th>
+                            <th class="text-center">Fecha de Inicio</th>
+                            <th class="text-center">Fecha Estimada</th>
+                            <th class="text-center">Fecha Real</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -173,6 +176,9 @@
                             <td class="text-center" *ngIf="proyecto"><a routerLink="/seguimiento/ {{proyecto.id}}"><button class="btn btn-primary">{{proyecto.nombre}}</button></a></td>
                             <td class="text-center" *ngIf="proyecto">{{proyecto.descripcion}}</td>
                             <td class="text-center" *ngIf="proyecto">{{proyecto.proyectotype.nombre}}</td>
+                            <td class="text-center" *ngIf="proyecto">{{proyecto.created_at}}</td>
+                            <td class="text-center" *ngIf="proyecto">{{proyecto.tiempo_planificado_total}}</td>
+                            <td class="text-center" *ngIf="proyecto">{{proyecto.tiempo_real_total}}</td>
                         </tr>
 
                     </tbody>

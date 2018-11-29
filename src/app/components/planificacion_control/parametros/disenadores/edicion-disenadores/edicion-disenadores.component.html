@@ -16,7 +16,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div>
-                                        <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value)">
+                                        <form [formGroup]="myForm" novalidate>
                                             <div class="form-group col-xs-3 col-md-3  col-xs-offset-1 col-md-offset-1">
                                                 <label>Nombre</label>
                                                 <input type="text" class="form-control" formControlName="nombre" [(ngModel)]='this.encargado.nombre' required>
@@ -32,15 +32,9 @@
                                                 <option  *ngFor="let tipo of tipos" value="{{tipo.id}}">{{tipo.nombre}}</option>
                                             </select>
                                             </div>
-                                            <div class=" form-group col-xs-10 col-xs-offset-1">
-                                                <div class="col-md-12 form-group">
-                                                    <label>Observación/Razón de Edición</label>
-                                                    <textarea class="form-control" formControlName="observacion" id="" cols="30" rows="10" required></textarea>
-                                                </div>
-                                            </div>
                                             <div class="col-xs-12">
                                                 <div class="form-group text-center">
-                                                    <button type="submit " class="btn btn-primary" [disabled]="!myForm.valid " style="margin-right:50px">Guardar</button>
+                                                    <a (click)="ModalObservacion(observacion,myForm.value)" style="cursor: default;"><button type="submit " class="btn btn-primary" [disabled]="!myForm.valid " style="margin-right:50px">Modificar</button></a>
                                                     <a routerLink="/diseñadores">
                                                         <input type="button" value="Cancelar" class="btn btn-danger cancel">
                                                     </a>
@@ -58,4 +52,39 @@
     </div>
 
 </main>
+<ng-template #observacion>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Modificación de Diseñador</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="ObservaconForm" novalidate (ngSubmit)="save(ObservaconForm.value)">
+            <div class=" form-group col-xs-12 ">
+                <div class="col-md-12 form-group">
+                    <label>Observación/Razón de la Modificación</label>
+                    <textarea class="form-control" formControlName="observacion" id="" cols="30" rows="10" required></textarea>
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-md-offset-3 text-center">
+                <label>¿Sera Actualización ?</label>
+                <select formControlName="actualizacion" class="form-control" required>
+                              <option  value="" selected disabled hidden>Seleccionar</option>
+                              <option value="SI">SI</option>
+                              <option value="NO">NO</option>
+                          </select>
+            </div>
+            <div class="clearfix"></div>
+            <div class="clearfix"></div>
+            <div class="clearfix"></div>
+            <div class="col-xs-12">
+                <div class="form-group text-center">
+                    <button type="submit " class="btn btn-primary" [disabled]="!ObservaconForm.valid " style="margin-right:50px">Guardar</button>
+                </div>
+            </div>
+            <div class="clearfix "></div>
+        </form>
+    </div>
+</ng-template>
 <ngx-spinner></ngx-spinner>

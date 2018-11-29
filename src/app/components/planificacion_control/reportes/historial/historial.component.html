@@ -24,7 +24,7 @@
                                     <tbody>
                                         <tr *ngFor="let actividad of actividades | paginate: { itemsPerPage: 10, currentPage: page }">
                                             <td [ngClass]="{'actualizacion text-default text-center': actividad.actualizacion == 'SI','text-default text-center': actividad.actualizacion == 'NO'}">{{actividad.titulo}}</td>
-                                            <td [ngClass]="{'actualizacion text-default text-center': actividad.actualizacion == 'SI','text-default text-center': actividad.actualizacion == 'NO'}">{{actividad.observacion}}</td>
+                                            <td [ngClass]="{'actualizacion text-default text-center': actividad.actualizacion == 'SI','text-default text-center': actividad.actualizacion == 'NO'}" style="max-height: 50px;overflow-y:auto ">{{actividad.observacion}}</td>
                                             <td [ngClass]="{'actualizacion text-default text-center': actividad.actualizacion == 'SI','text-default text-center': actividad.actualizacion == 'NO'}">{{actividad.created_at}}</td>
                                         </tr>
                                     </tbody>

@@ -100,7 +100,7 @@
                                                             </div>
                                                             <div class="col-xs-4 form-group">
                                                                 <label>Fecha de Entrega Estimada</label>
-                                                                <input type="text" formControlName="tiempo_planificado_total" placeholder="Fecha estimada" class="form-control" bsDatepicker [bsConfig]="bsConfig" required>
+                                                                <input type="text" formControlName="tiempo_planificado_total" placeholder="Fecha estimada" class="form-control" bsDatepicker [bsConfig]="bsConfig" [minDate]="minDate" required>
                                                             </div>
                                                             <div class="col-xs-4 form-group">
                                                                 <label>Fecha de Entrega Real</label>
