@@ -30,9 +30,9 @@ export class IncioSesionComponent implements OnInit {
   }
   iniciar_sesion(proyecto) {
     this.spinner.show();
-    this.toastr.success('Sesion Iniciada'); 
         this.autenticacion.iniciar_sesion(proyecto).subscribe(
            data => {
+            this.toastr.success('Sesion Iniciada'); 
             this.spinner.hide();
             this.handleResponse(data);
           },

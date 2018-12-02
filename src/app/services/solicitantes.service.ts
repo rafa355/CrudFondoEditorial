@@ -22,7 +22,7 @@ export class SolicitantesService {
   crear_solicitante(solicitante) {
    return this.http.post(this.global.url+'CrearSolicitante', solicitante, httpOptions);
 }
-eliminar_solicitante(id: string):Observable<any> {
-  return this.http.get(this.global.url+'EliminarSolicitante/' + id)
+eliminar_solicitante(modelo,id: string):Observable<any> {
+  return this.http.post(this.global.url+'EliminarSolicitante/'+id, modelo, httpOptions);
 }
 }

@@ -150,7 +150,7 @@ export class ProyeccionesComponent implements OnInit {
         this.refresh.next();
       }else {
         this.events.push({
-          title: 'Proyeccion de solicitud '+solicitud.solicitudes.nombre+' - Persona de Contacto: '+solicitud.contacto+' - correo: '+solicitud.correo,
+          title: 'Proyeccion de solicitud '+solicitud.solicitudes.nombre+' - Persona de Contacto: '+solicitud.solicitudes.contacto+' - correo: '+solicitud.solicitudes.correo,
           start: startOfDay(solicitud.fecha_entrega),
           color: colors.blue,
           actions: this.actions

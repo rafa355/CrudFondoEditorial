@@ -42,7 +42,7 @@ export class SeguimientoComponent implements OnInit {
    this.proyectoservice.obtener_proyecto(id).subscribe(
       data => { this.proyecto = data,this.tipo = data.proyectotype.nombre},
       err => console.error(err)
-     ); 
+     );
    }
 
           //Metodo para cargar el archivo
@@ -51,12 +51,12 @@ export class SeguimientoComponent implements OnInit {
               this.enviandoArchivo.CargarImagen(files[0],this.id).subscribe(
                 data => {
                   this.spinner.hide();
-                  this.toastr.success('Imagen Cambiada'); 
+                  this.toastr.success('Imagen Cambiada');
                   this.ngOnInit();
                 },
                 error => {
                   this.spinner.hide();
-                  this.toastr.error('Ha ocurrido un error'); 
+                  this.toastr.error('Ha ocurrido un error');
                 }
               );//FIN DE METODO SUBSCRIBE
             }
@@ -81,4 +81,5 @@ export class SeguimientoComponent implements OnInit {
       err => console.error(err),() => console.log(this.e_principal)
      );
   }
+
 }

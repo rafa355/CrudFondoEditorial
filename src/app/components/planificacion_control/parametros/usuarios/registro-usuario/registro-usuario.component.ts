@@ -36,6 +36,7 @@ export class RegistroUsuarioComponent implements OnInit {
           this.spinner.show();
         this.usuarioservices.crear_usuario(formulario).subscribe(
            data => {
+            this.spinner.hide();
             this.toastr.success('Usuario Creado'); 
             this.router.navigate(['/usuarios']);
           },

@@ -32,6 +32,7 @@ export class RegistroSolicitanteComponent implements OnInit {
         this.spinner.show();
         this.solicitanteServices.crear_solicitante(solicitud).subscribe(
            data => {
+            this.spinner.hide();
             this.toastr.success('Usuario/Cliente Creado'); 
             this.router.navigate(['/solicitantes']);
           },

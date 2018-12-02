@@ -31,7 +31,7 @@ export class RegistroTipoProyectoComponent implements OnInit {
       this.spinner.show();
         this.ProyectoService.crear_tipo_proyecto(tipo).subscribe(
            data => {
-            this.toastr.success('Tipo de Proyecto Creado'),this.router.navigate(['/tipo_proyecto']);
+            this.spinner.hide(),this.toastr.success('Tipo de Proyecto Creado'),this.router.navigate(['/tipo_proyecto']);
           },
            error => {
             this.spinner.hide();

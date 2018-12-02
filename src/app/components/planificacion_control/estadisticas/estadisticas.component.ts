@@ -3,6 +3,7 @@ import { ContadorService } from '../../../services/contador.service'
 import { FormGroup, FormArray, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { BsDatepickerConfig, BsLocaleService } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-estadisticas',
@@ -41,7 +42,7 @@ export class EstadisticasComponent implements OnInit {
   grafica_proyectos_autor= [];
   grafica_proyectos_disenador= [];
 
-  constructor(private toastr:ToastrService,private spinner: NgxSpinnerService,private _fb: FormBuilder,private contador: ContadorService) {
+  constructor(private toastr:ToastrService,private spinner: NgxSpinnerService,private localeService: BsLocaleService,private _fb: FormBuilder,private contador: ContadorService) {
     Object.assign(this, this.grafica_solicitudes_usuario_cliente);
     Object.assign(this, this.grafica_solicitudes_cliente);
     Object.assign(this, this.grafica_solicitudes_usuario);
@@ -55,8 +56,15 @@ export class EstadisticasComponent implements OnInit {
     Object.assign(this, this.grafica_proyectos_autor);
     Object.assign(this, this.grafica_proyectos_disenador);
    }
-
+  //propiedades para el calendario
+  locale = 'es';
+  colorTheme = 'theme-dark-blue';
+  bsConfig: Partial<BsDatepickerConfig>;
   ngOnInit() {
+      //Aplicar idioma español
+      this.localeService.use(this.locale);
+      this.bsConfig = Object.assign({}, { containerClass: this.colorTheme },{ dateInputFormat: 'YYYY-MM-DD' });
+
     this.periodo_graficas = this._fb.group({rango: [''],});
   }
 
@@ -113,14 +121,14 @@ agregar_datos_proyectos_usuario(datos) {
     this.grafica_proyectos_usuario.push({"name": datos.nombre, "value": datos.proyectos});
   }
   return this.grafica_proyectos_usuario;
-} 
+}
 agregar_datos_proyectos_estado(datos) {
   this.grafica_proyectos_estado.push({"name": 'En Espera', "value": datos.ninguna});
   this.grafica_proyectos_estado.push({"name": 'Preliminar', "value": datos.preliminar});
   this.grafica_proyectos_estado.push({"name": 'Diagramacion', "value": datos.diagramacion});
   this.grafica_proyectos_estado.push({"name": 'Publicado', "value": datos.publicacion});
   this.grafica_proyectos_estado.push({"name": 'Finalizados', "value": datos.listos});
-  
+
   return this.grafica_proyectos_estado;
 }
 agregar_datos_proyectos_tipo(datos) {
@@ -146,7 +154,8 @@ Contadores(formulario) {
     this.contador.obtener_contadores(formulario).subscribe(
         data => {
           this.spinner.hide();
-          this.toastr.success('Gráficas Generadas'); 
+          console.log(data);
+          this.toastr.success('Gráficas Generadas');
           this.solicitudes_estado = data[0]
           this.solicitudes_usuario_cliente = data[1]
           this.solicitudes_tipo = data[2]
@@ -166,9 +175,9 @@ Contadores(formulario) {
           this.grafica_proyectos_autor = [...this.agregar_datos_proyectos_autor(this.proyectos_generales.autor)];
           this.grafica_proyectos_disenador = [...this.agregar_datos_proyectos_diseñador(this.proyectos_generales.diseñador)];
         },
-        err =>{ 
+        err =>{
           this.spinner.hide();
-          this.toastr.error('Ha ocurrido un error'); 
+          this.toastr.error('Ha ocurrido un error');
         }
       );
     }

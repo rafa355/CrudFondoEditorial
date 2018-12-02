@@ -46,6 +46,7 @@ export class EtapasComponent implements OnInit {
   public adjuntos_publicacion;
   modalRef: BsModalRef;
   public myForm: FormGroup;
+  public FormObservacion: FormGroup;
   public adjunto_revisado: FormGroup;
   public estimado_preliminar: FormGroup;
   public estimado_demas: FormGroup;
@@ -73,7 +74,10 @@ export class EtapasComponent implements OnInit {
         ubicacion: [''],
         comentario: [''],
         });
-
+        this.FormObservacion = this._fb.group({
+          actualizacion: [''],
+          observacion: [''],
+          });
         this.estimado_preliminar = this._fb.group({
           etapa: [1],
           proyecto: [this.id],
@@ -225,4 +229,23 @@ export class EtapasComponent implements OnInit {
             }
            );
         }
+
+                         //modal para eliminar adjunto
+                         ModalEliminar(template: TemplateRef<any>,id:string) {
+                          this.adjunto_id = id;
+                          this.modalRef = this.modalService.show(template);
+                    }
+                    eliminar(model) {
+                      this.spinner.show()
+                      this.adjuntosservice.eliminar_adjunto(model,this.adjunto_id).subscribe(
+                        data => {
+                          this.spinner.hide();
+                          this.toastr.success('Adjunto eliminado'),this.ngOnInit(),this.modalRef.hide(),console.log(data)
+                        },
+                        err => {
+                          this.spinner.hide();
+                          this.toastr.error('Ha ocurrido un error');
+                        }
+                       );
+                    }
 }

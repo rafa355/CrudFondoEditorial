@@ -48,13 +48,13 @@ public myForm: FormGroup;
     Eliminar_usuario(encargado,id: string) {
       this.spinner.show();
       this.usuarioservice.eliminar_usuario(encargado,id).subscribe(
-         data => { this.notificacion = data,this.toastr.success('Usuario Eliminado'),this.ngOnInit(),this.modalRef.hide()},
+         data => { this.spinner.hide(),this.notificacion = data,this.toastr.success('Usuario Eliminado'),this.ngOnInit(),this.modalRef.hide()},
          err =>{
           this.spinner.hide();
           this.toastr.error('Ha ocurrido un error'); 
          }
         );}
-               //modal para eliminar enacargado
+               //modal para eliminar usuario
                ModalEliminar(template: TemplateRef<any>,id:string) {
                 this.usuarioservice.obtener_usuario(id).subscribe(
                   data => {

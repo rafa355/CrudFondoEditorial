@@ -20,12 +20,13 @@
             </a>
             <div *ngIf="this.etapa_preliminar.estado == 1 && adjuntos_preliminar.length > 0" class="pull-left" (click)="Modal(finalizar)" style="cursor: pointer;"><span class="fa fa-power-off  "></span> Finalizar Etapa</div><br><br>
             <div *ngIf="this.etapa_preliminar.estado == 1" class="pull-left" (click)="Modal(preliminar)" style="cursor: pointer;"><span class="fa fa-plus"></span> Añadir adjunto</div>
-            <div *ngFor="let adjunto of adjuntos_preliminar">
+            <div *ngFor="let adjunto of adjuntos_preliminar;let primero = first;">
                 <br>
                 <div class="widget">
                     <div class="widget-body text-center">
                         <div>
                             <a href="{{this.url}}descargar/{{adjunto.id}}" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                            <a *ngIf="this.etapa_preliminar.estado == 1 && primero" (click)="ModalEliminar(observacion,adjunto.id)" class="fa fa-times pull-right text-danger" style="cursor:pointer"></a>
                         </div>
                         <br>
                         <div class="table-responsive text-justify">
@@ -124,6 +125,7 @@
                     <div class="widget-body text-center">
                         <div>
                             <a href="{{this.url}}descargar/{{adjunto.id}}" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                            <a *ngIf="this.etapa_diagramacion.estado == 3 && ultimo" (click)="ModalEliminar(observacion,adjunto.id)" class="fa fa-times pull-right text-danger" style="cursor:pointer"></a>
                         </div>
                         <br>
                         <div class="table-responsive text-justify">
@@ -153,6 +155,7 @@
                     <div class="widget-body text-center">
                         <div>
                             <a href="{{this.url}}descargar/{{adjunto.id}}" download="{{adjunto.created_at}}"> {{adjunto.created_at}} <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                            <a *ngIf="this.etapa_diagramacion.estado == 1 && ultimo" (click)="ModalEliminar(observacion,adjunto.id)" class="fa fa-times pull-right text-danger" style="cursor:pointer"></a>
                         </div>
                         <br>
                         <div class="table-responsive text-justify">
@@ -428,6 +431,41 @@
         <div class="clearfix "></div>
         <div class="margin-20">
         </div>
+    </div>
+</ng-template>
+<ng-template #observacion>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Eliminar Adjunto</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="FormObservacion" novalidate (ngSubmit)="eliminar(FormObservacion.value)">
+            <div class=" form-group col-xs-12 ">
+                <div class="col-md-12 form-group">
+                    <label>Observación/Razón de Eliminación</label>
+                    <textarea class="form-control" formControlName="observacion" id="" cols="30" rows="10" required></textarea>
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-md-offset-3 text-center">
+                <label>¿Sera Actualización ?</label>
+                <select formControlName="actualizacion" class="form-control" required>
+                          <option  value="" selected disabled hidden>Seleccionar</option>
+                          <option value="SI">SI</option>
+                          <option value="NO">NO</option>
+                      </select>
+            </div>
+            <div class="clearfix"></div>
+            <div class="clearfix"></div>
+            <div class="clearfix"></div>
+            <div class="col-xs-12">
+                <div class="form-group text-center">
+                    <button type="submit " class="btn btn-danger" [disabled]="!FormObservacion.valid " style="margin-right:50px">Eliminar</button>
+                </div>
+            </div>
+            <div class="clearfix "></div>
+        </form>
     </div>
 </ng-template>
 <ngx-spinner></ngx-spinner>

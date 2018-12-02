@@ -22,6 +22,9 @@ export class AdjuntoService {
 revisar_adjunto(adjunto,proyecto,etapa) {
   return this.http.post(this.global.url+'RevisarAdjunto/'+proyecto+'/'+etapa, adjunto, httpOptions);
 }
+eliminar_adjunto(observacion,id_adjunto: string):Observable<any> {
+  return this.http.post(this.global.url+'EliminarAdjunto/'+id_adjunto, observacion, httpOptions);
+}
   obtener_encargados():Observable<any> {
     return this.http.get(this.global.url+'ObtenerEncargados')
 }

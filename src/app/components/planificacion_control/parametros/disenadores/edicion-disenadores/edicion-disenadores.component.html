@@ -7,7 +7,7 @@
                         <header class="widget-header">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
-                                    <h1 class="h3 title-form">Edición de Encargado</h1>
+                                    <h1 class="h3 title-form">Edición de Diseñador</h1>
                                 </div>
                             </div>
                         </header>
@@ -26,7 +26,7 @@
                                                 <input type="text" class="form-control" formControlName="correo" [(ngModel)]='this.encargado.correo' required>
                                             </div>
                                             <div class="form-group col-xs-3 col-md-3">
-                                                <label>Tipo de Encargado</label>
+                                                <label>Tipo de Diseñador</label>
                                                 <select formControlName="responsable_type_id" [(ngModel)]='this.encargado.responsable_type_id' class="form-control" required>
                                                 <option  value="" selected disabled hidden>Seleccionar</option>
                                                 <option  *ngFor="let tipo of tipos" value="{{tipo.id}}">{{tipo.nombre}}</option>

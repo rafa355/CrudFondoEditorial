@@ -49,7 +49,7 @@ public myForm: FormGroup;
     EliminarEncargado(encargado,id: string) {
       this.spinner.show();
       this.encargadoservice.eliminar_encargado(encargado,id).subscribe(
-         data => { this.notificacion = data,this.toastr.success('Encargado Eliminado'),this.ngOnInit(),this.modalRef.hide()},
+         data => { this.spinner.hide(),this.notificacion = data,this.toastr.success('Encargado Eliminado'),this.ngOnInit(),this.modalRef.hide()},
          err => {
           this.spinner.hide();
           this.toastr.error('Ha ocurrido un error'); 
